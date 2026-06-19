@@ -4,196 +4,772 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>A Bíblia Já Sabia | Ilana Horta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000000;color:#EDE8DE;font-family:Georgia,serif;min-height:100vh;}
-a{color:inherit;text-decoration:none;}
-a:visited{color:inherit;}
-a:hover{color:#D4A020;}
-input,textarea{background:rgba(255,255,255,.05);border:1px solid rgba(212,160,32,.3);border-radius:8px;padding:12px 14px;color:#EDE8DE;font-size:14px;width:100%;outline:none;font-family:Arial;transition:border-color .2s;}
-input:focus,textarea:focus{border-color:#D4A020;}
-input::placeholder,textarea::placeholder{color:#7A8A98;}
-button{cursor:pointer;font-family:Arial;font-weight:bold;border-radius:8px;transition:all .2s;}
-.foto-wrap{position:relative;width:200px;height:200px;margin:0 auto 32px;}
-.foto-wrap img{width:200px;height:200px;object-fit:cover;object-position:center top;border-radius:50%;border:3px solid #D4A020;box-shadow:0 0 40px rgba(212,160,32,.2);}
-.foto-wrap::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(212,160,32,.3);}
-.foto-wrap::after{content:"";position:absolute;inset:-16px;border-radius:50%;border:1px dashed rgba(212,160,32,.15);}
-.divider{width:60px;height:2px;background:linear-gradient(to right,transparent,#D4A020,transparent);margin:0 auto;}
-.btn-form{background:#D4A020;color:#000000;border:none;padding:15px;font-size:15px;width:100%;border-radius:8px;margin-top:6px;}
-.success-box{background:rgba(46,144,64,.1);border:1px solid rgba(46,144,64,.3);border-radius:10px;padding:24px;text-align:center;display:none;}
-.success-box.show{display:block;}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #080808;
+    --white: #F5F0E8;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gray: #9A9A9A;
+    --gray-dark: #1A1A1A;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,.95), transparent);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .nav-link {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    transition: color .3s;
+  }
+  .nav-link:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    gap: 80px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(201,168,76,.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 18px 36px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--sans);
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-primary .arrow {
+    transition: transform .3s;
+  }
+  .btn-primary:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .btn-caption {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    padding-left: 4px;
+  }
+
+  /* HERO IMAGE */
+  .hero-image-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-img-frame {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .hero-img-frame::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    right: 20px; bottom: 20px;
+    border: 1px solid rgba(201,168,76,.2);
+    z-index: 0;
+  }
+
+  .hero-img-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    filter: grayscale(20%) contrast(1.05);
+  }
+
+  .hero-img-label {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    z-index: 2;
+    background: var(--black);
+    border: 1px solid rgba(201,168,76,.3);
+    padding: 20px 24px;
+  }
+  .hero-img-label p {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .hero-img-label span {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,.3), transparent);
+    margin: 0 60px;
+    width: calc(100% - 120px);
+  }
+
+  /* ── MANIFESTO ── */
+  .manifesto {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .manifesto-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 8px;
+  }
+
+  .manifesto-text {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--white);
+  }
+
+  .manifesto-text strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .manifesto-quote {
+    margin-top: 48px;
+    padding-left: 24px;
+    border-left: 1px solid var(--gold);
+  }
+  .manifesto-quote p {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .manifesto-quote cite {
+    display: block;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ── CALCULADORA DESTAQUE ── */
+  .calc-section {
+    margin: 0 60px 120px;
+    background: var(--gray-dark);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .calc-number {
+    font-family: var(--serif);
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(201,168,76,.08);
+    line-height: 1;
+    position: absolute;
+    top: 20px; right: 40px;
+  }
+
+  .calc-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .calc-label::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .calc-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.9;
+    margin-bottom: 40px;
+  }
+
+  .calc-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .stat-item {
+    border-top: 1px solid rgba(201,168,76,.2);
+    padding-top: 16px;
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── PRINCÍPIOS ── */
+  .principios-section {
+    padding: 120px 60px;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.9;
+    max-width: 400px;
+  }
+
+  .principios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,.1);
+  }
+
+  .principio-item {
+    background: var(--black);
+    padding: 32px 28px;
+    transition: background .3s;
+    cursor: default;
+  }
+  .principio-item:hover {
+    background: var(--gray-dark);
+  }
+  .principio-num {
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .principio-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  .principio-verse {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── CONTATO ── */
+  .contact-section {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: start;
+    border-top: 1px solid rgba(201,168,76,.1);
+  }
+
+  .contact-intro {
+    position: sticky;
+    top: 120px;
+  }
+
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .contact-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  .contact-verse {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.6;
+  }
+  .contact-verse cite {
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  /* FORM */
+  .form-field {
+    margin-bottom: 28px;
+  }
+  .form-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+  .form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    padding: 12px 0;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color .3s;
+  }
+  .form-input:focus {
+    border-color: var(--gold);
+  }
+  .form-input::placeholder {
+    color: rgba(255,255,255,.2);
+  }
+  textarea.form-input {
+    resize: none;
+    height: 80px;
+  }
+
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 16px 32px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all .3s;
+    margin-top: 16px;
+  }
+  .btn-submit:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .form-privacy {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 20px;
+    letter-spacing: .5px;
+  }
+
+  .success-msg {
+    display: none;
+    padding: 40px 0;
+  }
+  .success-msg.show { display: block; }
+  .success-msg h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .success-msg p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
+    .hero-image-wrap { order: -1; }
+    .hero-img-frame { max-width: 300px; margin: 0 auto; }
+    .manifesto { grid-template-columns: 1fr; padding: 80px 24px; gap: 24px; }
+    .calc-section { grid-template-columns: 1fr; padding: 48px 24px; margin: 0 24px 80px; }
+    .principios-section { padding: 80px 24px; }
+    .section-header { grid-template-columns: 1fr; gap: 24px; }
+    .principios-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 60px; }
+    .contact-intro { position: static; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A Bíblia Já Sabia</div>
+  <a href="#contato" class="nav-link">Fale com Ilana</a>
+</nav>
+
 <!-- HERO -->
-<section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;">
-  <div style="font-size:11px;color:#8A6810;font-family:Arial;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;">✦ Ilana Horta ✦</div>
-  <div class="foto-wrap">
-    <img src="biblioteca.jpeg" alt="Bíblia e Finanças"/>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Ilana Horta</div>
+    <h1 class="hero-title">
+      A Bíblia<br>
+      <em>Já Sabia.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Princípios bíblicos que transformam a sua relação com o dinheiro e te conduzem para a liberdade financeira que Deus preparou para você.
+    </p>
+    <div class="hero-cta">
+      <a href="calculadora.html" class="btn-primary">
+        Encare suas dívidas e dê o primeiro passo em direção à sua liberdade financeira
+        <span class="arrow">→</span>
+      </a>
+      <span class="btn-caption">Calculadora gratuita · Resultado imediato</span>
+    </div>
   </div>
-  <h1 style="font-size:clamp(36px,6vw,64px);color:#D4A020;line-height:1.1;margin-bottom:14px;">A Bíblia<br>Já Sabia.</h1>
-  <p style="font-size:clamp(16px,2.2vw,20px);color:#EDE8DE;font-family:Arial;max-width:560px;line-height:1.7;margin:0 auto 24px;">
-    Princípios bíblicos que transformam a sua relação com o dinheiro e te conduzem para a liberdade financeira que Deus preparou para você.
-  </p>
-  <p style="font-size:clamp(14px,1.8vw,17px);color:#D4A020;font-style:italic;margin-bottom:40px;">
-    "O Senhor é meu pastor e nada me faltará." — Salmos 23:1
-  </p>
-  <a href="calculadora.html" style="text-decoration:none;background:#D4A020;color:#000000;padding:16px 36px;font-size:16px;border-radius:50px;font-family:Arial;font-weight:bold;display:inline-flex;align-items:center;gap:10px;box-shadow:0 8px 30px rgba(212,160,32,.3);">
-    📖 Calcule sua liberdade financeira
-  </a>
-</section>
-
-<div style="padding:20px 0;"><div class="divider"></div></div>
-
-<!-- SOBRE -->
-<section style="padding:80px 20px;max-width:760px;margin:0 auto;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
-    <div>
-      <div style="font-size:10px;color:#D4A020;font-family:Arial;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">Sobre o Projeto</div>
-      <h2 style="font-size:clamp(22px,3vw,32px);line-height:1.3;margin-bottom:24px;">Sabedoria antiga.<br><span style="color:#D4A020;">Liberdade real.</span></h2>
-      <p style="font-size:15px;color:#EDE8DE;font-family:Arial;line-height:1.8;margin-bottom:16px;">
-        Ilana Horta reúne princípios bíblicos práticos, testados e aplicados e transformadores, que te levam do endividamento à liberdade com sabedoria, disciplina e fé.
-      </p>
-      <p style="font-size:15px;color:#EDE8DE;font-family:Arial;line-height:1.8;margin-bottom:20px;">
-        Não é autoajuda. É fidelidade.
-      </p>
-      <div style="padding:18px 20px;background:rgba(212,160,32,.08);border-left:3px solid #D4A020;">
-        <p style="font-size:14px;color:#EDE8DE;font-style:italic;line-height:1.7;">"Não devas nada a ninguém, a não ser o amor mútuo."<br><span style="color:#8A6810;font-size:12px;">— Romanos 13:8</span></p>
+  <div class="hero-image-wrap">
+    <div class="hero-img-frame">
+      <img src="ilanahorta.jpeg" alt="Ilana Horta"/>
+      <div class="hero-img-label">
+        <p>Ilana Horta</p>
+        <span>Especialista Financeira Cristã</span>
       </div>
     </div>
-    <div style="text-align:center;">
-      <img src="ilanahorta.jpeg" alt="Ilana Horta" style="width:100%;max-width:280px;border-radius:16px;border:1px solid rgba(212,160,32,.3);box-shadow:0 20px 60px rgba(0,0,0,.4);"/>
-      <p style="margin-top:16px;font-size:14px;color:#D4A020;">Ilana Horta</p>
-      <p style="font-size:12px;color:#EDE8DE;font-family:Arial;">Especialista Financeira Cristã</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-label">O Projeto</div>
+  <div>
+    <p class="manifesto-text">
+      Ilana Horta reúne profundo conhecimento e longa experiência financeira aliada a princípios bíblicos práticos, testados e transformadores, que te levam do endividamento à liberdade com sabedoria, disciplina e fé.<br><br>Você pode estar poupando e investindo enquanto uma dívida <strong>destrói tudo isso em silêncio.</strong> Por isso é urgente: primeiro, reconheça suas dívidas. Segundo, haja para quitá-las.
+    </p>
+    <div class="manifesto-quote">
+      <p>"Não devas nada a ninguém, a não ser o amor mútuo."</p>
+      <cite>Romanos 13:8</cite>
     </div>
   </div>
 </section>
 
-<div style="padding:20px 0;"><div class="divider"></div></div>
+<div class="section-divider"></div>
+
+<!-- CALCULADORA DESTAQUE -->
+<section class="calc-section">
+  <div class="calc-number">01</div>
+  <div>
+    <div class="calc-label">Ferramenta gratuita</div>
+    <h2 class="calc-title">Calculadora da<br>Liberdade Financeira</h2>
+    <p class="calc-desc">
+      Insira suas dívidas e descubra exatamente quando você será livre — com base nos 13 princípios bíblicos de Ilana Horta. Gratuita, imediata e transformadora.
+    </p>
+    <a href="calculadora.html" class="btn-primary" style="display:inline-flex;">
+      Acessar a calculadora <span class="arrow">→</span>
+    </a>
+  </div>
+  <div class="calc-stats">
+    <div class="stat-item">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Princípios bíblicos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Gratuita</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Dívidas simuladas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2</div>
+      <div class="stat-label">Estratégias de quitação</div>
+    </div>
+  </div>
+</section>
 
 <!-- PRINCÍPIOS -->
-<section style="padding:80px 20px;">
-  <div style="max-width:600px;margin:0 auto;">
-    <p style="text-align:center;font-size:clamp(20px,3vw,30px);margin-bottom:8px;">13 Princípios Bíblicos</p>
-    <p style="text-align:center;font-size:13px;color:#7A8A98;font-family:Arial;margin-bottom:40px;">Uma jornada de sabedoria — do Gênesis às suas finanças</p>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">1.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Conhecimento</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 24:3-4</span>
+<section class="principios-section">
+  <div class="section-header">
+    <h2 class="section-title">13 Princípios<br><em style="font-style:italic;color:var(--gold);">Bíblicos</em></h2>
+    <p class="section-desc">Uma jornada de sabedoria financeira — do Gênesis às suas finanças. Cada princípio é uma chave. Juntos, abrem a porta da liberdade.</p>
+  </div>
+  <div class="principios-grid">
+    <div class="principio-item"><div class="principio-num">01</div><div class="principio-name">Conhecimento</div><div class="principio-verse">Pv 24:3-4</div></div>
+    <div class="principio-item"><div class="principio-num">02</div><div class="principio-name">Primícias</div><div class="principio-verse">Pv 3:9-10</div></div>
+    <div class="principio-item"><div class="principio-num">03</div><div class="principio-name">Fuga do Jugo</div><div class="principio-verse">Pv 22:7</div></div>
+    <div class="principio-item"><div class="principio-num">04</div><div class="principio-name">Mordomia Fiel</div><div class="principio-verse">Lc 16:10</div></div>
+    <div class="principio-item"><div class="principio-num">05</div><div class="principio-name">Disciplina</div><div class="principio-verse">Pv 21:5</div></div>
+    <div class="principio-item"><div class="principio-num">06</div><div class="principio-name">Trabalho com Propósito</div><div class="principio-verse">Cl 3:23</div></div>
+    <div class="principio-item"><div class="principio-num">07</div><div class="principio-name">Rejeição dos Juros</div><div class="principio-verse">Pv 22:26</div></div>
+    <div class="principio-item"><div class="principio-num">08</div><div class="principio-name">Fidelidade</div><div class="principio-verse">Mt 25:21</div></div>
+    <div class="principio-item"><div class="principio-num">09</div><div class="principio-name">Poupança Sistemática</div><div class="principio-verse">Pv 13:11</div></div>
+    <div class="principio-item"><div class="principio-num">10</div><div class="principio-name">Previsão</div><div class="principio-verse">Pv 31:25</div></div>
+    <div class="principio-item"><div class="principio-num">11</div><div class="principio-name">Investimento Sábio</div><div class="principio-verse">Ec 11:2</div></div>
+    <div class="principio-item"><div class="principio-num">12</div><div class="principio-name">Generosidade</div><div class="principio-verse">Lc 6:38</div></div>
+    <div class="principio-item" style="grid-column: span 2;"><div class="principio-num">13</div><div class="principio-name">Legado</div><div class="principio-verse">Pv 13:22</div></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contact-section" id="contato">
+  <div class="contact-intro">
+    <div class="calc-label">Fale com Ilana</div>
+    <h2 class="contact-title">Quer saber<br>mais?</h2>
+    <p class="contact-desc">Deixe seus dados e Ilana Horta entrará em contato com você pessoalmente. Cada conversa é tratada com cuidado e propósito.</p>
+    <div class="contact-verse">
+      "O Senhor é meu pastor e nada me faltará."
+      <cite>Salmos 23:1</cite>
+    </div>
+  </div>
+  <div>
+    <div id="form">
+      <div class="form-field">
+        <label class="form-label">Nome completo</label>
+        <input class="form-input" type="text" id="nome" placeholder="Seu nome"/>
       </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">2.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Primícias</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 3:9-10</span>
+      <div class="form-field">
+        <label class="form-label">E-mail</label>
+        <input class="form-input" type="email" id="email" placeholder="seu@email.com"/>
       </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">3.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Fuga do Jugo</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 22:7</span>
+      <div class="form-field">
+        <label class="form-label">WhatsApp</label>
+        <input class="form-input" type="tel" id="telefone" placeholder="(11) 99999-9999"/>
       </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">4.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Mordomia Fiel</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Lc 16:10</span>
+      <div class="form-field">
+        <label class="form-label">Instagram</label>
+        <input class="form-input" type="text" id="instagram" placeholder="@seuinstagram"/>
       </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">5.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Disciplina</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 21:5</span>
+      <div class="form-field">
+        <label class="form-label">Mensagem (opcional)</label>
+        <textarea class="form-input" id="mensagem" placeholder="Como posso te ajudar?"></textarea>
       </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">6.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Trabalho com Propósito</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Cl 3:23</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">7.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Rejeição dos Juros</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 22:26</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">8.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Fidelidade</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Mt 25:21</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">9.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Poupança Sistemática</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 13:11</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">10.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Previsão</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 31:25</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">11.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Investimento Sábio</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Ec 11:2</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(212,160,32,.1);">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">12.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Generosidade</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Lc 6:38</span>
-      </div>
-      <div style="display:flex;gap:14px;align-items:baseline;padding:10px 0;">
-        <span style="color:#D4A020;font-size:15px;font-weight:bold;min-width:24px;font-family:Arial;">13.</span>
-        <span style="font-size:14px;color:#EDE8DE;">Legado</span>
-        <span style="font-size:12px;color:#7A8A98;font-family:Arial;margin-left:auto;">Pv 13:22</span>
-      </div>
+      <button class="btn-submit" onclick="enviar()">
+        Enviar mensagem <span>→</span>
+      </button>
+      <p class="form-privacy">Seus dados são tratados com respeito e privacidade.</p>
+    </div>
+    <div class="success-msg" id="success">
+      <h3>Recebido.</h3>
+      <p>Ilana Horta entrará em contato em breve.<br><br><em style="color:var(--gold);font-style:italic;">"O Senhor abençoe você e te guarde."<br>— Números 6:24</em></p>
     </div>
   </div>
 </section>
 
-<div style="padding:20px 0;"><div class="divider"></div></div>
-
-<!-- FORMULÁRIO -->
-<section style="padding:80px 20px;">
-  <div style="max-width:560px;margin:0 auto;">
-    <h2 style="text-align:center;font-size:clamp(20px,3vw,28px);margin-bottom:8px;">Quer saber mais?</h2>
-    <p style="text-align:center;font-size:13px;color:#EDE8DE;font-family:Arial;margin-bottom:36px;line-height:1.6;">Deixe seus dados e Ilana Horta entrará em contato com você pessoalmente.</p>
-    <div style="display:flex;flex-direction:column;gap:14px;" id="form">
-      <input type="text" id="nome" placeholder="Seu nome completo"/>
-      <input type="email" id="email" placeholder="Seu melhor e-mail"/>
-      <input type="tel" id="telefone" placeholder="Seu WhatsApp"/>
-      <input type="text" id="instagram" placeholder="Seu Instagram (ex: @ilanahorta)"/>
-      <textarea id="mensagem" rows="3" placeholder="Mensagem (opcional)"></textarea>
-      <button class="btn-form" onclick="enviar()">Quero saber mais →</button>
-      <p style="text-align:center;font-size:11px;color:#7A8A98;font-family:Arial;">Seus dados são tratados com respeito e privacidade. Sem spam.</p>
-    </div>
-    <div class="success-box" id="success">
-      <div style="font-size:36px;margin-bottom:12px;">🙏</div>
-      <h3 style="color:#D4A020;margin-bottom:8px;">Recebido com gratidão!</h3>
-      <p style="font-size:13px;color:#EDE8DE;font-family:Arial;line-height:1.7;">Ilana Horta entrará em contato em breve.<br><em style="color:#8A6810;">"O Senhor abençoe você e te guarde." — Números 6:24</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- RODAPÉ -->
-<footer style="padding:32px 20px;text-align:center;border-top:1px solid rgba(212,160,32,.1);">
-  <p style="font-size:16px;color:#D4A020;margin-bottom:6px;font-style:italic;">A Bíblia Já Sabia.</p>
-  <p style="font-size:11px;color:#EDE8DE;font-family:Arial;">© 2026 Ilana Horta · Todos os direitos reservados</p>
-  <p style="margin-top:8px;font-size:11px;color:#8A6810;font-family:Arial;font-style:italic;">"Bem, servo bom e fiel." — Mateus 25:21</p>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">A Bíblia Já Sabia.</div>
+  <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
 </footer>
 
 <script>
 async function enviar(){
-  const nome=document.getElementById("nome").value.trim();
-  const email=document.getElementById("email").value.trim();
-  const telefone=document.getElementById("telefone").value.trim();
-  const instagram=document.getElementById("instagram").value.trim();
-  const mensagem=document.getElementById("mensagem").value.trim();
-  if(!nome){alert("Por favor, informe seu nome.");return;}
-  if(!email||!email.includes("@")){alert("Por favor, informe um e-mail válido.");return;}
-  try{
-    await fetch("https://formspree.io/f/SEU_FORM_ID",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({nome,email,telefone,instagram,mensagem,_subject:"Novo contato: "+nome})
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+  const instagram = document.getElementById("instagram").value.trim();
+  const mensagem = document.getElementById("mensagem").value.trim();
+  if(!nome){ alert("Por favor, informe seu nome."); return; }
+  if(!email || !email.includes("@")){ alert("Por favor, informe um e-mail válido."); return; }
+  try {
+    await fetch("https://formspree.io/f/SEU_FORM_ID", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nome, email, telefone, instagram, mensagem, _subject: "Novo contato: " + nome })
     });
-  }catch(e){}
-  document.getElementById("form").style.display="none";
+  } catch(e) {}
+  document.getElementById("form").style.display = "none";
   document.getElementById("success").classList.add("show");
 }
 </script>
