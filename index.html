@@ -1,914 +1,381 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Descubra quando você será livre das dívidas — 13 princípios bíblicos de Ilana Horta"/>
-  <title>Calculadora da Liberdade Financeira | Ilana Horta</title>
-
-  <!-- React + Recharts via CDN — nenhuma instalação necessária -->
-  <script src="https://unpkg.com/react@18.3.0/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18.3.0/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/recharts@2.12.0/umd/Recharts.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone@7.23.0/babel.min.js"></script>
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{background:#080F18;font-family:Georgia,serif;}
-    input{outline:none;transition:border-color .15s;}
-    input:focus{border-color:#D4A020!important;box-shadow:0 0 0 2px rgba(212,160,32,.18);}
-    button{transition:opacity .15s;} button:hover{opacity:.88;}
-    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#0E1824;}
-    ::-webkit-scrollbar-thumb{background:#D4A02060;border-radius:3px;}
-    @media(max-width:520px){
-      .g2{grid-template-columns:1fr!important;}
-      .g3{grid-template-columns:1fr 1fr!important;}
-      .steps{flex-direction:column!important;gap:6px!important;}
-      .step-arrow{display:none!important;}
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calculadora da Liberdade Financeira | Ilana Horta</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#080F18;color:#EDE8DE;font-family:Georgia,serif;min-height:100vh;}
+input{background:#080F18;border:1px solid rgba(212,160,32,.3);border-radius:6px;padding:9px 11px;color:#EDE8DE;font-size:13px;width:100%;outline:none;font-family:Arial;}
+input:focus{border-color:#D4A020;}
+button{cursor:pointer;font-family:Arial;font-weight:bold;border-radius:7px;transition:opacity .15s;}
+button:hover{opacity:.88;}
+.btn-p{background:#D4A020;color:#080F18;border:none;padding:11px 18px;font-size:13px;}
+.btn-s{background:transparent;color:#D4A020;border:1.5px solid #D4A020;padding:11px 18px;font-size:13px;}
+.card{background:#112030;border:1px solid rgba(212,160,32,.2);border-radius:10px;padding:16px;margin-bottom:14px;}
+.label{font-size:10px;color:#7A8A98;font-family:Arial;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:4px;}
+.gold{color:#D4A020;}
+.dim{color:#7A8A98;}
+.red{color:#C44020;}
+.hdr{background:#112030;border-bottom:1px solid rgba(212,160,32,.2);padding:10px 14px;text-align:center;position:sticky;top:0;z-index:10;}
+.body{padding:14px 14px 60px;}
+.tag-w{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:Arial;background:#C4402018;color:#E05030;border:1px solid #C4402040;}
+.tag-ok{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:Arial;background:#2E904018;color:#50B868;border:1px solid #2E904040;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.stat{background:#243545;border:1px solid rgba(212,160,32,.2);border-radius:7px;padding:11px 7px;text-align:center;flex:1;}
+.stat-v{font-size:18px;font-weight:bold;font-family:Georgia;}
+.stat-l{font-size:10px;color:#7A8A98;font-family:Arial;margin-top:3px;}
+.prog-bg{height:5px;background:rgba(212,160,32,.15);border-radius:3px;overflow:hidden;margin-top:4px;}
+.step{display:flex;align-items:center;gap:6px;}
+.step-n{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-family:Arial;font-weight:bold;flex-shrink:0;}
+.div-card{background:#1C2B3A;border-radius:8px;padding:11px;margin-bottom:10px;border:1px solid rgba(212,160,32,.2);}
+.pr-card{display:flex;gap:10px;margin-bottom:11px;padding:11px;background:#1C2B3A;border-radius:7px;border:1px solid rgba(212,160,32,.2);}
+.pr-n{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:rgba(212,160,32,.2);border:1.5px solid #D4A020;display:flex;align-items:center;justify-content:center;color:#D4A020;font-size:11px;font-weight:bold;font-family:Arial;}
+select{background:#080F18;border:1px solid rgba(212,160,32,.3);border-radius:6px;padding:9px 11px;color:#EDE8DE;font-size:13px;width:100%;outline:none;font-family:Arial;}
+.strat{cursor:pointer;border-radius:8px;padding:12px;border:1px solid rgba(212,160,32,.2);background:#1C2B3A;}
+.strat.on{border:2px solid #D4A020;background:rgba(212,160,32,.1);}
+.bar{background:rgba(212,160,32,.1);border-radius:6px;height:140px;display:flex;align-items:flex-end;gap:2px;padding:8px;overflow:hidden;}
+.bar-col{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height .3s;}
+@media(max-width:520px){.grid3{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr 1fr;}}
+</style>
 </head>
 <body>
-<div id="root">
-  <!-- Carregando... -->
-  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;color:#D4A020;font-family:Georgia;font-size:16px;">
-    Carregando calculadora...
-  </div>
-</div>
-
-<script type="text/babel">
-const { useState, useMemo, useCallback, useRef } = React;
-const {
-  AreaChart, Area, XAxis, YAxis, Tooltip,
-  ResponsiveContainer, CartesianGrid, ReferenceLine
-} = Recharts;
-
-// ── CORES ──────────────────────────────────────────────────────────
-const P = {
-  bg:"#080F18", card:"#112030", cardMid:"#1C2B3A", cardHi:"#243545",
-  gold:"#D4A020", goldDim:"#8A6A10", cream:"#EDE8DE", creamDim:"#8A9AA8",
-  red:"#C44020", green:"#2E9040", border:"rgba(212,160,32,.2)", borderHi:"rgba(212,160,32,.5)",
-};
-
-// ── CORES DAS DÍVIDAS ───────────────────────────────────────────────
-const CORES = ["#D4A020","#E85040","#40A860","#6070D0","#C060A0","#40B8C0","#E07030","#80C040"];
-
-// ── OS 13 PRINCÍPIOS ────────────────────────────────────────────────
-const PRINCIPIOS = [
-  {n:1,  name:"Conhecimento",           desc:"Entenda sua situação com clareza — yāda'a",                  verse:"Provérbios 24:3-4"},
-  {n:2,  name:"Primícias",              desc:"Honre a Deus primeiro com a sua renda",                       verse:"Provérbios 3:9-10"},
-  {n:3,  name:"Fuga do Jugo",           desc:"O devedor é servo do credor — quebre essa corrente",         verse:"Provérbios 22:7"},
-  {n:4,  name:"Mordomia Fiel",          desc:"Cuide bem do que Deus confiou a você",                       verse:"Lucas 16:10-11"},
-  {n:5,  name:"Disciplina",             desc:"Os planos do diligente certamente trazem lucro",              verse:"Provérbios 21:5"},
-  {n:6,  name:"Trabalho com Propósito", desc:"Trabalhe como para o Senhor, não para homens",               verse:"Colossenses 3:23"},
-  {n:7,  name:"Rejeição dos Juros",     desc:"Não seja fiador — conheça o custo real do crédito",         verse:"Provérbios 22:26-27"},
-  {n:8,  name:"Fidelidade",             desc:"Bem, servo bom e fiel — entre na alegria do Senhor",        verse:"Mateus 25:21"},
-  {n:9,  name:"Poupança Sistemática",   desc:"Quem ajunta aos poucos vai sempre aumentando",               verse:"Provérbios 13:11"},
-  {n:10, name:"Previsão",               desc:"A mulher virtuosa ri do dia de amanhã",                      verse:"Provérbios 31:25"},
-  {n:11, name:"Investimento Sábio",     desc:"Divide em sete — ou mesmo em oito partes",                  verse:"Eclesiastes 11:2"},
-  {n:12, name:"Generosidade",           desc:"Dai e vos será dado — boa medida, recalcada e transbordante",verse:"Lucas 6:38"},
-  {n:13, name:"Legado",                 desc:"O bom deixa herança para os filhos dos filhos",              verse:"Provérbios 13:22"},
+<div id="app"></div>
+<script>
+const CORES=["#D4A020","#E85040","#40A860","#6070D0","#C060A0","#40B8C0","#E07030"];
+const PR=[
+  {n:1,name:"Conhecimento",d:"Entenda sua situação com clareza",v:"Provérbios 24:3-4"},
+  {n:2,name:"Primícias",d:"Honre a Deus primeiro com sua renda",v:"Provérbios 3:9-10"},
+  {n:3,name:"Fuga do Jugo",d:"O devedor é servo do credor",v:"Provérbios 22:7"},
+  {n:4,name:"Mordomia Fiel",d:"Cuide bem do que Deus confiou",v:"Lucas 16:10-11"},
+  {n:5,name:"Disciplina",d:"Os planos do diligente trazem lucro",v:"Provérbios 21:5"},
+  {n:6,name:"Trabalho com Propósito",d:"Trabalhe como para o Senhor",v:"Colossenses 3:23"},
+  {n:7,name:"Rejeição dos Juros",d:"Não seja fiador",v:"Provérbios 22:26-27"},
+  {n:8,name:"Fidelidade",d:"Bem, servo bom e fiel",v:"Mateus 25:21"},
+  {n:9,name:"Poupança Sistemática",d:"Ajuntando aos poucos, vai aumentando",v:"Provérbios 13:11"},
+  {n:10,name:"Previsão",d:"A mulher virtuosa ri do amanhã",v:"Provérbios 31:25"},
+  {n:11,name:"Investimento Sábio",d:"Divide em sete — ou oito",v:"Eclesiastes 11:2"},
+  {n:12,name:"Generosidade",d:"Dai e vos será dado",v:"Lucas 6:38"},
+  {n:13,name:"Legado",d:"O bom deixa herança para os filhos",v:"Provérbios 13:22"},
 ];
+const brl=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",minimumFractionDigits:0,maximumFractionDigits:0}).format(n||0);
+const nm=s=>parseFloat(String(s||"").replace(",","."))||0;
+const dL=m=>{const d=new Date();d.setMonth(d.getMonth()+m);return d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});};
 
-// ── TAXAS DE REFERÊNCIA ─────────────────────────────────────────────
-const TAXAS = [
-  {label:"Cartão rotativo",    rate:"11–15% a.m.", warn:true},
-  {label:"Cheque especial",    rate:"7–10% a.m.",  warn:true},
-  {label:"Crédito pessoal",    rate:"2–5% a.m.",   warn:false},
-  {label:"Financiamento auto", rate:"1–2% a.m.",   warn:false},
-  {label:"Consignado",         rate:"1–2% a.m.",   warn:false},
-];
-
-// ── HELPERS ─────────────────────────────────────────────────────────
-const brl = n => new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",
-  minimumFractionDigits:0,maximumFractionDigits:0}).format(n||0);
-
-const num = s => parseFloat(String(s||"").replace(",",".")) || 0;
-
-const dataLivre = meses => {
-  const d = new Date();
-  d.setMonth(d.getMonth() + meses);
-  return d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
-};
-
-// ── SIMULAÇÃO MENSAL ─────────────────────────────────────────────────
-function simular(dividas, extraMensal, estrategia) {
-  const extra = num(extraMensal);
-  let ativas = dividas
-    .map((d,i) => ({
-      id:i, name:d.nome||`Dívida ${i+1}`,
-      restante: num(d.saldo),
-      taxa:     num(d.taxa)/100,          // taxa mensal decimal
-      minimo:   num(d.minimo),
-      saldoOriginal: num(d.saldo),
-      mesPago: null,
-      cor: CORES[i % CORES.length],
-    }))
-    .filter(d => d.restante > 0 && d.minimo > 0 && d.taxa >= 0);
-
-  if (!ativas.length) return null;
-
-  if (estrategia === "snowball")
-    ativas.sort((a,b) => a.restante - b.restante);
-  else
-    ativas.sort((a,b) => b.taxa - a.taxa);
-
-  const pagas = [];
-  const cronograma = [];
-  const totalInicial = ativas.reduce((s,d) => s + d.restante, 0);
-  let jurosTotal = 0, mes = 0;
-
-  while (ativas.length > 0 && mes < 480) {
-    mes++;
-    const minsLiberados = pagas.reduce((s,d) => s + d.minimo, 0);
-    let dispExtra = extra + minsLiberados;
-    const proximas = [];
-
-    for (let i = 0; i < ativas.length; i++) {
-      const d = {...ativas[i]};
-      const juros = d.restante * d.taxa;
-      jurosTotal += juros;
-      d.restante += juros;
-      d.restante = Math.max(0, d.restante - Math.min(d.minimo, d.restante));
-      if (i === 0 && dispExtra > 0) {
-        const aplicado = Math.min(dispExtra, d.restante);
-        d.restante -= aplicado;
-        dispExtra -= aplicado;
-      }
-      if (d.restante < 0.5) {
-        d.restante = 0; d.mesPago = mes; pagas.push(d);
-      } else proximas.push(d);
-    }
-    ativas = proximas;
-    cronograma.push({mes, restante: Math.round(ativas.reduce((s,d)=>s+d.restante,0))});
+function simular(divs,ex,est){
+  const e=nm(ex);
+  let a=divs.map((d,i)=>({id:i,name:d.nome||`Dívida ${i+1}`,rest:nm(d.saldo),taxa:nm(d.taxa)/100,min:nm(d.minimo),mesPago:null,cor:CORES[i%CORES.length]})).filter(d=>d.rest>0&&d.min>0&&d.taxa>=0);
+  if(!a.length)return null;
+  if(est==="snow")a.sort((a,b)=>a.rest-b.rest);else a.sort((a,b)=>b.taxa-a.taxa);
+  const p=[],cr=[];let jt=0,mes=0,ti=a.reduce((s,d)=>s+d.rest,0);
+  while(a.length&&mes<480){
+    mes++;let dsp=e+p.reduce((s,d)=>s+d.min,0);const nx=[];
+    for(let i=0;i<a.length;i++){const d={...a[i]};const j=d.rest*d.taxa;jt+=j;d.rest+=j;d.rest=Math.max(0,d.rest-Math.min(d.min,d.rest));if(i===0&&dsp>0){const ap=Math.min(dsp,d.rest);d.rest-=ap;dsp-=ap;}if(d.rest<0.5){d.rest=0;d.mesPago=mes;p.push(d);}else nx.push(d);}
+    a=nx;cr.push({mes,r:Math.round(a.reduce((s,d)=>s+d.rest,0))});
   }
-
-  return {
-    cronograma, jurosTotal: Math.round(jurosTotal),
-    totalMeses: mes, totalInicial: Math.round(totalInicial),
-    pagas: [...pagas].sort((a,b) => a.mesPago - b.mesPago),
-  };
+  return{cr,jt:Math.round(jt),tm:mes,ti:Math.round(ti),p:[...p].sort((a,b)=>a.mesPago-b.mesPago)};
 }
 
-// ── COMPONENTES REUTILIZÁVEIS ─────────────────────────────────────────
-const Tag = ({children, tipo="neutro"}) => {
-  const cores = {
-    aviso:  {bg:"#C4402018",cl:"#E05030",bd:"#C4402040"},
-    ok:     {bg:"#2E904018",cl:"#50B868",bd:"#2E904040"},
-    neutro: {bg:`${P.gold}18`,cl:P.gold,bd:`${P.gold}40`},
-  };
-  const c = cores[tipo];
-  return <span style={{display:"inline-block",padding:"2px 10px",borderRadius:20,
-    fontSize:11,fontFamily:"Arial",background:c.bg,color:c.cl,
-    border:`1px solid ${c.bd}`,whiteSpace:"nowrap"}}>{children}</span>;
+let state={
+  passo:1,
+  dividas:[
+    {id:1,nome:"Cartão de Crédito",saldo:"8500",taxa:"11.5",minimo:"250"},
+    {id:2,nome:"Empréstimo Pessoal",saldo:"22000",taxa:"3.2",minimo:"750"},
+    {id:3,nome:"Cheque Especial",saldo:"4200",taxa:"7.8",minimo:"150"},
+  ],
+  form:{nome:"",saldo:"",taxa:"",minimo:""},
+  extra:"800",
+  estrategia:"snow",
+  lead:{nome:"",email:""},
+  enviado:false,
+  proxId:10,
+  txv:false,
+  erro:""
 };
 
-const Stat = ({label, valor, cor=P.gold, sub}) => (
-  <div style={{background:P.cardMid,border:`1px solid ${P.border}`,borderRadius:10,
-    padding:"14px 10px",textAlign:"center",flex:1,minWidth:0}}>
-    <div style={{fontSize:20,fontWeight:"bold",color:cor,fontFamily:"Georgia",lineHeight:1}}>{valor}</div>
-    {sub && <div style={{fontSize:11,color:P.gold,fontFamily:"Arial",margin:"2px 0 3px"}}>{sub}</div>}
-    <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",lineHeight:1.3,marginTop:3}}>{label}</div>
-  </div>
-);
+function setState(obj){Object.assign(state,obj);render();}
 
-const Btn = ({children, onClick, variant="primary", style:st={}}) => (
-  <button onClick={onClick} style={{
-    background: variant==="primary" ? P.gold : "transparent",
-    color:      variant==="primary" ? P.bg  : P.gold,
-    border:     variant==="primary" ? "none" : `1.5px solid ${P.gold}`,
-    borderRadius:8, padding:"13px 20px", fontSize:14,
-    fontFamily:"Arial", fontWeight:"bold", cursor:"pointer", letterSpacing:.3,...st
-  }}>{children}</button>
-);
-
-const Campo = ({label, dica, ...props}) => (
-  <div>
-    <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
-      <label style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",letterSpacing:.4}}>{label}</label>
-      {dica && <span style={{fontSize:10,color:P.goldDim,fontFamily:"Arial"}}>{dica}</span>}
-    </div>
-    <input style={{width:"100%",background:P.bg,border:`1px solid ${P.border}`,
-      borderRadius:7,padding:"11px 13px",color:P.cream,fontSize:14,
-      fontFamily:"Arial",boxSizing:"border-box"}} {...props}/>
-  </div>
-);
-
-const Barra = ({valor, cor=P.gold}) => (
-  <div style={{height:6,background:`${P.gold}18`,borderRadius:3,overflow:"hidden"}}>
-    <div style={{height:"100%",width:`${Math.min(100,valor*100)}%`,
-      background:cor,borderRadius:3,transition:"width .8s ease"}}/>
-  </div>
-);
-
-const SecTitle = ({children}) => (
-  <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-    letterSpacing:1.5,textTransform:"uppercase",marginBottom:14}}>{children}</div>
-);
-
-// ── HEADER COM PASSOS ────────────────────────────────────────────────
-const Header = ({passo}) => (
-  <div style={{background:P.card,borderBottom:`1px solid ${P.border}`,
-    padding:"16px 20px",textAlign:"center",position:"sticky",top:0,zIndex:10}}>
-    <div style={{fontSize:10,color:P.goldDim,fontFamily:"Arial",
-      letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>
-      Abra a Bíblia · Feche as Dívidas · Ilana Horta
-    </div>
-    <div className="steps" style={{display:"flex",justifyContent:"center",
-      alignItems:"center",gap:4,flexWrap:"wrap"}}>
-      {["Suas Dívidas","Estratégia","Resultado","Liberdade"].map((label,i)=>(
-        <React.Fragment key={i}>
-          <div style={{display:"flex",alignItems:"center",gap:5}}>
-            <div style={{
-              width:24,height:24,borderRadius:"50%",display:"flex",
-              alignItems:"center",justifyContent:"center",
-              fontSize:11,fontFamily:"Arial",fontWeight:"bold",
-              background: passo>i+1 ? P.gold : passo===i+1 ? P.gold : P.cardHi,
-              color: passo>=i+1 ? P.bg : P.creamDim,
-              border: passo===i+1 ? `2px solid ${P.gold}` : "none",
-              flexShrink:0,
-            }}>{passo>i+1 ? "✓" : i+1}</div>
-            <span style={{fontSize:11,fontFamily:"Arial",
-              color:passo===i+1?P.gold:P.creamDim}}>{label}</span>
+function hdr(){
+  const labels=["Dívidas","Estratégia","Resultado","Liberdade"];
+  return `<div class="hdr">
+    <div style="font-size:9px;color:#8A6810;font-family:Arial;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:7px;">Abra a Bíblia · Feche as Dívidas · Ilana Horta</div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:4px;flex-wrap:wrap;">
+      ${labels.map((l,i)=>`
+        <div class="step">
+          <div class="step-n" style="background:${state.passo>i+1||state.passo===i+1?"#D4A020":"#243545"};color:${state.passo>=i+1?"#080F18":"#7A8A98"};border:${state.passo===i+1?"2px solid #D4A020":"none"};">
+            ${state.passo>i+1?"✓":i+1}
           </div>
-          {i<3 && <div className="step-arrow" style={{
-            width:20,height:1,background:P.border}}/>}
-        </React.Fragment>
-      ))}
-    </div>
-  </div>
-);
-
-// ── COMPONENTE PRINCIPAL ─────────────────────────────────────────────
-function Calculadora() {
-  const [passo, setPasso] = useState(1);
-  const [dividas, setDividas] = useState([
-    {id:1,nome:"Cartão de Crédito",  saldo:"8500",  taxa:"11.5",minimo:"250"},
-    {id:2,nome:"Empréstimo Pessoal", saldo:"22000", taxa:"3.2", minimo:"750"},
-    {id:3,nome:"Cheque Especial",    saldo:"4200",  taxa:"7.8", minimo:"150"},
-  ]);
-  const [form, setForm] = useState({nome:"",saldo:"",taxa:"",minimo:""});
-  const [extra, setExtra] = useState("800");
-  const [estrategia, setEstrategia] = useState("snowball");
-  const [lead, setLead] = useState({nome:"",email:""});
-  const [enviado, setEnviado] = useState(false);
-  const [proxId, setProxId] = useState(10);
-  const [mostrarTaxas, setMostrarTaxas] = useState(false);
-  const [erroForm, setErroForm] = useState("");
-
-  const resultado = useMemo(
-    () => simular(dividas, extra, estrategia),
-    [dividas, extra, estrategia]
-  );
-
-  const dataLivreStr = useMemo(
-    () => resultado ? dataLivre(resultado.totalMeses) : "—",
-    [resultado]
-  );
-
-  const totalDivida = dividas.reduce((s,d) => s+num(d.saldo), 0);
-
-  const adicionarDivida = useCallback(() => {
-    if (!num(form.saldo)) { setErroForm("Informe o saldo devedor."); return; }
-    if (!num(form.taxa))  { setErroForm("Informe a taxa de juros mensal."); return; }
-    if (!num(form.minimo)){ setErroForm("Informe o pagamento mínimo."); return; }
-    setErroForm("");
-    setDividas(prev => [...prev, {
-      ...form, id:proxId,
-      nome: form.nome || `Dívida ${proxId}`
-    }]);
-    setProxId(n=>n+1);
-    setForm({nome:"",saldo:"",taxa:"",minimo:""});
-  }, [form, proxId]);
-
-  const editarDivida = useCallback((id, campo, valor) => {
-    setDividas(prev => prev.map(d => d.id===id ? {...d,[campo]:valor} : d));
-  }, []);
-
-  const removerDivida = useCallback((id) => {
-    setDividas(prev => prev.filter(d => d.id !== id));
-  }, []);
-
-  const dadosGrafico = useMemo(() => {
-    if (!resultado) return [];
-    const passo = Math.max(1, Math.floor(resultado.cronograma.length/30));
-    const pts = resultado.cronograma.filter((_,i) => i%passo===0);
-    const ultimo = resultado.cronograma[resultado.cronograma.length-1];
-    if (!pts.includes(ultimo)) pts.push(ultimo);
-    return pts.map(s=>({mês:s.mes,"Dívida total":s.restante}));
-  }, [resultado]);
-
-  const marcos = useMemo(() => {
-    if (!resultado?.pagas?.length) return [];
-    return resultado.pagas.map((d,i) => ({
-      ...d,
-      principio: PRINCIPIOS[Math.min(Math.floor((i/resultado.pagas.length)*13),12)],
-    }));
-  }, [resultado]);
-
-  const anos = resultado ? Math.floor(resultado.totalMeses/12) : 0;
-  const meses = resultado ? resultado.totalMeses%12 : 0;
-
-  const estiloBody = {maxWidth:700,margin:"0 auto",padding:"24px 16px 80px"};
-  const estiloCard = {background:P.card,borderRadius:12,padding:20,
-    marginBottom:18,border:`1px solid ${P.border}`};
-
-  // ── PASSO 1: DÍVIDAS ──────────────────────────────────────────────
-  if (passo===1) return (
-    <div style={{background:P.bg,minHeight:"100vh",color:P.cream}}>
-      <Header passo={1}/>
-      <div style={estiloBody}>
-
-        {/* Hero */}
-        <div style={{textAlign:"center",padding:"24px 8px 20px"}}>
-          <h1 style={{color:P.gold,fontSize:22,fontWeight:"normal",
-            margin:"0 0 6px"}}>Calculadora da Liberdade Financeira</h1>
-          <p style={{color:P.creamDim,fontSize:13,fontFamily:"Arial",
-            fontStyle:"italic",margin:0}}>
-            "O devedor é servo do credor." — Provérbios 22:7<br/>
-            Descubra exatamente quando você será livre.
-          </p>
+          <span style="font-size:10px;font-family:Arial;color:${state.passo===i+1?"#D4A020":"#7A8A98"};">${l}</span>
         </div>
+        ${i<3?'<div style="width:10px;height:1px;background:rgba(212,160,32,.2);"></div>':''}
+      `).join("")}
+    </div>
+  </div>`;
+}
 
-        {/* Banner: múltiplas dívidas */}
-        <div style={{background:`${P.gold}10`,border:`1px dashed ${P.gold}50`,
-          borderRadius:10,padding:"12px 16px",marginBottom:18,
-          display:"flex",alignItems:"center",gap:12}}>
-          <span style={{fontSize:24}}>📋</span>
+function passo1(){
+  const tot=state.dividas.reduce((s,d)=>s+nm(d.saldo),0);
+  return `
+  ${hdr()}
+  <div class="body">
+    <div style="text-align:center;padding:16px 0 12px;">
+      <h1 style="color:#D4A020;font-size:18px;font-weight:normal;margin:0 0 3px;">Calculadora da Liberdade Financeira</h1>
+      <p style="color:#7A8A98;font-size:11px;font-family:Arial;font-style:italic;margin:0;">Descubra quando você será livre das suas dívidas</p>
+    </div>
+    <div style="background:rgba(212,160,32,.08);border:1px dashed rgba(212,160,32,.4);border-radius:8px;padding:9px 12px;margin-bottom:12px;display:flex;gap:8px;align-items:center;">
+      <span style="font-size:18px;">📋</span>
+      <div>
+        <div style="font-size:12px;color:#EDE8DE;font-family:Arial;font-weight:bold;">Adicione todas as suas dívidas — uma de cada vez</div>
+        <div style="font-size:11px;color:#7A8A98;font-family:Arial;">Cartão, empréstimo, cheque especial, consignado...</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span class="label" style="margin:0;">Dívidas Cadastradas</span>
+        <span style="background:#D4A020;color:#080F18;border-radius:20px;padding:2px 9px;font-size:11px;font-family:Arial;font-weight:bold;">${state.dividas.length} ${state.dividas.length===1?"dívida":"dívidas"}</span>
+      </div>
+      ${state.dividas.length===0?`<div style="text-align:center;padding:14px;color:#7A8A98;font-size:12px;font-family:Arial;">☝️ Adicione sua primeira dívida abaixo.</div>`:""}
+      ${state.dividas.map((d,i)=>`
+        <div class="div-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:${CORES[i%CORES.length]};flex-shrink:0;"></div>
+              <input value="${d.nome}" oninput="editDiv(${d.id},'nome',this.value)" placeholder="Nome da dívida" style="font-weight:bold;font-size:12px;border:none;background:transparent;padding:0;"/>
+            </div>
+            <button onclick="remDiv(${d.id})" style="background:none;border:none;color:#7A8A98;font-size:16px;cursor:pointer;padding:0 2px;">×</button>
+          </div>
+          <div class="grid3">
+            <div><label class="label">Saldo R$</label><input type="number" value="${d.saldo}" oninput="editDiv(${d.id},'saldo',this.value)"/></div>
+            <div><label class="label">Juros % a.m.</label><input type="number" value="${d.taxa}" oninput="editDiv(${d.id},'taxa',this.value)" style="border-color:${nm(d.taxa)>7?"#C44020":"rgba(212,160,32,.3)"};color:${nm(d.taxa)>7?"#E06050":"#EDE8DE"};"/></div>
+            <div><label class="label">Mínimo R$</label><input type="number" value="${d.minimo}" oninput="editDiv(${d.id},'minimo',this.value)"/></div>
+          </div>
+          ${nm(d.taxa)>7?`<div style="margin-top:5px;"><span class="tag-w">⚠️ Juros muito altos</span></div>`:""}
+        </div>
+      `).join("")}
+    </div>
+    <div class="card" style="border:1.5px dashed rgba(212,160,32,.3);">
+      <span class="label">➕ Adicionar Nova Dívida</span>
+      <div style="display:flex;flex-direction:column;gap:9px;margin-top:8px;">
+        <div><label class="label">Nome da dívida</label><input placeholder='Ex: "Cartão Nubank"' value="${state.form.nome}" oninput="setForm('nome',this.value)"/></div>
+        <div class="grid2">
+          <div><label class="label">Saldo (R$)</label><input type="number" placeholder="Ex: 8500" value="${state.form.saldo}" oninput="setForm('saldo',this.value)"/></div>
           <div>
-            <div style={{fontSize:13,color:P.cream,fontFamily:"Arial",
-              fontWeight:"bold"}}>Adicione todas as suas dívidas</div>
-            <div style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",
-              lineHeight:1.5}}>
-              Cartão, empréstimo, cheque especial, financiamento — cada um na sua vez.
-              Quanto mais completo, mais preciso o seu plano de liberdade.
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <label class="label" style="margin:0;">Juros % a.m.</label>
+              <button onclick="setState({txv:!state.txv})" style="background:none;border:none;color:#D4A020;font-size:9px;font-family:Arial;cursor:pointer;padding:0;">${state.txv?"▲ ocultar":"Não sei ▼"}</button>
             </div>
+            <input type="number" placeholder="Ex: 11.5" value="${state.form.taxa}" oninput="setForm('taxa',this.value)"/>
           </div>
         </div>
-
-        {/* Lista de dívidas cadastradas */}
-        <div style={estiloCard}>
-          <div style={{display:"flex",justifyContent:"space-between",
-            alignItems:"center",marginBottom:14}}>
-            <SecTitle>Dívidas Cadastradas</SecTitle>
-            <span style={{
-              background:P.gold,color:P.bg,borderRadius:20,
-              padding:"2px 10px",fontSize:12,fontFamily:"Arial",fontWeight:"bold"
-            }}>{dividas.length} {dividas.length===1?"dívida":"dívidas"}</span>
-          </div>
-
-          {dividas.length===0 && (
-            <div style={{textAlign:"center",padding:"24px 0",
-              color:P.creamDim,fontSize:13,fontFamily:"Arial"}}>
-              ☝️ Nenhuma dívida ainda. Use o formulário abaixo para adicionar.
-            </div>
-          )}
-
-          {dividas.map((d,i)=>(
-            <div key={d.id} style={{
-              background:P.cardMid,borderRadius:10,padding:"14px",
-              marginBottom:12,border:`1px solid ${P.border}`,
-            }}>
-              {/* Linha 1: nome + botão remover */}
-              <div style={{display:"flex",justifyContent:"space-between",
-                alignItems:"center",marginBottom:10}}>
-                <div style={{display:"flex",alignItems:"center",gap:8,flex:1}}>
-                  <div style={{width:10,height:10,borderRadius:"50%",
-                    background:CORES[i%CORES.length],flexShrink:0}}/>
-                  <input
-                    value={d.nome}
-                    onChange={e=>editarDivida(d.id,"nome",e.target.value)}
-                    placeholder={`Nome da dívida ${i+1}`}
-                    style={{background:"transparent",border:"none",
-                      color:P.cream,fontSize:14,fontFamily:"Georgia",
-                      fontWeight:"bold",width:"100%",outline:"none"}}
-                  />
-                </div>
-                <button onClick={()=>removerDivida(d.id)}
-                  style={{background:"none",border:"none",color:P.creamDim,
-                    cursor:"pointer",fontSize:18,padding:"0 4px",lineHeight:1}}>×</button>
-              </div>
-
-              {/* Linha 2: campos editáveis */}
-              <div className="g2" style={{display:"grid",
-                gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
-                <div>
-                  <label style={{fontSize:10,color:P.creamDim,
-                    fontFamily:"Arial",display:"block",marginBottom:3}}>
-                    Saldo (R$)
-                  </label>
-                  <input type="number" value={d.saldo}
-                    onChange={e=>editarDivida(d.id,"saldo",e.target.value)}
-                    style={{width:"100%",background:P.bg,
-                      border:`1px solid ${P.border}`,borderRadius:6,
-                      padding:"8px 10px",color:P.cream,fontSize:13,
-                      fontFamily:"Arial",boxSizing:"border-box"}}/>
-                </div>
-                <div>
-                  <label style={{fontSize:10,color:P.creamDim,
-                    fontFamily:"Arial",display:"block",marginBottom:3}}>
-                    Juros % a.m.
-                  </label>
-                  <input type="number" value={d.taxa}
-                    onChange={e=>editarDivida(d.id,"taxa",e.target.value)}
-                    style={{width:"100%",background:P.bg,
-                      border:`1px solid num(d.taxa)>7?"#C44020":P.border`,
-                      borderColor: num(d.taxa)>7?"#C44020":P.border,
-                      borderWidth:1,borderStyle:"solid",borderRadius:6,
-                      padding:"8px 10px",color:num(d.taxa)>7?"#E06050":P.cream,
-                      fontSize:13,fontFamily:"Arial",boxSizing:"border-box"}}/>
-                </div>
-                <div>
-                  <label style={{fontSize:10,color:P.creamDim,
-                    fontFamily:"Arial",display:"block",marginBottom:3}}>
-                    Mínimo (R$)
-                  </label>
-                  <input type="number" value={d.minimo}
-                    onChange={e=>editarDivida(d.id,"minimo",e.target.value)}
-                    style={{width:"100%",background:P.bg,
-                      border:`1px solid ${P.border}`,borderRadius:6,
-                      padding:"8px 10px",color:P.cream,fontSize:13,
-                      fontFamily:"Arial",boxSizing:"border-box"}}/>
-                </div>
-              </div>
-
-              {/* Tag de alerta de juros altos */}
-              {num(d.taxa) > 7 && (
-                <div style={{marginTop:8}}>
-                  <Tag tipo="aviso">⚠️ Juros muito altos — prioridade máxima</Tag>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Formulário: adicionar nova dívida */}
-        <div style={{...estiloCard,border:`1.5px dashed ${P.gold}40`}}>
-          <SecTitle>➕ Adicionar Nova Dívida</SecTitle>
-          <p style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",
-            marginBottom:16,lineHeight:1.6}}>
-            Inclua cada dívida separadamente: cartão, empréstimo, 
-            financiamento, cheque especial, dívida com familiar — tudo entra.
-          </p>
-
-          <div style={{display:"flex",flexDirection:"column",gap:12}}>
-            <Campo label="Nome da dívida"
-              placeholder='Ex: "Cartão Nubank", "Empréstimo Caixa"'
-              value={form.nome}
-              onChange={e=>setForm({...form,nome:e.target.value})}
-              onKeyPress={e=>e.key==="Enter" && adicionarDivida()}/>
-
-            <div className="g2" style={{display:"grid",
-              gridTemplateColumns:"1fr 1fr",gap:12}}>
-              <Campo label="Saldo devedor (R$)"
-                type="number" placeholder="Ex: 8500"
-                value={form.saldo}
-                onChange={e=>setForm({...form,saldo:e.target.value})}/>
-              <div>
-                <div style={{display:"flex",justifyContent:"space-between",
-                  marginBottom:5}}>
-                  <label style={{fontSize:11,color:P.creamDim,fontFamily:"Arial"}}>
-                    Juros (% ao mês)
-                  </label>
-                  <button onClick={()=>setMostrarTaxas(!mostrarTaxas)}
-                    style={{background:"none",border:"none",color:P.gold,
-                      fontSize:10,fontFamily:"Arial",cursor:"pointer",padding:0}}>
-                    {mostrarTaxas ? "▲ ocultar" : "Não sei ▼"}
-                  </button>
-                </div>
-                <input type="number" placeholder="Ex: 11.5"
-                  value={form.taxa}
-                  onChange={e=>setForm({...form,taxa:e.target.value})}
-                  style={{width:"100%",background:P.bg,border:`1px solid ${P.border}`,
-                    borderRadius:7,padding:"11px 13px",color:P.cream,fontSize:14,
-                    fontFamily:"Arial",boxSizing:"border-box"}}/>
-              </div>
-            </div>
-
-            {/* Tabela de taxas de referência */}
-            {mostrarTaxas && (
-              <div style={{background:P.cardHi,borderRadius:8,padding:12,
-                border:`1px solid ${P.border}`}}>
-                <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-                  marginBottom:8,fontWeight:"bold"}}>
-                  Taxas médias brasileiras (% ao mês):
-                </div>
-                {TAXAS.map((t,i)=>(
-                  <div key={i} style={{display:"flex",justifyContent:"space-between",
-                    alignItems:"center",marginBottom:6}}>
-                    <span style={{fontSize:12,color:P.cream,fontFamily:"Arial"}}>{t.label}</span>
-                    <Tag tipo={t.warn?"aviso":"ok"}>{t.rate}</Tag>
-                  </div>
-                ))}
-                <div style={{fontSize:10,color:P.creamDim,fontFamily:"Arial",
-                  marginTop:8,fontStyle:"italic"}}>
-                  A taxa fica no extrato do banco ou app do cartão.
-                </div>
-              </div>
-            )}
-
-            <Campo label="Pagamento mínimo mensal (R$)"
-              type="number" placeholder="Ex: 250"
-              value={form.minimo}
-              onChange={e=>setForm({...form,minimo:e.target.value})}
-              onKeyPress={e=>e.key==="Enter" && adicionarDivida()}/>
-          </div>
-
-          {erroForm && (
-            <div style={{marginTop:10,padding:"8px 12px",background:"#C4402018",
-              borderRadius:6,border:"1px solid #C4402040",color:"#E05030",
-              fontSize:12,fontFamily:"Arial"}}>
-              ⚠️ {erroForm}
-            </div>
-          )}
-
-          <Btn onClick={adicionarDivida}
-            variant="secondary"
-            style={{width:"100%",marginTop:14,textAlign:"center"}}>
-            + Adicionar esta dívida
-          </Btn>
-
-          <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-            textAlign:"center",marginTop:8}}>
-            Você pode adicionar quantas dívidas quiser, uma de cada vez
-          </div>
-        </div>
-
-        {/* Total e avançar */}
-        {dividas.length > 0 && (
-          <div style={{...estiloCard,background:`${P.gold}12`,
-            border:`1.5px solid ${P.gold}50`,textAlign:"center"}}>
-            <div style={{fontSize:12,color:P.creamDim,fontFamily:"Arial"}}>
-              Total de dívidas cadastradas ({dividas.length} {dividas.length===1?"dívida":"dívidas"})
-            </div>
-            <div style={{fontSize:36,color:P.gold,fontWeight:"bold",
-              fontFamily:"Georgia",margin:"8px 0 4px"}}>{brl(totalDivida)}</div>
-            <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-              fontStyle:"italic",marginBottom:20}}>
-              "Não devas nada a ninguém além do amor." — Romanos 13:8
-            </div>
-            <Btn onClick={()=>setPasso(2)} style={{width:"100%",padding:15,fontSize:15}}>
-              Calcular minha liberdade financeira →
-            </Btn>
-          </div>
-        )}
+        ${state.txv?`<div style="background:#243545;border-radius:7px;padding:9px;border:1px solid rgba(212,160,32,.2);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;color:#EDE8DE;">Cartão rotativo</span><span class="tag-w">11–15%</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;color:#EDE8DE;">Cheque especial</span><span class="tag-w">7–10%</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;color:#EDE8DE;">Crédito pessoal</span><span class="tag-ok">2–5%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;font-family:Arial;color:#EDE8DE;">Consignado</span><span class="tag-ok">1–2%</span></div>
+        </div>`:""}
+        <div><label class="label">Mínimo mensal (R$)</label><input type="number" placeholder="Ex: 250" value="${state.form.minimo}" oninput="setForm('minimo',this.value)"/></div>
       </div>
+      ${state.erro?`<div style="margin-top:7px;padding:6px 10px;background:#C4402018;border-radius:5px;border:1px solid #C4402040;color:#E05030;font-size:10px;font-family:Arial;">⚠️ ${state.erro}</div>`:""}
+      <button class="btn-s" onclick="addDiv()" style="width:100%;margin-top:10px;">+ Adicionar esta dívida</button>
+      <div style="font-size:10px;color:#7A8A98;font-family:Arial;text-align:center;margin-top:5px;">Você pode adicionar quantas dívidas quiser</div>
     </div>
-  );
-
-  // ── PASSO 2: ESTRATÉGIA ───────────────────────────────────────────
-  if (passo===2) return (
-    <div style={{background:P.bg,minHeight:"100vh",color:P.cream}}>
-      <Header passo={2}/>
-      <div style={estiloBody}>
-        <div style={{textAlign:"center",padding:"20px 0 18px"}}>
-          <h2 style={{color:P.gold,fontSize:20,fontWeight:"normal",
-            margin:"0 0 4px"}}>Sua Estratégia de Pagamento</h2>
-          <p style={{color:P.creamDim,fontSize:12,fontFamily:"Arial",margin:0}}>
-            Pequenas decisões agora criam liberdade no futuro
-          </p>
-        </div>
-
-        {/* Extra mensal */}
-        <div style={estiloCard}>
-          <SecTitle>Pagamento Extra por Mês</SecTitle>
-          <p style={{fontSize:13,color:P.creamDim,fontFamily:"Arial",
-            marginBottom:16,lineHeight:1.6}}>
-            Quanto você consegue pagar a mais, além dos mínimos?
-            Mesmo R$100 a mais muda muito sua data de liberdade.
-          </p>
-          <Campo label="Valor extra mensal (R$)" type="number"
-            placeholder="0" value={extra}
-            onChange={e=>setExtra(e.target.value)}/>
-          {resultado && (
-            <div style={{marginTop:10,padding:"10px 14px",
-              background:`${P.gold}15`,borderRadius:8,
-              border:`1px solid ${P.gold}40`}}>
-              <div style={{fontSize:12,color:P.cream,fontFamily:"Arial",
-                lineHeight:1.7}}>
-                ✦ Com <strong style={{color:P.gold}}>{brl(num(extra))}/mês extra</strong>, 
-                você quitará tudo em{" "}
-                <strong style={{color:P.gold}}>{resultado.totalMeses} meses</strong>
-                {" "}— livre em{" "}
-                <strong style={{color:P.gold}}>{dataLivreStr}</strong>.
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Escolha da estratégia */}
-        <div style={estiloCard}>
-          <SecTitle>Qual dívida atacar primeiro?</SecTitle>
-          <div className="g2" style={{display:"grid",
-            gridTemplateColumns:"1fr 1fr",gap:12}}>
-            {[
-              {key:"snowball",icone:"❄️",titulo:"Bola de Neve",
-               sub:"Menor saldo primeiro",
-               desc:"Pague a menor dívida primeiro. Ao quitar, aplique tudo na próxima. Gera motivação e momentum — o método de Dave Ramsey."},
-              {key:"avalanche",icone:"🏔️",titulo:"Avalanche",
-               sub:"Maior juro primeiro",
-               desc:"Ataque a dívida com maior taxa primeiro. Matematicamente mais eficiente — você paga menos juros no total."},
-            ].map(s=>(
-              <div key={s.key} onClick={()=>setEstrategia(s.key)}
-                style={{cursor:"pointer",borderRadius:10,padding:14,
-                  border:estrategia===s.key?`2px solid ${P.gold}`:`1px solid ${P.border}`,
-                  background:estrategia===s.key?`${P.gold}15`:P.cardMid}}>
-                <div style={{fontSize:26,marginBottom:8}}>{s.icone}</div>
-                <div style={{fontSize:14,color:P.cream,fontWeight:"bold",
-                  marginBottom:3}}>{s.titulo}</div>
-                <div style={{fontSize:11,color:P.gold,fontFamily:"Arial",
-                  marginBottom:8}}>{s.sub}</div>
-                <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-                  lineHeight:1.55}}>{s.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Preview da ordem */}
-        {resultado && (
-          <div style={estiloCard}>
-            <SecTitle>
-              Ordem de Quitação ({estrategia==="snowball"?"Bola de Neve":"Avalanche"})
-            </SecTitle>
-            {resultado.pagas.map((d,i)=>(
-              <div key={d.id} style={{marginBottom:10}}>
-                <div style={{display:"flex",justifyContent:"space-between",
-                  marginBottom:4,alignItems:"center"}}>
-                  <div style={{display:"flex",alignItems:"center",gap:8}}>
-                    <div style={{width:8,height:8,borderRadius:"50%",
-                      background:d.cor,flexShrink:0}}/>
-                    <span style={{fontSize:13,color:P.cream,fontFamily:"Arial"}}>
-                      {i+1}. {d.name}
-                    </span>
-                  </div>
-                  <span style={{fontSize:11,color:P.creamDim,fontFamily:"Arial"}}>
-                    Mês {d.mesPago}
-                  </span>
-                </div>
-                <Barra valor={d.mesPago/resultado.totalMeses} cor={d.cor}/>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div style={{display:"flex",gap:10}}>
-          <Btn onClick={()=>setPasso(1)} variant="secondary" style={{flex:1}}>
-            ← Editar dívidas
-          </Btn>
-          <Btn onClick={()=>setPasso(3)} style={{flex:2}}>
-            Ver minha liberdade →
-          </Btn>
-        </div>
-      </div>
-    </div>
-  );
-
-  // ── PASSO 3: RESULTADO ────────────────────────────────────────────
-  if (passo===3 && resultado) return (
-    <div style={{background:P.bg,minHeight:"100vh",color:P.cream}}>
-      <Header passo={3}/>
-
-      {/* Hero de liberdade */}
-      <div style={{background:`${P.gold}18`,borderBottom:`1px solid ${P.gold}40`,
-        padding:"28px 20px",textAlign:"center"}}>
-        <div style={{fontSize:10,color:P.goldDim,fontFamily:"Arial",
-          letterSpacing:3,textTransform:"uppercase",marginBottom:8}}>
-          Sua data de liberdade financeira
-        </div>
-        <div style={{fontSize:30,color:P.gold,fontWeight:"bold",lineHeight:1}}>
-          {dataLivreStr.toUpperCase()}
-        </div>
-        <div style={{fontSize:14,color:P.cream,fontFamily:"Arial",marginTop:6}}>
-          {anos>0 && `${anos} ${anos===1?"ano":"anos"}`}
-          {anos>0 && meses>0 && " e "}
-          {meses>0 && `${meses} ${meses===1?"mês":"meses"}`}
-          {" de disciplina bíblica"}
-        </div>
-        <div style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",
-          fontStyle:"italic",marginTop:6}}>
-          "Os planos do diligente certamente trazem lucro." — Provérbios 21:5
-        </div>
-      </div>
-
-      <div style={estiloBody}>
-        {/* Stats */}
-        <div className="g3" style={{display:"flex",gap:10,marginBottom:20}}>
-          <Stat label="Dívida total hoje"      valor={brl(resultado.totalInicial)}/>
-          <Stat label="Juros que você evitará" valor={brl(resultado.jurosTotal)} cor={P.red}/>
-          <Stat label="Meses para a liberdade" valor={resultado.totalMeses}/>
-        </div>
-
-        {/* Gráfico */}
-        <div style={estiloCard}>
-          <SecTitle>Sua Dívida Caindo ao Longo do Tempo</SecTitle>
-          <ResponsiveContainer width="100%" height={180}>
-            <AreaChart data={dadosGrafico} margin={{top:5,right:8,bottom:5,left:8}}>
-              <defs>
-                <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor={P.gold} stopOpacity={.35}/>
-                  <stop offset="95%" stopColor={P.gold} stopOpacity={.02}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke={`${P.gold}15`}/>
-              <XAxis dataKey="mês" stroke={P.creamDim}
-                tick={{fill:P.creamDim,fontSize:10,fontFamily:"Arial"}}/>
-              <YAxis stroke={P.creamDim}
-                tick={{fill:P.creamDim,fontSize:10,fontFamily:"Arial"}}
-                tickFormatter={v=>`R$${v>=1000?Math.round(v/1000)+"k":v}`}/>
-              <Tooltip
-                contentStyle={{background:P.cardMid,border:`1px solid ${P.gold}`,
-                  borderRadius:8,color:P.cream,fontSize:12,fontFamily:"Arial"}}
-                formatter={v=>[brl(v),"Dívida restante"]}
-                labelFormatter={v=>`Mês ${v}`}/>
-              <Area type="monotone" dataKey="Dívida total"
-                stroke={P.gold} strokeWidth={2.5} fill="url(#grad)"/>
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Marcos bíblicos */}
-        <div style={estiloCard}>
-          <SecTitle>Os 13 Princípios da Sua Jornada</SecTitle>
-          <p style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",
-            marginBottom:16,lineHeight:1.6}}>
-            Cada dívida quitada revela o próximo princípio bíblico do livro:
-          </p>
-          {marcos.map(m=>(
-            <div key={m.id} style={{display:"flex",gap:14,marginBottom:14,
-              padding:14,background:P.cardMid,borderRadius:10,
-              border:`1px solid ${P.border}`,alignItems:"flex-start"}}>
-              <div style={{width:38,height:38,borderRadius:"50%",flexShrink:0,
-                background:`${P.gold}20`,border:`1.5px solid ${P.gold}`,
-                display:"flex",alignItems:"center",justifyContent:"center",
-                color:P.gold,fontSize:13,fontWeight:"bold",fontFamily:"Arial"}}>
-                {m.principio.n}
-              </div>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{display:"flex",justifyContent:"space-between",
-                  flexWrap:"wrap",gap:6,marginBottom:5}}>
-                  <div>
-                    <div style={{fontSize:14,color:P.cream}}>
-                      Mês {m.mesPago}: <strong>{m.name}</strong> quitado!
-                    </div>
-                    <div style={{fontSize:11,color:P.gold,fontFamily:"Arial"}}>
-                      Princípio {m.principio.n}: {m.principio.name}
-                    </div>
-                  </div>
-                  <Tag tipo="ok">+{brl(m.minimo)}/mês liberado</Tag>
-                </div>
-                <div style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-                  lineHeight:1.55,marginBottom:4}}>{m.principio.desc}</div>
-                <div style={{fontSize:11,color:P.goldDim,fontFamily:"Georgia",
-                  fontStyle:"italic"}}>{m.principio.verse}</div>
-              </div>
-            </div>
-          ))}
-          <div style={{padding:18,background:`${P.gold}18`,borderRadius:10,
-            border:`2px solid ${P.gold}`,textAlign:"center"}}>
-            <div style={{fontSize:26,marginBottom:8}}>🕊️</div>
-            <div style={{fontSize:15,color:P.gold,fontWeight:"bold",marginBottom:4}}>
-              LIBERDADE FINANCEIRA COMPLETA
-            </div>
-            <div style={{fontSize:14,color:P.cream}}>{dataLivreStr}</div>
-            <div style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",
-              fontStyle:"italic",marginTop:8}}>
-              "Bem, servo bom e fiel." — Mateus 25:21
-            </div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div style={{...estiloCard,textAlign:"center",padding:"28px 20px"}}>
-          <div style={{fontSize:17,color:P.cream,marginBottom:6}}>
-            Quer receber este plano por e-mail?
-          </div>
-          <p style={{fontSize:13,color:P.creamDim,fontFamily:"Arial",
-            marginBottom:20,lineHeight:1.6}}>
-            Ilana Horta envia o guia do Princípio 1, sua planilha personalizada
-            e o primeiro capítulo do livro — gratuitamente.
-          </p>
-          <Btn onClick={()=>setPasso(4)} style={{width:"100%",padding:15,fontSize:15}}>
-            Quero meu plano gratuito →
-          </Btn>
-        </div>
-        <Btn onClick={()=>setPasso(2)} variant="secondary"
-          style={{width:"100%",marginTop:8}}>← Ajustar estratégia</Btn>
-      </div>
-    </div>
-  );
-
-  // ── PASSO 4: CAPTURA DE LEAD ──────────────────────────────────────
-  if (passo===4) {
-    if (enviado) return (
-      <div style={{background:P.bg,minHeight:"100vh",display:"flex",
-        alignItems:"center",justifyContent:"center",padding:32}}>
-        <div style={{textAlign:"center",maxWidth:400}}>
-          <div style={{fontSize:56,marginBottom:16}}>🕊️</div>
-          <h2 style={{color:P.gold,fontSize:24,fontWeight:"normal",marginBottom:10}}>
-            Sua jornada começa agora{lead.nome ? `, ${lead.nome}` : ""}!
-          </h2>
-          <p style={{color:P.creamDim,fontSize:14,fontFamily:"Arial",
-            lineHeight:1.75,marginBottom:20}}>
-            Ilana enviou tudo para{" "}
-            <strong style={{color:P.cream}}>{lead.email}</strong>.
-            Verifique sua caixa de entrada.
-          </p>
-          <div style={{background:P.card,border:`1px solid ${P.border}`,
-            borderRadius:10,padding:18,marginBottom:24}}>
-            <div style={{fontSize:13,color:P.creamDim,fontFamily:"Arial"}}>
-              Você será livre em:
-            </div>
-            <div style={{fontSize:22,color:P.gold,fontWeight:"bold",marginTop:4}}>
-              {dataLivreStr}
-            </div>
-          </div>
-          <Btn onClick={()=>setPasso(1)} variant="secondary"
-            style={{width:"100%"}}>
-            Calcular outra simulação
-          </Btn>
-        </div>
-      </div>
-    );
-
-    return (
-      <div style={{background:P.bg,minHeight:"100vh",color:P.cream}}>
-        <Header passo={4}/>
-        <div style={{...estiloBody,maxWidth:500}}>
-          <div style={{textAlign:"center",padding:"20px 0 18px"}}>
-            <h2 style={{color:P.gold,fontSize:20,fontWeight:"normal",
-              margin:"0 0 4px"}}>Receba Seu Plano Completo</h2>
-            <p style={{color:P.creamDim,fontSize:12,fontFamily:"Arial",margin:0}}>
-              Gratuito · Sem spam · Cancele quando quiser
-            </p>
-          </div>
-
-          <div style={{...estiloCard,background:`${P.gold}15`,
-            border:`1.5px solid ${P.gold}50`,textAlign:"center",marginBottom:18}}>
-            <div style={{fontSize:13,color:P.creamDim,fontFamily:"Arial"}}>
-              Você descobriu que será livre em:
-            </div>
-            <div style={{fontSize:24,color:P.gold,fontWeight:"bold",margin:"6px 0 4px"}}>
-              {dataLivreStr}
-            </div>
-            <div style={{fontSize:12,color:P.creamDim,fontFamily:"Arial",fontStyle:"italic"}}>
-              Economizando {brl(resultado?.jurosTotal)} em juros
-            </div>
-          </div>
-
-          <div style={estiloCard}>
-            <SecTitle>O que você receberá agora:</SecTitle>
-            {[
-              {i:"📖",t:"Princípio 1 completo: Conhecimento — o alicerce de tudo"},
-              {i:"📊",t:"Sua planilha de pagamento personalizada em PDF"},
-              {i:"📚",t:"Capítulo 1 do livro 'Abra a Bíblia. Feche as Dívidas.'"},
-              {i:"🙏",t:"Uma oração bíblica para cada semana da sua jornada"},
-            ].map((item,idx)=>(
-              <div key={idx} style={{display:"flex",gap:10,
-                alignItems:"flex-start",marginBottom:10}}>
-                <span style={{fontSize:18,flexShrink:0}}>{item.i}</span>
-                <span style={{fontSize:13,color:P.cream,fontFamily:"Arial",
-                  lineHeight:1.5}}>{item.t}</span>
-              </div>
-            ))}
-          </div>
-
-          <div style={estiloCard}>
-            <div style={{display:"flex",flexDirection:"column",gap:14}}>
-              <Campo label="Seu nome"
-                placeholder="Como posso te chamar?"
-                value={lead.nome}
-                onChange={e=>setLead({...lead,nome:e.target.value})}/>
-              <Campo label="Seu melhor e-mail" type="email"
-                placeholder="seuemail@exemplo.com"
-                value={lead.email}
-                onChange={e=>setLead({...lead,email:e.target.value})}/>
-            </div>
-            <Btn
-              onClick={async ()=>{ if(!lead.email.includes("@")) return; try { await fetch("https://formspree.io/f/SEU_FORM_ID", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nome:lead.nome,email:lead.email,_subject:"Novo lead calculadora: "+lead.nome})}); } catch(e){} setEnviado(true); }}
-              style={{width:"100%",marginTop:18,padding:15,fontSize:15}}>
-              Quero meu plano gratuito →
-            </Btn>
-            <p style={{fontSize:11,color:P.creamDim,fontFamily:"Arial",
-              textAlign:"center",marginTop:10,lineHeight:1.5}}>
-              Ao se cadastrar, você recebe novidades sobre o livro de Ilana Horta.
-              Nenhum spam. Cancele quando quiser.
-            </p>
-          </div>
-          <Btn onClick={()=>setPasso(3)} variant="secondary"
-            style={{width:"100%",marginTop:8}}>← Voltar aos resultados</Btn>
-        </div>
-      </div>
-    );
-  }
-
-  return null;
+    ${state.dividas.length>0?`
+    <div class="card" style="background:rgba(212,160,32,.08);border:1.5px solid rgba(212,160,32,.4);text-align:center;">
+      <div style="font-size:11px;color:#7A8A98;font-family:Arial;">${state.dividas.length} ${state.dividas.length===1?"dívida":"dívidas"} · Total:</div>
+      <div style="font-size:26px;color:#D4A020;font-weight:bold;margin:6px 0 4px;">${brl(tot)}</div>
+      <div style="font-size:11px;color:#7A8A98;font-family:Arial;font-style:italic;margin-bottom:14px;">"Não devas nada a ninguém além do amor." — Rm 13:8</div>
+      <button class="btn-p" onclick="setState({passo:2})" style="width:100%;padding:12px;font-size:13px;">Calcular minha liberdade →</button>
+    </div>`:""}
+  </div>`;
 }
 
-// Inicializar React
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-root.render(React.createElement(Calculadora));
+function passo2(){
+  const res=simular(state.dividas,state.extra,state.estrategia);
+  const dl=res?dL(res.tm):"—";
+  return `
+  ${hdr()}
+  <div class="body">
+    <div style="text-align:center;padding:16px 0 12px;"><h2 style="color:#D4A020;font-size:17px;font-weight:normal;margin:0;">Estratégia de Pagamento</h2></div>
+    <div class="card">
+      <span class="label">Pagamento Extra por Mês</span>
+      <input type="number" placeholder="0" value="${state.extra}" oninput="setState({extra:this.value})" style="margin-top:8px;"/>
+      ${res?`<div style="margin-top:8px;padding:8px 11px;background:rgba(212,160,32,.1);border-radius:7px;border:1px solid rgba(212,160,32,.3);font-size:12px;color:#EDE8DE;font-family:Arial;">✦ Livre em <strong style="color:#D4A020;">${dl}</strong> (${res.tm} meses)</div>`:""}
+    </div>
+    <div class="card">
+      <span class="label">Qual dívida atacar primeiro?</span>
+      <div class="grid2" style="margin-top:8px;">
+        <div class="strat ${state.estrategia==="snow"?"on":""}" onclick="setState({estrategia:'snow'})">
+          <div style="font-size:20px;margin-bottom:5px;">❄️</div>
+          <div style="font-size:12px;color:#EDE8DE;font-weight:bold;margin-bottom:2px;">Bola de Neve</div>
+          <div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:4px;">Menor saldo primeiro</div>
+          <div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;">Quitou? Aplique tudo na próxima. Método Dave Ramsey.</div>
+        </div>
+        <div class="strat ${state.estrategia==="aval"?"on":""}" onclick="setState({estrategia:'aval'})">
+          <div style="font-size:20px;margin-bottom:5px;">🏔️</div>
+          <div style="font-size:12px;color:#EDE8DE;font-weight:bold;margin-bottom:2px;">Avalanche</div>
+          <div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:4px;">Maior juro primeiro</div>
+          <div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;">Elimina a dívida mais cara. Economiza mais no total.</div>
+        </div>
+      </div>
+    </div>
+    ${res?`<div class="card">
+      <span class="label">Ordem de quitação</span>
+      ${res.p.map((d,i)=>`
+        <div style="margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:${d.cor};"></div><span style="font-size:11px;font-family:Arial;">${i+1}. ${d.name}</span></div>
+            <span style="font-size:10px;color:#7A8A98;font-family:Arial;">Mês ${d.mesPago}</span>
+          </div>
+          <div class="prog-bg"><div style="height:100%;width:${Math.min(100,(d.mesPago/res.tm)*100)}%;background:${d.cor};border-radius:3px;"></div></div>
+        </div>
+      `).join("")}
+    </div>`:""}
+    <div style="display:flex;gap:9px;">
+      <button class="btn-s" onclick="setState({passo:1})" style="flex:1;">← Editar</button>
+      <button class="btn-p" onclick="setState({passo:3})" style="flex:2;">Ver resultado →</button>
+    </div>
+  </div>`;
+}
+
+function passo3(){
+  const res=simular(state.dividas,state.extra,state.estrategia);
+  if(!res)return`<div style="padding:20px;text-align:center;">Volte e adicione dívidas.</div>`;
+  const dl=dL(res.tm);
+  const anos=Math.floor(res.tm/12),meses=res.tm%12;
+  const marcos=res.p.map((d,i)=>({...d,pr:PR[Math.min(Math.floor((i/res.p.length)*13),12)]}));
+  const maxR=Math.max(...res.cr.map(c=>c.r),1);
+  const pts=res.cr.filter((_,i)=>i%Math.max(1,Math.floor(res.cr.length/20))===0);
+  return `
+  ${hdr()}
+  <div style="background:rgba(212,160,32,.12);border-bottom:1px solid rgba(212,160,32,.3);padding:18px 14px;text-align:center;">
+    <div style="font-size:9px;color:#8A6810;font-family:Arial;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;">Sua data de liberdade</div>
+    <div style="font-size:22px;color:#D4A020;font-weight:bold;">${dl.toUpperCase()}</div>
+    <div style="font-size:12px;color:#EDE8DE;font-family:Arial;margin-top:4px;">${anos>0?`${anos} ${anos===1?"ano":"anos"}`:""}${anos>0&&meses>0?" e ":""}${meses>0?`${meses} ${meses===1?"mês":"meses"}`:""}${" de disciplina bíblica"}</div>
+  </div>
+  <div class="body">
+    <div style="display:flex;gap:8px;margin-bottom:12px;">
+      <div class="stat"><div class="stat-v gold">${brl(res.ti)}</div><div class="stat-l">Dívida total</div></div>
+      <div class="stat"><div class="stat-v" style="color:#C44020;">${brl(res.jt)}</div><div class="stat-l">Juros evitados</div></div>
+      <div class="stat"><div class="stat-v gold">${res.tm}</div><div class="stat-l">Meses</div></div>
+    </div>
+    <div class="card">
+      <span class="label">Dívida caindo mês a mês</span>
+      <div class="bar" style="margin-top:8px;">
+        ${pts.map(c=>`<div class="bar-col" style="height:${Math.round((c.r/maxR)*100)}%;background:linear-gradient(to top,#D4A020,rgba(212,160,32,.3));"></div>`).join("")}
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px;">
+        <span style="font-size:9px;color:#7A8A98;font-family:Arial;">Mês 1</span>
+        <span style="font-size:9px;color:#7A8A98;font-family:Arial;">Mês ${res.tm}</span>
+      </div>
+    </div>
+    <div class="card">
+      <span class="label">Os 13 Princípios da Sua Jornada</span>
+      ${marcos.map(m=>`
+        <div class="pr-card">
+          <div class="pr-n">${m.pr.n}</div>
+          <div style="flex:1;">
+            <div style="font-size:12px;margin-bottom:2px;">Mês ${m.mesPago}: <strong>${m.name}</strong> quitado!</div>
+            <div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:2px;">Princípio ${m.pr.n}: ${m.pr.name}</div>
+            <div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;margin-bottom:2px;">${m.pr.d}</div>
+            <div style="font-size:10px;color:#8A6810;font-family:Georgia;font-style:italic;">${m.pr.v}</div>
+          </div>
+        </div>
+      `).join("")}
+      <div style="padding:13px;background:rgba(212,160,32,.12);border-radius:8px;border:2px solid #D4A020;text-align:center;margin-top:4px;">
+        <div style="font-size:20px;margin-bottom:5px;">🕊️</div>
+        <div style="font-size:13px;color:#D4A020;font-weight:bold;margin-bottom:3px;">LIBERDADE FINANCEIRA COMPLETA</div>
+        <div style="font-size:12px;">${dl}</div>
+        <div style="font-size:10px;color:#7A8A98;font-family:Arial;font-style:italic;margin-top:5px;">"Bem, servo bom e fiel." — Mateus 25:21</div>
+      </div>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 14px;">
+      <div style="font-size:14px;margin-bottom:4px;">Receba este plano por e-mail</div>
+      <p style="font-size:11px;color:#7A8A98;font-family:Arial;margin-bottom:14px;line-height:1.6;">Ilana Horta envia o Princípio 1, sua planilha e o Capítulo 1 do livro — grátis.</p>
+      <button class="btn-p" onclick="setState({passo:4})" style="width:100%;padding:12px;font-size:13px;">Quero meu plano gratuito →</button>
+    </div>
+    <button class="btn-s" onclick="setState({passo:2})" style="width:100%;margin-top:7px;">← Ajustar</button>
+  </div>`;
+}
+
+function passo4(){
+  const res=simular(state.dividas,state.extra,state.estrategia);
+  const dl=res?dL(res.tm):"—";
+  if(state.enviado)return`
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
+    <div style="text-align:center;max-width:340px;">
+      <div style="font-size:44px;margin-bottom:12px;">🕊️</div>
+      <h2 style="color:#D4A020;font-size:18px;font-weight:normal;margin-bottom:7px;">Sua jornada começa agora${state.lead.nome?`, ${state.lead.nome}`:""}!</h2>
+      <p style="color:#7A8A98;font-size:12px;font-family:Arial;line-height:1.7;margin-bottom:16px;">Plano enviado para <strong style="color:#EDE8DE;">${state.lead.email}</strong>.</p>
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-size:10px;color:#7A8A98;font-family:Arial;">Você será livre em:</div>
+        <div style="font-size:18px;color:#D4A020;font-weight:bold;margin-top:3px;">${dl}</div>
+      </div>
+      <button class="btn-s" onclick="setState({passo:1,enviado:false})" style="width:100%;">Nova simulação</button>
+    </div>
+  </div>`;
+  return`
+  ${hdr()}
+  <div class="body" style="max-width:440px;margin:0 auto;">
+    <div style="text-align:center;padding:16px 0 12px;">
+      <h2 style="color:#D4A020;font-size:17px;font-weight:normal;margin:0 0 3px;">Receba Seu Plano Completo</h2>
+      <p style="color:#7A8A98;font-size:10px;font-family:Arial;margin:0;">Gratuito · Sem spam · Cancele quando quiser</p>
+    </div>
+    <div class="card" style="background:rgba(212,160,32,.1);border:1.5px solid rgba(212,160,32,.4);text-align:center;margin-bottom:12px;">
+      <div style="font-size:10px;color:#7A8A98;font-family:Arial;">Você será livre em:</div>
+      <div style="font-size:20px;color:#D4A020;font-weight:bold;margin:4px 0 3px;">${dl}</div>
+      ${res?`<div style="font-size:10px;color:#7A8A98;font-family:Arial;font-style:italic;">Economizando ${brl(res.jt)} em juros</div>`:""}
+    </div>
+    <div class="card">
+      <span class="label">O que você receberá:</span>
+      ${[["📖","Princípio 1: Conhecimento — o alicerce de tudo"],["📊","Sua planilha de pagamento personalizada"],["📚","Capítulo 1 do livro 'Abra a Bíblia. Feche as Dívidas.'"],["🙏","Uma oração bíblica para cada semana"]].map(([i,t])=>`<div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:7px;margin-top:7px;"><span style="font-size:15px;flex-shrink:0;">${i}</span><span style="font-size:11px;font-family:Arial;line-height:1.5;">${t}</span></div>`).join("")}
+    </div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div><label class="label">Seu nome</label><input placeholder="Como posso te chamar?" value="${state.lead.nome}" oninput="setLead('nome',this.value)"/></div>
+        <div><label class="label">Seu melhor e-mail</label><input type="email" placeholder="seuemail@exemplo.com" value="${state.lead.email}" oninput="setLead('email',this.value)"/></div>
+      </div>
+      <button class="btn-p" onclick="enviar()" style="width:100%;margin-top:12px;padding:12px;font-size:13px;">Quero meu plano gratuito →</button>
+    </div>
+    <button class="btn-s" onclick="setState({passo:3})" style="width:100%;margin-top:7px;">← Voltar</button>
+  </div>`;
+}
+
+function render(){
+  const app=document.getElementById("app");
+  if(state.passo===1)app.innerHTML=passo1();
+  else if(state.passo===2)app.innerHTML=passo2();
+  else if(state.passo===3)app.innerHTML=passo3();
+  else if(state.passo===4)app.innerHTML=passo4();
+}
+
+function editDiv(id,campo,val){
+  state.dividas=state.dividas.map(d=>d.id===id?{...d,[campo]:val}:d);
+  render();
+}
+function remDiv(id){state.dividas=state.dividas.filter(d=>d.id!==id);render();}
+function setForm(k,v){state.form={...state.form,[k]:v};}
+function setLead(k,v){state.lead={...state.lead,[k]:v};}
+function addDiv(){
+  if(!nm(state.form.saldo)){setState({erro:"Informe o saldo."});return;}
+  if(!nm(state.form.taxa)){setState({erro:"Informe os juros."});return;}
+  if(!nm(state.form.minimo)){setState({erro:"Informe o mínimo."});return;}
+  state.dividas.push({...state.form,id:state.proxId,nome:state.form.nome||`Dívida ${state.proxId}`});
+  state.proxId++;state.form={nome:"",saldo:"",taxa:"",minimo:""};state.erro="";render();
+}
+async function enviar(){
+  if(!state.lead.email.includes("@")){alert("Informe um e-mail válido.");return;}
+  try{
+    await fetch("https://formspree.io/f/SEU_FORM_ID",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({nome:state.lead.nome,email:state.lead.email,_subject:"Novo lead calculadora: "+state.lead.nome})
+    });
+  }catch(e){}
+  setState({enviado:true});
+}
+
+render();
 </script>
 </body>
 </html>
