@@ -4,59 +4,231 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Calculadora da Liberdade Financeira | Ilana Horta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#080F18;color:#EDE8DE;font-family:Georgia,serif;min-height:100vh;}
-input{background:#080F18;border:1px solid rgba(212,160,32,.3);border-radius:6px;padding:9px 11px;color:#EDE8DE;font-size:13px;width:100%;outline:none;font-family:Arial;}
-input:focus{border-color:#D4A020;}
-button{cursor:pointer;font-family:Arial;font-weight:bold;border-radius:7px;transition:opacity .15s;}
-button:hover{opacity:.88;}
-.btn-p{background:#D4A020;color:#080F18;border:none;padding:11px 18px;font-size:13px;}
-.btn-s{background:transparent;color:#D4A020;border:1.5px solid #D4A020;padding:11px 18px;font-size:13px;}
-.btn-back{background:transparent;color:#7A8A98;border:none;font-size:12px;font-family:Arial;padding:8px 0;display:flex;align-items:center;gap:4px;}
-.card{background:#112030;border:1px solid rgba(212,160,32,.2);border-radius:10px;padding:16px;margin-bottom:14px;}
-.label{font-size:10px;color:#7A8A98;font-family:Arial;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:4px;}
-.gold{color:#D4A020;}
-.dim{color:#7A8A98;}
-.hdr{background:#112030;border-bottom:1px solid rgba(212,160,32,.2);padding:10px 14px;text-align:center;position:sticky;top:0;z-index:10;}
-.body{padding:14px 14px 60px;}
-.tag-w{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:Arial;background:#C4402018;color:#E05030;border:1px solid #C4402040;}
-.tag-ok{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:Arial;background:#2E904018;color:#50B868;border:1px solid #2E904040;}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.stat{background:#243545;border:1px solid rgba(212,160,32,.2);border-radius:7px;padding:11px 7px;text-align:center;flex:1;}
-.prog-bg{height:5px;background:rgba(212,160,32,.15);border-radius:3px;overflow:hidden;margin-top:4px;}
-.step{display:flex;align-items:center;gap:6px;}
-.step-n{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-family:Arial;font-weight:bold;flex-shrink:0;}
-.div-card{background:#1C2B3A;border-radius:8px;padding:11px;margin-bottom:10px;border:1px solid rgba(212,160,32,.2);}
-.pr-card{display:flex;gap:10px;margin-bottom:11px;padding:11px;background:#1C2B3A;border-radius:7px;border:1px solid rgba(212,160,32,.2);}
-.strat{cursor:pointer;border-radius:8px;padding:12px;border:1px solid rgba(212,160,32,.2);background:#1C2B3A;}
-.strat.on{border:2px solid #D4A020;background:rgba(212,160,32,.1);}
-.bar{background:rgba(212,160,32,.1);border-radius:6px;height:140px;display:flex;align-items:flex-end;gap:2px;padding:8px;overflow:hidden;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#080808;
+  --white:#F5F0E8;
+  --red:#8B1A1A;
+  --red-bright:#C0392B;
+  --gray:#9A9A9A;
+  --gray-dark:#141414;
+  --gray-mid:#1E1E1E;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;line-height:1.6;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.15);padding:10px 0;color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;width:100%;outline:none;transition:border-color .3s;}
+input:focus{border-color:var(--white);}
+input::placeholder{color:rgba(255,255,255,.25);}
+button{cursor:pointer;font-family:var(--sans);}
+
+/* NAV */
+nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:var(--black);z-index:100;}
+.nav-logo{font-family:var(--serif);font-size:16px;letter-spacing:1px;color:var(--white);}
+.nav-back{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);transition:color .3s;}
+.nav-back:hover{color:var(--white);}
+
+/* STEPS */
+.steps{display:flex;align-items:center;justify-content:center;gap:0;padding:32px 40px;border-bottom:1px solid rgba(255,255,255,.06);}
+.step-item{display:flex;align-items:center;gap:10px;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,.15);color:var(--gray);transition:all .3s;}
+.step-num.active{background:var(--white);color:var(--black);border-color:var(--white);}
+.step-num.done{background:var(--red-bright);color:var(--white);border-color:var(--red-bright);}
+.step-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);}
+.step-label.active{color:var(--white);}
+.step-sep{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 16px;}
+
+/* BODY */
+.body{max-width:700px;margin:0 auto;padding:60px 40px 100px;}
+
+/* CARDS */
+.card{background:var(--gray-dark);padding:28px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06);}
+.card-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.card-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray);}
+
+/* DIV ITEM */
+.div-item{background:var(--gray-mid);padding:20px;margin-bottom:12px;border-left:2px solid rgba(255,255,255,.1);transition:border-color .2s;}
+.div-item:hover{border-left-color:var(--white);}
+.div-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.div-name-input{background:transparent;border:none;color:var(--white);font-family:var(--serif);font-size:18px;font-weight:300;width:100%;outline:none;}
+.div-name-input::placeholder{color:rgba(255,255,255,.2);}
+.btn-remove{background:none;border:none;color:rgba(255,255,255,.3);font-size:18px;cursor:pointer;transition:color .2s;padding:0;}
+.btn-remove:hover{color:var(--red-bright);}
+.div-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.field-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:8px;}
+.alert-high{font-size:11px;color:var(--red-bright);margin-top:10px;letter-spacing:.5px;}
+
+/* TAG */
+.tag-rate{display:inline-block;font-size:10px;letter-spacing:1px;padding:3px 10px;border:1px solid;margin:2px;}
+.tag-high{color:var(--red-bright);border-color:var(--red-bright);}
+.tag-ok{color:var(--gray);border-color:rgba(255,255,255,.15);}
+
+/* TOTAL BOX */
+.total-box{padding:28px;border:1px solid rgba(255,255,255,.1);margin-bottom:16px;text-align:center;}
+.total-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;}
+.total-value{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--white);line-height:1;}
+
+/* BTNS */
+.btn-add{width:100%;padding:14px;background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--white);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;margin-top:12px;}
+.btn-add:hover{border-color:var(--white);}
+.btn-primary{padding:16px 32px;background:var(--white);color:var(--black);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border:none;transition:all .3s;display:inline-flex;align-items:center;gap:12px;}
+.btn-primary:hover{background:var(--red-bright);color:var(--white);}
+.btn-secondary{padding:16px 32px;background:transparent;color:var(--gray);font-size:11px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);transition:all .3s;display:inline-flex;align-items:center;gap:12px;}
+.btn-secondary:hover{border-color:var(--white);color:var(--white);}
+.btn-row{display:flex;gap:12px;margin-top:16px;}
+
+/* STRATEGY */
+.strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.strat-item{padding:24px;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all .3s;}
+.strat-item:hover{border-color:rgba(255,255,255,.4);}
+.strat-item.active{border-color:var(--white);background:rgba(255,255,255,.04);}
+.strat-icon{font-size:24px;margin-bottom:12px;}
+.strat-name{font-family:var(--serif);font-size:18px;font-weight:300;margin-bottom:4px;}
+.strat-sub{font-size:11px;color:var(--gray);letter-spacing:1px;}
+
+/* PREVIEW */
+.preview-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:20px;margin-top:16px;}
+.preview-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.preview-value{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--white);}
+
+/* RESULT */
+.result-hero{padding:60px 40px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);background:var(--gray-dark);}
+.result-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;}
+.result-date{font-family:var(--serif);font-size:clamp(32px,5vw,56px);font-weight:300;color:var(--white);margin-bottom:8px;}
+.result-sub{font-size:13px;color:var(--gray);letter-spacing:1px;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-bottom:16px;}
+.stat-box{background:var(--black);padding:28px 20px;text-align:center;}
+.stat-val{font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;margin-bottom:6px;}
+.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);}
+.stat-val.highlight{color:var(--red-bright);}
+.stat-val.saved{color:#fff;background:var(--red-bright);padding:4px 12px;display:inline-block;font-size:28px;}
+
+/* CHART */
+.chart-wrap{padding:8px 0;margin-bottom:4px;}
+.chart-bars{display:flex;align-items:flex-end;gap:2px;height:100px;margin-top:8px;}
+.bar{flex:1;border-radius:1px 1px 0 0;min-height:2px;background:rgba(255,255,255,.15);transition:background .2s;}
+.bar.first{background:rgba(255,255,255,.5);}
+.bar.last{background:var(--red-bright);}
+
+/* ORDEM */
+.ordem-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.ordem-name{font-size:14px;}
+.ordem-mes{font-size:11px;color:var(--gray);letter-spacing:1px;}
+.ordem-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-right:12px;}
+
+/* PRINCIPIOS */
+.pr-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start;}
+.pr-num-box{width:36px;height:36px;background:var(--red-bright);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;color:var(--white);}
+.pr-name{font-family:var(--serif);font-size:16px;font-weight:300;margin-bottom:2px;}
+.pr-verse{font-size:11px;color:var(--gray);letter-spacing:1px;}
+
+/* FREEDOM BOX */
+.freedom-box{background:var(--red-bright);padding:40px;text-align:center;margin-top:16px;}
+.freedom-icon{font-size:32px;margin-bottom:16px;}
+.freedom-title{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--white);margin-bottom:8px;}
+.freedom-date{font-family:var(--serif);font-size:20px;color:rgba(255,255,255,.8);margin-bottom:12px;}
+.freedom-verse{font-size:12px;color:rgba(255,255,255,.7);letter-spacing:1px;font-style:italic;}
+
+/* LEAD FORM */
+.lead-box{background:var(--gray-dark);padding:40px;border:1px solid rgba(255,255,255,.08);}
+.lead-title{font-family:var(--serif);font-size:28px;font-weight:300;margin-bottom:8px;}
+.lead-sub{font-size:13px;color:var(--gray);margin-bottom:32px;line-height:1.7;}
+.lead-field{margin-bottom:24px;}
+.lead-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:8px;}
+
+/* SUCCESS */
+.success-box{display:none;padding:60px 40px;text-align:center;}
+.success-box.show{display:block;}
+.success-title{font-family:var(--serif);font-size:36px;font-weight:300;margin-bottom:16px;}
+.success-sub{font-size:14px;color:var(--gray);line-height:1.8;}
+
+@media(max-width:640px){
+  nav{padding:16px 20px;}
+  .body{padding:40px 20px 80px;}
+  .div-grid{grid-template-columns:1fr 1fr;}
+  .strat-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr;}
+  .steps{padding:20px;}
+  .step-sep{width:20px;margin:0 8px;}
+}
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="nav-logo">A Bíblia Já Sabia</div>
+  <a href="/" class="nav-back">← Voltar</a>
+</nav>
+
+<div class="steps" id="steps-bar">
+  <div class="step-item">
+    <div class="step-num active" id="s1">1</div>
+    <span class="step-label active">Dívidas</span>
+  </div>
+  <div class="step-sep"></div>
+  <div class="step-item">
+    <div class="step-num" id="s2">2</div>
+    <span class="step-label">Estratégia</span>
+  </div>
+  <div class="step-sep"></div>
+  <div class="step-item">
+    <div class="step-num" id="s3">3</div>
+    <span class="step-label">Resultado</span>
+  </div>
+  <div class="step-sep"></div>
+  <div class="step-item">
+    <div class="step-num" id="s4">4</div>
+    <span class="step-label">Liberdade</span>
+  </div>
+</div>
+
 <div id="app"></div>
+
 <script>
-const CORES=["#D4A020","#E85040","#40A860","#6070D0","#C060A0","#40B8C0","#E07030"];
+const CORES=["#C0392B","#E67E22","#27AE60","#8E44AD","#2980B9","#F39C12","#1ABC9C"];
 const PR=[
-  {n:1,name:"Conhecimento",d:"Entenda sua situação com clareza",v:"Provérbios 24:3-4"},
-  {n:2,name:"Primícias",d:"Honre a Deus primeiro com sua renda",v:"Provérbios 3:9-10"},
-  {n:3,name:"Fuga do Jugo",d:"O devedor é servo do credor",v:"Provérbios 22:7"},
-  {n:4,name:"Mordomia Fiel",d:"Cuide bem do que Deus confiou",v:"Lucas 16:10-11"},
-  {n:5,name:"Disciplina",d:"Os planos do diligente trazem lucro",v:"Provérbios 21:5"},
-  {n:6,name:"Trabalho com Propósito",d:"Trabalhe como para o Senhor",v:"Colossenses 3:23"},
-  {n:7,name:"Rejeição dos Juros",d:"Não seja fiador",v:"Provérbios 22:26-27"},
-  {n:8,name:"Fidelidade",d:"Bem, servo bom e fiel",v:"Mateus 25:21"},
-  {n:9,name:"Poupança Sistemática",d:"Ajuntando aos poucos, vai aumentando",v:"Provérbios 13:11"},
-  {n:10,name:"Previsão",d:"A mulher virtuosa ri do amanhã",v:"Provérbios 31:25"},
-  {n:11,name:"Investimento Sábio",d:"Divide em sete — ou oito",v:"Eclesiastes 11:2"},
-  {n:12,name:"Generosidade",d:"Dai e vos será dado",v:"Lucas 6:38"},
-  {n:13,name:"Legado",d:"O bom deixa herança para os filhos",v:"Provérbios 13:22"},
+  {n:1,name:"Conhecimento",v:"Provérbios 24:3-4"},
+  {n:2,name:"Primícias",v:"Provérbios 3:9-10"},
+  {n:3,name:"Fuga do Jugo",v:"Provérbios 22:7"},
+  {n:4,name:"Mordomia Fiel",v:"Lucas 16:10-11"},
+  {n:5,name:"Disciplina",v:"Provérbios 21:5"},
+  {n:6,name:"Trabalho com Propósito",v:"Colossenses 3:23"},
+  {n:7,name:"Rejeição dos Juros",v:"Provérbios 22:26-27"},
+  {n:8,name:"Fidelidade",v:"Mateus 25:21"},
+  {n:9,name:"Poupança Sistemática",v:"Provérbios 13:11"},
+  {n:10,name:"Previsão",v:"Provérbios 31:25"},
+  {n:11,name:"Investimento Sábio",v:"Eclesiastes 11:2"},
+  {n:12,name:"Generosidade",v:"Lucas 6:38"},
+  {n:13,name:"Legado",v:"Provérbios 13:22"},
 ];
+
 const brl=n=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",minimumFractionDigits:0,maximumFractionDigits:0}).format(n||0);
 const nm=s=>parseFloat(String(s||"").replace(",","."))||0;
 const dL=m=>{const d=new Date();d.setMonth(d.getMonth()+m);return d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});};
+
+// Simula pagamento apenas com mínimos (sem extra) para calcular juros base
+function simularSomenteMinimos(divs){
+  let a=divs.map((d,i)=>({rest:nm(d.saldo),taxa:nm(d.taxa)/100,min:nm(d.minimo)})).filter(d=>d.rest>0&&d.min>0&&d.taxa>=0);
+  let jt=0,mes=0;
+  while(a.length&&mes<480){
+    mes++;
+    const nx=[];
+    for(let d of a){
+      const j=d.rest*d.taxa;jt+=j;d.rest+=j;d.rest=Math.max(0,d.rest-Math.min(d.min,d.rest));
+      if(d.rest>=0.5)nx.push(d);
+    }
+    a=nx;
+  }
+  return jt;
+}
+
 function simular(divs,ex,est){
   const e=nm(ex);
   let a=divs.map((d,i)=>({id:i,name:d.nome||`Dívida ${i+1}`,rest:nm(d.saldo),taxa:nm(d.taxa)/100,min:nm(d.minimo),mesPago:null,cor:CORES[i%CORES.length]})).filter(d=>d.rest>0&&d.min>0&&d.taxa>=0);
@@ -70,120 +242,297 @@ function simular(divs,ex,est){
   }
   return{cr,jt:Math.round(jt),tm:mes,ti:Math.round(ti),p:[...p].sort((a,b)=>a.mesPago-b.mesPago)};
 }
-let state={passo:1,dividas:[{id:1,nome:"Cartão de Crédito",saldo:"8500",taxa:"11.5",minimo:"250"},{id:2,nome:"Empréstimo Pessoal",saldo:"22000",taxa:"3.2",minimo:"750"},{id:3,nome:"Cheque Especial",saldo:"4200",taxa:"7.8",minimo:"150"}],form:{nome:"",saldo:"",taxa:"",minimo:""},extra:"800",estrategia:"snow",lead:{nome:"",email:"",telefone:"",instagram:""},enviado:false,proxId:10,txv:false,erro:""};
+
+let state={
+  passo:1,
+  dividas:[
+    {id:1,nome:"Cartão de Crédito",saldo:"8500",taxa:"11.5",minimo:"250"},
+    {id:2,nome:"Empréstimo Pessoal",saldo:"22000",taxa:"3.2",minimo:"750"},
+    {id:3,nome:"Cheque Especial",saldo:"4200",taxa:"7.8",minimo:"150"},
+  ],
+  form:{nome:"",saldo:"",taxa:"",minimo:""},
+  extra:"800",
+  estrategia:"snow",
+  lead:{nome:"",email:"",telefone:"",instagram:""},
+  enviado:false,
+  proxId:10,
+  txv:false,
+  erro:""
+};
+
 function setState(obj){Object.assign(state,obj);render();}
-function hdr(){
-  const labels=["Dívidas","Estratégia","Resultado","Liberdade"];
-  return`<div class="hdr">
-    <a href="/" class="btn-back">← Voltar ao site</a>
-    <div style="font-size:9px;color:#8A6810;font-family:Arial;letter-spacing:2px;text-transform:uppercase;margin:4px 0 7px;">Abra a Bíblia · Feche as Dívidas · Ilana Horta</div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:4px;flex-wrap:wrap;">
-      ${labels.map((l,i)=>`<div class="step"><div class="step-n" style="background:${state.passo>=i+1?"#D4A020":"#243545"};color:${state.passo>=i+1?"#080F18":"#7A8A98"};border:${state.passo===i+1?"2px solid #D4A020":"none"};">${state.passo>i+1?"✓":i+1}</div><span style="font-size:10px;font-family:Arial;color:${state.passo===i+1?"#D4A020":"#7A8A98"};">${l}</span></div>${i<3?'<div style="width:10px;height:1px;background:rgba(212,160,32,.2);"></div>':''}`).join("")}
-    </div>
-  </div>`;
-}
-function passo1(){
-  const tot=state.dividas.reduce((s,d)=>s+nm(d.saldo),0);
-  return`${hdr()}<div class="body">
-    <div style="text-align:center;padding:16px 0 12px;"><h1 style="color:#D4A020;font-size:18px;font-weight:normal;margin:0 0 3px;">Calculadora da Liberdade Financeira</h1><p style="color:#7A8A98;font-size:11px;font-family:Arial;font-style:italic;">Descubra quando você será livre das suas dívidas</p></div>
-    <div style="background:rgba(212,160,32,.08);border:1px dashed rgba(212,160,32,.4);border-radius:8px;padding:9px 12px;margin-bottom:12px;display:flex;gap:8px;align-items:center;"><span style="font-size:18px;">📋</span><div><div style="font-size:12px;color:#EDE8DE;font-family:Arial;font-weight:bold;">Adicione todas as suas dívidas — uma de cada vez</div><div style="font-size:11px;color:#7A8A98;font-family:Arial;">Cartão, empréstimo, cheque especial, consignado...</div></div></div>
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span class="label" style="margin:0;">Dívidas Cadastradas</span><span style="background:#D4A020;color:#080F18;border-radius:20px;padding:2px 9px;font-size:11px;font-family:Arial;font-weight:bold;">${state.dividas.length} ${state.dividas.length===1?"dívida":"dívidas"}</span></div>
-      ${state.dividas.length===0?`<div style="text-align:center;padding:14px;color:#7A8A98;font-size:12px;font-family:Arial;">☝️ Adicione sua primeira dívida abaixo.</div>`:""}
-      ${state.dividas.map((d,i)=>`<div class="div-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="display:flex;align-items:center;gap:6px;"><div style="width:7px;height:7px;border-radius:50%;background:${CORES[i%CORES.length]};flex-shrink:0;"></div><input value="${d.nome}" oninput="editDiv(${d.id},'nome',this.value)" placeholder="Nome" style="font-weight:bold;font-size:12px;border:none;background:transparent;padding:0;"/></div><button onclick="remDiv(${d.id})" style="background:none;border:none;color:#7A8A98;font-size:16px;cursor:pointer;">×</button></div><div class="grid3"><div><label class="label">Saldo R$</label><input type="number" value="${d.saldo}" oninput="editDiv(${d.id},'saldo',this.value)"/></div><div><label class="label">Juros % a.m.</label><input type="number" value="${d.taxa}" oninput="editDiv(${d.id},'taxa',this.value)" style="border-color:${nm(d.taxa)>7?"#C44020":"rgba(212,160,32,.3)"};color:${nm(d.taxa)>7?"#E06050":"#EDE8DE"};"/></div><div><label class="label">Mínimo R$</label><input type="number" value="${d.minimo}" oninput="editDiv(${d.id},'minimo',this.value)"/></div></div>${nm(d.taxa)>7?`<div style="margin-top:5px;"><span class="tag-w">⚠️ Juros muito altos</span></div>`:""}</div>`).join("")}
-    </div>
-    <div class="card" style="border:1.5px dashed rgba(212,160,32,.3);">
-      <span class="label">➕ Adicionar Nova Dívida</span>
-      <div style="display:flex;flex-direction:column;gap:9px;margin-top:8px;">
-        <div><label class="label">Nome</label><input placeholder='Ex: "Cartão Nubank"' value="${state.form.nome}" oninput="setForm('nome',this.value)"/></div>
-        <div class="grid2"><div><label class="label">Saldo (R$)</label><input type="number" placeholder="Ex: 8500" value="${state.form.saldo}" oninput="setForm('saldo',this.value)"/></div><div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><label class="label" style="margin:0;">Juros % a.m.</label><button onclick="setState({txv:!state.txv})" style="background:none;border:none;color:#D4A020;font-size:9px;font-family:Arial;cursor:pointer;">${state.txv?"▲ ocultar":"Não sei ▼"}</button></div><input type="number" placeholder="Ex: 11.5" value="${state.form.taxa}" oninput="setForm('taxa',this.value)"/></div></div>
-        ${state.txv?`<div style="background:#243545;border-radius:7px;padding:9px;"><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;">Cartão rotativo</span><span class="tag-w">11–15%</span></div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;">Cheque especial</span><span class="tag-w">7–10%</span></div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-family:Arial;">Crédito pessoal</span><span class="tag-ok">2–5%</span></div><div style="display:flex;justify-content:space-between;"><span style="font-size:11px;font-family:Arial;">Consignado</span><span class="tag-ok">1–2%</span></div></div>`:""}
-        <div><label class="label">Mínimo mensal (R$)</label><input type="number" placeholder="Ex: 250" value="${state.form.minimo}" oninput="setForm('minimo',this.value)"/></div>
-      </div>
-      ${state.erro?`<div style="margin-top:7px;padding:6px 10px;background:#C4402018;border-radius:5px;color:#E05030;font-size:10px;font-family:Arial;">⚠️ ${state.erro}</div>`:""}
-      <button class="btn-s" onclick="addDiv()" style="width:100%;margin-top:10px;">+ Adicionar esta dívida</button>
-    </div>
-    ${state.dividas.length>0?`<div class="card" style="background:rgba(212,160,32,.08);border:1.5px solid rgba(212,160,32,.4);text-align:center;"><div style="font-size:11px;color:#7A8A98;font-family:Arial;">Total das dívidas:</div><div style="font-size:26px;color:#D4A020;font-weight:bold;margin:6px 0 4px;">${brl(tot)}</div><div style="font-size:11px;color:#7A8A98;font-family:Arial;font-style:italic;margin-bottom:14px;">"Não devas nada a ninguém além do amor." — Rm 13:8</div><button class="btn-p" onclick="setState({passo:2})" style="width:100%;padding:12px;font-size:13px;">Calcular minha liberdade →</button></div>`:""}
-  </div>`;
-}
-function passo2(){
-  const res=simular(state.dividas,state.extra,state.estrategia);
-  const dl=res?dL(res.tm):"—";
-  return`${hdr()}<div class="body">
-    <div style="text-align:center;padding:16px 0 12px;"><h2 style="color:#D4A020;font-size:17px;font-weight:normal;">Estratégia de Pagamento</h2></div>
-    <div class="card"><span class="label">Pagamento Extra por Mês</span><input type="number" placeholder="0" value="${state.extra}" oninput="setState({extra:this.value})" style="margin-top:8px;"/>${res?`<div style="margin-top:8px;padding:8px 11px;background:rgba(212,160,32,.1);border-radius:7px;border:1px solid rgba(212,160,32,.3);font-size:12px;font-family:Arial;">✦ Livre em <strong style="color:#D4A020;">${dl}</strong> (${res.tm} meses)</div>`:""}</div>
-    <div class="card"><span class="label">Qual dívida atacar primeiro?</span><div class="grid2" style="margin-top:8px;"><div class="strat ${state.estrategia==="snow"?"on":""}" onclick="setState({estrategia:'snow'})"><div style="font-size:20px;margin-bottom:5px;">❄️</div><div style="font-size:12px;font-weight:bold;margin-bottom:2px;">Bola de Neve</div><div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:4px;">Menor saldo primeiro</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;">Método Dave Ramsey.</div></div><div class="strat ${state.estrategia==="aval"?"on":""}" onclick="setState({estrategia:'aval'})"><div style="font-size:20px;margin-bottom:5px;">🏔️</div><div style="font-size:12px;font-weight:bold;margin-bottom:2px;">Avalanche</div><div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:4px;">Maior juro primeiro</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;">Economiza mais no total.</div></div></div></div>
-    ${res?`<div class="card"><span class="label">Ordem de quitação</span>${res.p.map((d,i)=>`<div style="margin-bottom:8px;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:${d.cor};"></div><span style="font-size:11px;font-family:Arial;">${i+1}. ${d.name}</span></div><span style="font-size:10px;color:#7A8A98;font-family:Arial;">Mês ${d.mesPago}</span></div><div class="prog-bg"><div style="height:100%;width:${Math.min(100,(d.mesPago/res.tm)*100)}%;background:${d.cor};border-radius:3px;"></div></div></div>`).join("")}</div>`:""}
-    <div style="display:flex;gap:9px;"><button class="btn-s" onclick="setState({passo:1})" style="flex:1;">← Editar</button><button class="btn-p" onclick="setState({passo:3})" style="flex:2;">Ver resultado →</button></div>
-  </div>`;
-}
-function passo3(){
-  const res=simular(state.dividas,state.extra,state.estrategia);
-  if(!res)return`<div style="padding:20px;text-align:center;">Volte e adicione dívidas.</div>`;
-  const dl=dL(res.tm);const anos=Math.floor(res.tm/12),meses=res.tm%12;
-  const marcos=res.p.map((d,i)=>({...d,pr:PR[Math.min(Math.floor((i/res.p.length)*13),12)]}));
-  const maxR=Math.max(...res.cr.map(c=>c.r),1);
-  const pts=res.cr.filter((_,i)=>i%Math.max(1,Math.floor(res.cr.length/20))===0);
-  return`${hdr()}
-  <div style="background:rgba(212,160,32,.12);border-bottom:1px solid rgba(212,160,32,.3);padding:18px 14px;text-align:center;">
-    <div style="font-size:9px;color:#8A6810;font-family:Arial;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;">Sua data de liberdade</div>
-    <div style="font-size:22px;color:#D4A020;font-weight:bold;">${dl.toUpperCase()}</div>
-    <div style="font-size:12px;font-family:Arial;margin-top:4px;">${anos>0?`${anos} ${anos===1?"ano":"anos"}`:""}${anos>0&&meses>0?" e ":""}${meses>0?`${meses} ${meses===1?"mês":"meses"}`:""} de disciplina bíblica</div>
-  </div>
-  <div class="body">
-    <div style="display:flex;gap:8px;margin-bottom:12px;">
-      <div class="stat"><div style="font-size:17px;font-weight:bold;color:#D4A020;">${brl(res.ti)}</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;margin-top:2px;">Dívida total</div></div>
-      <div class="stat"><div style="font-size:17px;font-weight:bold;color:#C44020;">${brl(res.jt)}</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;margin-top:2px;">Juros evitados</div></div>
-      <div class="stat"><div style="font-size:17px;font-weight:bold;color:#D4A020;">${res.tm}</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;margin-top:2px;">Meses</div></div>
-    </div>
-    <div class="card"><span class="label">Dívida caindo mês a mês</span><div class="bar" style="margin-top:8px;">${pts.map(c=>`<div style="flex:1;border-radius:3px 3px 0 0;min-height:4px;height:${Math.round((c.r/maxR)*100)}%;background:linear-gradient(to top,#D4A020,rgba(212,160,32,.3));"></div>`).join("")}</div><div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:9px;color:#7A8A98;font-family:Arial;">Mês 1</span><span style="font-size:9px;color:#7A8A98;font-family:Arial;">Mês ${res.tm}</span></div></div>
-    <div class="card"><span class="label">Os 13 Princípios da Sua Jornada</span>${marcos.map(m=>`<div class="pr-card"><div style="width:32px;height:32px;border-radius:50%;flex-shrink:0;background:rgba(212,160,32,.2);border:1.5px solid #D4A020;display:flex;align-items:center;justify-content:center;color:#D4A020;font-size:11px;font-weight:bold;font-family:Arial;">${m.pr.n}</div><div style="flex:1;"><div style="font-size:12px;margin-bottom:2px;">Mês ${m.mesPago}: <strong>${m.name}</strong> quitado!</div><div style="font-size:10px;color:#D4A020;font-family:Arial;margin-bottom:2px;">Princípio ${m.pr.n}: ${m.pr.name}</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;line-height:1.5;margin-bottom:2px;">${m.pr.d}</div><div style="font-size:10px;color:#8A6810;font-style:italic;">${m.pr.v}</div></div></div>`).join("")}
-      <div style="padding:13px;background:rgba(212,160,32,.12);border-radius:8px;border:2px solid #D4A020;text-align:center;margin-top:4px;"><div style="font-size:20px;margin-bottom:5px;">🕊️</div><div style="font-size:13px;color:#D4A020;font-weight:bold;margin-bottom:3px;">LIBERDADE FINANCEIRA COMPLETA</div><div style="font-size:12px;">${dl}</div><div style="font-size:10px;color:#7A8A98;font-family:Arial;font-style:italic;margin-top:5px;">"Bem, servo bom e fiel." — Mateus 25:21</div></div>
-    </div>
-    <div class="card" style="text-align:center;padding:20px 14px;"><div style="font-size:14px;margin-bottom:4px;">Quer acompanhamento personalizado?</div><p style="font-size:11px;color:#7A8A98;font-family:Arial;margin-bottom:14px;line-height:1.6;">Deixe seus dados e Ilana Horta entrará em contato com você.</p><button class="btn-p" onclick="setState({passo:4})" style="width:100%;padding:12px;font-size:13px;">Quero acompanhamento →</button></div>
-    <button class="btn-s" onclick="setState({passo:2})" style="width:100%;margin-top:7px;">← Ajustar</button>
-  </div>`;
-}
-function passo4(){
-  const res=simular(state.dividas,state.extra,state.estrategia);
-  const dl=res?dL(res.tm):"—";
-  if(state.enviado)return`<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;"><div style="text-align:center;max-width:340px;"><div style="font-size:44px;margin-bottom:12px;">🙏</div><h2 style="color:#D4A020;font-size:18px;font-weight:normal;margin-bottom:7px;">Recebido com gratidão${state.lead.nome?`, ${state.lead.nome}`:""}!</h2><p style="color:#7A8A98;font-size:12px;font-family:Arial;line-height:1.7;margin-bottom:16px;">Ilana Horta entrará em contato em breve em <strong style="color:#EDE8DE;">${state.lead.email}</strong>.</p><div class="card" style="margin-bottom:14px;"><div style="font-size:10px;color:#7A8A98;font-family:Arial;">Você será livre em:</div><div style="font-size:18px;color:#D4A020;font-weight:bold;margin-top:3px;">${dl}</div></div><button class="btn-s" onclick="setState({passo:1,enviado:false})" style="width:100%;margin-bottom:8px;">Nova simulação</button><a href="/" style="display:block;text-align:center;font-size:12px;color:#7A8A98;font-family:Arial;text-decoration:none;">← Voltar ao site</a></div></div>`;
-  return`${hdr()}<div class="body" style="max-width:440px;margin:0 auto;">
-    <div style="text-align:center;padding:16px 0 12px;"><h2 style="color:#D4A020;font-size:17px;font-weight:normal;margin:0 0 3px;">Quero Acompanhamento</h2><p style="color:#7A8A98;font-size:10px;font-family:Arial;">Ilana Horta entrará em contato pessoalmente</p></div>
-    <div class="card" style="background:rgba(212,160,32,.1);border:1.5px solid rgba(212,160,32,.4);text-align:center;margin-bottom:12px;"><div style="font-size:10px;color:#7A8A98;font-family:Arial;">Você será livre em:</div><div style="font-size:20px;color:#D4A020;font-weight:bold;margin:4px 0 3px;">${dl}</div>${res?`<div style="font-size:10px;color:#7A8A98;font-family:Arial;font-style:italic;">Economizando ${brl(res.jt)} em juros</div>`:""}</div>
-    <div class="card"><div style="display:flex;flex-direction:column;gap:10px;">
-      <div><label class="label">Seu nome</label><input placeholder="Nome completo" value="${state.lead.nome}" oninput="setLead('nome',this.value)"/></div>
-      <div><label class="label">Seu e-mail</label><input type="email" placeholder="seuemail@exemplo.com" value="${state.lead.email}" oninput="setLead('email',this.value)"/></div>
-      <div><label class="label">WhatsApp</label><input type="tel" placeholder="(11) 99999-9999" value="${state.lead.telefone||''}" oninput="setLead('telefone',this.value)"/></div>
-      <div><label class="label">Instagram</label><input placeholder="@seuinstagram" value="${state.lead.instagram||''}" oninput="setLead('instagram',this.value)"/></div>
-    </div>
-    <button class="btn-p" onclick="enviar()" style="width:100%;margin-top:12px;padding:12px;font-size:13px;">Enviar →</button></div>
-    <button class="btn-s" onclick="setState({passo:3})" style="width:100%;margin-top:7px;">← Voltar</button>
-  </div>`;
-}
-function render(){
-  const app=document.getElementById("app");
-  if(state.passo===1)app.innerHTML=passo1();
-  else if(state.passo===2)app.innerHTML=passo2();
-  else if(state.passo===3)app.innerHTML=passo3();
-  else if(state.passo===4)app.innerHTML=passo4();
-}
-function editDiv(id,campo,val){state.dividas=state.dividas.map(d=>d.id===id?{...d,[campo]:val}:d);render();}
+function editDiv(id,k,v){state.dividas=state.dividas.map(d=>d.id===id?{...d,[k]:v}:d);render();}
 function remDiv(id){state.dividas=state.dividas.filter(d=>d.id!==id);render();}
 function setForm(k,v){state.form={...state.form,[k]:v};}
 function setLead(k,v){state.lead={...state.lead,[k]:v};}
+
+function updateSteps(){
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById(`s${i}`);
+    if(!el)return;
+    el.className='step-num';
+    el.nextElementSibling.className='step-label';
+    if(i<state.passo){el.classList.add('done');el.textContent='✓';}
+    else if(i===state.passo){el.classList.add('active');el.nextElementSibling.classList.add('active');el.textContent=i;}
+    else{el.textContent=i;}
+  }
+}
+
 function addDiv(){
   if(!nm(state.form.saldo)){setState({erro:"Informe o saldo."});return;}
-  if(!nm(state.form.taxa)){setState({erro:"Informe os juros."});return;}
-  if(!nm(state.form.minimo)){setState({erro:"Informe o mínimo."});return;}
+  if(!nm(state.form.taxa)){setState({erro:"Informe a taxa de juros."});return;}
+  if(!nm(state.form.minimo)){setState({erro:"Informe o pagamento mínimo."});return;}
   state.dividas.push({...state.form,id:state.proxId,nome:state.form.nome||`Dívida ${state.proxId}`});
   state.proxId++;state.form={nome:"",saldo:"",taxa:"",minimo:""};state.erro="";render();
 }
+
 async function enviar(){
   if(!state.lead.email.includes("@")){alert("Informe um e-mail válido.");return;}
   try{await fetch("https://formspree.io/f/SEU_FORM_ID",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...state.lead,_subject:"Novo lead calculadora: "+state.lead.nome})});}catch(e){}
   setState({enviado:true});
 }
+
+function render(){
+  updateSteps();
+  const app=document.getElementById("app");
+  const tot=state.dividas.reduce((s,d)=>s+nm(d.saldo),0);
+
+  if(state.passo===1){
+    app.innerHTML=`
+    <div class="body">
+      <div class="card">
+        <div class="card-label">Dívidas cadastradas <span style="margin-left:auto;background:var(--white);color:var(--black);padding:2px 10px;font-size:11px;font-weight:500;">${state.dividas.length}</span></div>
+        ${state.dividas.length===0?`<p style="color:var(--gray);font-size:13px;text-align:center;padding:20px 0;">Nenhuma dívida cadastrada ainda.</p>`:""}
+        ${state.dividas.map((d,i)=>`
+          <div class="div-item">
+            <div class="div-item-header">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:4px;height:32px;background:${CORES[i%CORES.length]};flex-shrink:0;"></div>
+                <input class="div-name-input" value="${d.nome}" oninput="editDiv(${d.id},'nome',this.value)" placeholder="Nome da dívida"/>
+              </div>
+              <button class="btn-remove" onclick="remDiv(${d.id})">×</button>
+            </div>
+            <div class="div-grid">
+              <div><label class="field-label">Saldo (R$)</label><input type="number" value="${d.saldo}" oninput="editDiv(${d.id},'saldo',this.value)"/></div>
+              <div><label class="field-label">Juros % a.m.</label><input type="number" value="${d.taxa}" oninput="editDiv(${d.id},'taxa',this.value)" style="${nm(d.taxa)>7?'color:var(--red-bright);border-color:var(--red-bright);':''}"/></div>
+              <div><label class="field-label">Mínimo (R$)</label><input type="number" value="${d.minimo}" oninput="editDiv(${d.id},'minimo',this.value)"/></div>
+            </div>
+            ${nm(d.taxa)>7?`<div class="alert-high">⚠ Juros predatórios — elimine esta dívida primeiro</div>`:""}
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="card">
+        <div class="card-label">Adicionar dívida</div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div><label class="field-label">Nome</label><input type="text" placeholder='Ex: "Cartão Nubank"' value="${state.form.nome}" oninput="setForm('nome',this.value)"/></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div><label class="field-label">Saldo (R$)</label><input type="number" placeholder="0,00" value="${state.form.saldo}" oninput="setForm('saldo',this.value)"/></div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                <label class="field-label" style="margin:0;">Juros % a.m.</label>
+                <button onclick="setState({txv:!state.txv})" style="background:none;border:none;color:var(--gray);font-size:10px;letter-spacing:1px;cursor:pointer;">${state.txv?"OCULTAR":"REFERÊNCIA"}</button>
+              </div>
+              <input type="number" placeholder="0,0" value="${state.form.taxa}" oninput="setForm('taxa',this.value)"/>
+            </div>
+          </div>
+          ${state.txv?`<div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="tag-rate tag-high">Cartão rotativo: 11–15%</span>
+            <span class="tag-rate tag-high">Cheque especial: 7–10%</span>
+            <span class="tag-rate tag-ok">Crédito pessoal: 2–5%</span>
+            <span class="tag-rate tag-ok">Consignado: 1–2%</span>
+          </div>`:""}
+          <div><label class="field-label">Mínimo mensal (R$)</label><input type="number" placeholder="0,00" value="${state.form.minimo}" oninput="setForm('minimo',this.value)"/></div>
+        </div>
+        ${state.erro?`<p style="color:var(--red-bright);font-size:12px;margin-top:12px;">⚠ ${state.erro}</p>`:""}
+        <button class="btn-add" onclick="addDiv()">+ Adicionar esta dívida</button>
+      </div>
+
+      ${state.dividas.length>0?`
+      <div class="total-box">
+        <div class="total-label">Total das suas dívidas</div>
+        <div class="total-value">${brl(tot)}</div>
+        <p style="font-size:12px;color:var(--gray);margin-top:12px;font-style:italic;">"O rico domina os pobres, e o devedor é escravo do credor." — Pv 22:7</p>
+      </div>
+      <div class="btn-row" style="justify-content:flex-end;">
+        <button class="btn-primary" onclick="setState({passo:2})">Definir estratégia →</button>
+      </div>`:""}
+    </div>`;
+  }
+
+  else if(state.passo===2){
+    const res=simular(state.dividas,state.extra,state.estrategia);
+    const dl=res?dL(res.tm):"—";
+    app.innerHTML=`
+    <div class="body">
+      <div class="card">
+        <div class="card-label">Pagamento extra mensal</div>
+        <p style="font-size:13px;color:var(--gray);margin-bottom:20px;">Além dos mínimos, quanto você consegue pagar a mais por mês?</p>
+        <div><label class="field-label">Valor extra (R$)</label><input type="number" placeholder="0,00" value="${state.extra}" oninput="setState({extra:this.value})"/></div>
+        ${res?`<div class="preview-box" style="margin-top:20px;">
+          <div class="preview-label">Previsão de liberdade</div>
+          <div class="preview-value">${dl} <span style="font-size:14px;color:var(--gray);">(${res.tm} meses)</span></div>
+        </div>`:""}
+      </div>
+
+      <div class="card">
+        <div class="card-label">Estratégia de ataque</div>
+        <div class="strat-grid">
+          <div class="strat-item ${state.estrategia==="snow"?"active":""}" onclick="setState({estrategia:'snow'})">
+            <div class="strat-icon">❄</div>
+            <div class="strat-name">Bola de Neve</div>
+            <div class="strat-sub">Menor saldo primeiro · Dave Ramsey</div>
+          </div>
+          <div class="strat-item ${state.estrategia==="aval"?"active":""}" onclick="setState({estrategia:'aval'})">
+            <div class="strat-icon">▲</div>
+            <div class="strat-name">Avalanche</div>
+            <div class="strat-sub">Maior juro primeiro · Economiza mais</div>
+          </div>
+        </div>
+      </div>
+
+      ${res?`<div class="card">
+        <div class="card-label">Ordem de quitação</div>
+        ${res.p.map((d,i)=>`
+          <div class="ordem-item">
+            <div style="display:flex;align-items:center;">
+              <div class="ordem-dot" style="background:${d.cor};"></div>
+              <span class="ordem-name">${i+1}. ${d.name}</span>
+            </div>
+            <span class="ordem-mes">Mês ${d.mesPago}</span>
+          </div>
+        `).join("")}
+      </div>`:""}
+
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="setState({passo:1})">← Voltar</button>
+        <button class="btn-primary" onclick="setState({passo:3})">Ver resultado →</button>
+      </div>
+    </div>`;
+  }
+
+  else if(state.passo===3){
+    const res=simular(state.dividas,state.extra,state.estrategia);
+    if(!res){app.innerHTML=`<div class="body"><p>Volte e adicione dívidas.</p></div>`;return;}
+    const dl=dL(res.tm);
+    const anos=Math.floor(res.tm/12),meses=res.tm%12;
+    const marcos=res.p.map((d,i)=>({...d,pr:PR[Math.min(Math.floor((i/res.p.length)*13),12)]}));
+
+    // CÁLCULO CORRETO: juros se pagar só o mínimo MENOS juros com estratégia
+    const jtSoMinimos=Math.round(simularSomenteMinimos(state.dividas));
+    const economiaReal=Math.max(0,jtSoMinimos-res.jt);
+
+    const maxR=Math.max(...res.cr.map(c=>c.r),1);
+    const pts=res.cr.filter((_,i)=>i%Math.max(1,Math.floor(res.cr.length/30))===0);
+
+    app.innerHTML=`
+    <div class="result-hero">
+      <div class="result-eyebrow">Sua data de liberdade</div>
+      <div class="result-date">${dl.toUpperCase()}</div>
+      <div class="result-sub">${anos>0?`${anos} ${anos===1?"ano":"anos"}`:""} ${anos>0&&meses>0?"e":""} ${meses>0?`${meses} ${meses===1?"mês":"meses"}`:""} de disciplina</div>
+    </div>
+
+    <div class="body">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val">${brl(res.ti)}</div>
+          <div class="stat-lbl">Dívida total</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">${res.tm}</div>
+          <div class="stat-lbl">Meses até a liberdade</div>
+        </div>
+        <div class="stat-box" style="background:var(--red-bright);">
+          <div class="stat-val" style="color:var(--white);font-size:28px;">${brl(economiaReal)}</div>
+          <div class="stat-lbl" style="color:rgba(255,255,255,.8);">Juros economizados</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Dívida caindo ao longo do tempo</div>
+        <div class="chart-bars">
+          ${pts.map((c,i)=>`<div class="bar ${i===0?"first":""} ${i===pts.length-1?"last":""}" style="height:${Math.round((c.r/maxR)*100)}%;"></div>`).join("")}
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;">
+          <span style="font-size:10px;color:var(--gray);">Hoje · ${brl(res.ti)}</span>
+          <span style="font-size:10px;color:var(--red-bright);">Liberdade · ${dl}</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Os 13 princípios da sua jornada</div>
+        ${marcos.map(m=>`
+          <div class="pr-item">
+            <div class="pr-num-box">${m.pr.n}</div>
+            <div>
+              <div class="pr-name">Mês ${m.mesPago} — ${m.name} quitada</div>
+              <div class="pr-verse">Princípio ${m.pr.n}: ${m.pr.name} · ${m.pr.v}</div>
+            </div>
+          </div>
+        `).join("")}
+        <div class="freedom-box">
+          <div class="freedom-icon">🕊</div>
+          <div class="freedom-title">Liberdade Financeira Completa</div>
+          <div class="freedom-date">${dl}</div>
+          <div class="freedom-verse">"Bem, servo bom e fiel." — Mateus 25:21</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="setState({passo:2})">← Ajustar</button>
+        <button class="btn-primary" onclick="setState({passo:4})">Quero acompanhamento →</button>
+      </div>
+    </div>`;
+  }
+
+  else if(state.passo===4){
+    const res=simular(state.dividas,state.extra,state.estrategia);
+    const dl=res?dL(res.tm):"—";
+    const jtSoMinimos=res?Math.round(simularSomenteMinimos(state.dividas)):0;
+    const economiaReal=res?Math.max(0,jtSoMinimos-res.jt):0;
+
+    if(state.enviado){
+      app.innerHTML=`
+      <div class="success-box show">
+        <div class="success-title">Recebido.</div>
+        <div class="success-sub">Ilana Horta entrará em contato em breve.<br><br><em style="color:var(--red-bright);">"O Senhor abençoe você e te guarde." — Números 6:24</em></div>
+        <div style="margin-top:40px;">
+          <button class="btn-secondary" onclick="setState({passo:1,enviado:false})">Nova simulação</button>
+        </div>
+      </div>`;
+      return;
+    }
+
+    app.innerHTML=`
+    <div class="body" style="max-width:560px;">
+      <div style="margin-bottom:40px;">
+        <div class="preview-box">
+          <div class="preview-label">Você será livre em</div>
+          <div class="preview-value">${dl}</div>
+        </div>
+        ${res?`<div style="margin-top:8px;padding:16px;background:var(--red-bright);text-align:center;">
+          <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.8);margin-bottom:4px;">JUROS ECONOMIZADOS</div>
+          <div style="font-family:var(--serif);font-size:28px;color:var(--white);">${brl(economiaReal)}</div>
+        </div>`:""}
+      </div>
+
+      <div class="lead-box">
+        <div class="lead-title">Quero acompanhamento</div>
+        <div class="lead-sub">Ilana Horta entrará em contato com você pessoalmente.</div>
+        <div class="lead-field"><label class="lead-label">Nome</label><input type="text" class="form-input" placeholder="Seu nome completo" value="${state.lead.nome}" oninput="setLead('nome',this.value)"/></div>
+        <div class="lead-field"><label class="lead-label">E-mail</label><input type="email" class="form-input" placeholder="seu@email.com" value="${state.lead.email}" oninput="setLead('email',this.value)"/></div>
+        <div class="lead-field"><label class="lead-label">WhatsApp</label><input type="tel" class="form-input" placeholder="(11) 99999-9999" value="${state.lead.telefone||''}" oninput="setLead('telefone',this.value)"/></div>
+        <div class="lead-field"><label class="lead-label">Instagram</label><input type="text" class="form-input" placeholder="@seuinstagram" value="${state.lead.instagram||''}" oninput="setLead('instagram',this.value)"/></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="enviar()">Enviar →</button>
+      </div>
+
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn-secondary" onclick="setState({passo:3})">← Voltar</button>
+      </div>
+    </div>`;
+  }
+}
+
 render();
 </script>
 </body>
