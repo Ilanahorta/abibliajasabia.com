@@ -757,7 +757,7 @@ async function enviar(){
   if(!nome){ alert("Por favor, informe seu nome."); return; }
   if(!email || !email.includes("@")){ alert("Por favor, informe um e-mail válido."); return; }
   try {
-    await fetch("https://formspree.io/f/SEU_FORM_ID", {
+    await fetch("https://formspree.io/f/meewypjj", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome, email, telefone, instagram, mensagem, _subject: "Novo contato: " + nome })
