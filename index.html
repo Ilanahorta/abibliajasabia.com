@@ -885,7 +885,7 @@ function Calculadora() {
                 onChange={e=>setLead({...lead,email:e.target.value})}/>
             </div>
             <Btn
-              onClick={()=>lead.email.includes("@") && setEnviado(true)}
+              onClick={async ()=>{ if(!lead.email.includes("@")) return; try { await fetch("https://formspree.io/f/SEU_FORM_ID", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nome:lead.nome,email:lead.email,_subject:"Novo lead calculadora: "+lead.nome})}); } catch(e){} setEnviado(true); }}
               style={{width:"100%",marginTop:18,padding:15,fontSize:15}}>
               Quero meu plano gratuito →
             </Btn>
