@@ -11,8 +11,8 @@
 :root{
   --black:#080808;
   --white:#F5F0E8;
-  --red:#8B1A1A;
-  --red-bright:#C0392B;
+  --gold:#C9A84C;
+  --gold-bright:#F0C040;
   --gray:#9A9A9A;
   --gray-dark:#141414;
   --gray-mid:#1E1E1E;
@@ -22,14 +22,14 @@
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
-input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.15);padding:10px 0;color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;width:100%;outline:none;transition:border-color .3s;}
+input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.15);padding:10px 0;color:var(--white);font-family:var(--sans);font-size:16px;font-weight:300;width:100%;outline:none;transition:border-color .3s;}
 input:focus{border-color:var(--white);}
 input::placeholder{color:rgba(255,255,255,.25);}
 button{cursor:pointer;font-family:var(--sans);}
 
 /* NAV */
 nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:var(--black);z-index:100;}
-.nav-logo{font-family:var(--serif);font-size:16px;letter-spacing:1px;color:var(--white);}
+.nav-logo{font-family:var(--serif);font-size:22px;letter-spacing:1px;color:var(--white);}
 .nav-back{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);transition:color .3s;}
 .nav-back:hover{color:var(--white);}
 
@@ -38,8 +38,8 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 .step-item{display:flex;align-items:center;gap:10px;}
 .step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,.15);color:var(--gray);transition:all .3s;}
 .step-num.active{background:var(--white);color:var(--black);border-color:var(--white);}
-.step-num.done{background:var(--red-bright);color:var(--white);border-color:var(--red-bright);}
-.step-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);}
+.step-num.done{background:var(--gold-bright);color:var(--white);border-color:var(--gold-bright);}
+.step-label{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);}
 .step-label.active{color:var(--white);}
 .step-sep{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 16px;}
 
@@ -48,7 +48,7 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 
 /* CARDS */
 .card{background:var(--gray-dark);padding:28px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06);}
-.card-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.card-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--white);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
 .card-label::before{content:'';display:block;width:20px;height:1px;background:var(--gray);}
 
 /* DIV ITEM */
@@ -58,14 +58,14 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 .div-name-input{background:transparent;border:none;color:var(--white);font-family:var(--serif);font-size:18px;font-weight:300;width:100%;outline:none;}
 .div-name-input::placeholder{color:rgba(255,255,255,.2);}
 .btn-remove{background:none;border:none;color:rgba(255,255,255,.3);font-size:18px;cursor:pointer;transition:color .2s;padding:0;}
-.btn-remove:hover{color:var(--red-bright);}
+.btn-remove:hover{color:var(--gold-bright);}
 .div-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
-.field-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:8px;}
-.alert-high{font-size:11px;color:var(--red-bright);margin-top:10px;letter-spacing:.5px;}
+.field-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--white);display:block;margin-bottom:8px;}
+.alert-high{font-size:11px;color:var(--gold-bright);margin-top:10px;letter-spacing:.5px;}
 
 /* TAG */
 .tag-rate{display:inline-block;font-size:10px;letter-spacing:1px;padding:3px 10px;border:1px solid;margin:2px;}
-.tag-high{color:var(--red-bright);border-color:var(--red-bright);}
+.tag-high{color:var(--gold-bright);border-color:var(--gold-bright);}
 .tag-ok{color:var(--gray);border-color:rgba(255,255,255,.15);}
 
 /* TOTAL BOX */
@@ -77,7 +77,7 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 .btn-add{width:100%;padding:14px;background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--white);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;margin-top:12px;}
 .btn-add:hover{border-color:var(--white);}
 .btn-primary{padding:16px 32px;background:var(--white);color:var(--black);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border:none;transition:all .3s;display:inline-flex;align-items:center;gap:12px;}
-.btn-primary:hover{background:var(--red-bright);color:var(--white);}
+.btn-primary:hover{background:var(--gold-bright);color:var(--white);}
 .btn-secondary{padding:16px 32px;background:transparent;color:var(--gray);font-size:11px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);transition:all .3s;display:inline-flex;align-items:center;gap:12px;}
 .btn-secondary:hover{border-color:var(--white);color:var(--white);}
 .btn-row{display:flex;gap:12px;margin-top:16px;}
@@ -100,22 +100,22 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 .result-hero{padding:60px 40px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);background:var(--gray-dark);}
 .result-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;}
 .result-date{font-family:var(--serif);font-size:clamp(32px,5vw,56px);font-weight:300;color:var(--white);margin-bottom:8px;}
-.result-sub{font-size:13px;color:var(--gray);letter-spacing:1px;}
+.result-sub{font-size:15px;color:var(--white);letter-spacing:1px;}
 
 /* STATS */
 .stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-bottom:16px;}
 .stat-box{background:var(--black);padding:28px 20px;text-align:center;}
 .stat-val{font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;margin-bottom:6px;}
 .stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);}
-.stat-val.highlight{color:var(--red-bright);}
-.stat-val.saved{color:#fff;background:var(--red-bright);padding:4px 12px;display:inline-block;font-size:28px;}
+.stat-val.highlight{color:var(--gold-bright);}
+.stat-val.saved{color:#fff;background:var(--gold-bright);padding:4px 12px;display:inline-block;font-size:28px;}
 
 /* CHART */
 .chart-wrap{padding:8px 0;margin-bottom:4px;}
 .chart-bars{display:flex;align-items:flex-end;gap:2px;height:100px;margin-top:8px;}
 .bar{flex:1;border-radius:1px 1px 0 0;min-height:2px;background:rgba(255,255,255,.15);transition:background .2s;}
 .bar.first{background:rgba(255,255,255,.5);}
-.bar.last{background:var(--red-bright);}
+.bar.last{background:var(--gold-bright);}
 
 /* ORDEM */
 .ordem-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);}
@@ -125,12 +125,12 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 
 /* PRINCIPIOS */
 .pr-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start;}
-.pr-num-box{width:36px;height:36px;background:var(--red-bright);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;color:var(--white);}
+.pr-num-box{width:36px;height:36px;background:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;color:var(--white);}
 .pr-name{font-family:var(--serif);font-size:16px;font-weight:300;margin-bottom:2px;}
 .pr-verse{font-size:11px;color:var(--gray);letter-spacing:1px;}
 
 /* FREEDOM BOX */
-.freedom-box{background:var(--red-bright);padding:40px;text-align:center;margin-top:16px;}
+.freedom-box{background:var(--gold-bright);padding:40px;text-align:center;margin-top:16px;}
 .freedom-icon{font-size:32px;margin-bottom:16px;}
 .freedom-title{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--white);margin-bottom:8px;}
 .freedom-date{font-family:var(--serif);font-size:20px;color:rgba(255,255,255,.8);margin-bottom:12px;}
@@ -139,9 +139,9 @@ nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:cen
 /* LEAD FORM */
 .lead-box{background:var(--gray-dark);padding:40px;border:1px solid rgba(255,255,255,.08);}
 .lead-title{font-family:var(--serif);font-size:28px;font-weight:300;margin-bottom:8px;}
-.lead-sub{font-size:13px;color:var(--gray);margin-bottom:32px;line-height:1.7;}
+.lead-sub{font-size:15px;color:var(--white);margin-bottom:32px;line-height:1.7;}
 .lead-field{margin-bottom:24px;}
-.lead-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:8px;}
+.lead-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--white);display:block;margin-bottom:8px;}
 
 /* SUCCESS */
 .success-box{display:none;padding:60px 40px;text-align:center;}
@@ -314,7 +314,7 @@ function render(){
             </div>
             <div class="div-grid">
               <div><label class="field-label">Saldo (R$)</label><input type="number" value="${d.saldo}" oninput="editDiv(${d.id},'saldo',this.value)"/></div>
-              <div><label class="field-label">Juros % a.m.</label><input type="number" value="${d.taxa}" oninput="editDiv(${d.id},'taxa',this.value)" style="${nm(d.taxa)>7?'color:var(--red-bright);border-color:var(--red-bright);':''}"/></div>
+              <div><label class="field-label">Juros % a.m.</label><input type="number" value="${d.taxa}" oninput="editDiv(${d.id},'taxa',this.value)" style="${nm(d.taxa)>7?'color:var(--gold-bright);border-color:var(--gold-bright);':''}"/></div>
               <div><label class="field-label">Mínimo (R$)</label><input type="number" value="${d.minimo}" oninput="editDiv(${d.id},'minimo',this.value)"/></div>
             </div>
             ${nm(d.taxa)>7?`<div class="alert-high">⚠ Juros predatórios — elimine esta dívida primeiro</div>`:""}
@@ -344,7 +344,7 @@ function render(){
           </div>`:""}
           <div><label class="field-label">Mínimo mensal (R$)</label><input type="number" placeholder="0,00" value="${state.form.minimo}" oninput="setForm('minimo',this.value)"/></div>
         </div>
-        ${state.erro?`<p style="color:var(--red-bright);font-size:12px;margin-top:12px;">⚠ ${state.erro}</p>`:""}
+        ${state.erro?`<p style="color:var(--gold-bright);font-size:12px;margin-top:12px;">⚠ ${state.erro}</p>`:""}
         <button class="btn-add" onclick="addDiv()">+ Adicionar esta dívida</button>
       </div>
 
@@ -367,7 +367,7 @@ function render(){
     <div class="body">
       <div class="card">
         <div class="card-label">Pagamento extra mensal</div>
-        <p style="font-size:13px;color:var(--gray);margin-bottom:20px;">Além dos mínimos, quanto você consegue pagar a mais por mês?</p>
+        <p style="font-size:15px;color:var(--white);margin-bottom:20px;">Além dos mínimos, quanto você consegue pagar a mais por mês?</p>
         <div><label class="field-label">Valor extra (R$)</label><input type="number" placeholder="0,00" value="${state.extra}" oninput="setState({extra:this.value})"/></div>
         ${res?`<div class="preview-box" style="margin-top:20px;">
           <div class="preview-label">Previsão de liberdade</div>
@@ -442,7 +442,7 @@ function render(){
           <div class="stat-val">${res.tm}</div>
           <div class="stat-lbl">Meses até a liberdade</div>
         </div>
-        <div class="stat-box" style="background:var(--red-bright);">
+        <div class="stat-box" style="background:var(--gold-bright);">
           <div class="stat-val" style="color:var(--white);font-size:28px;">${brl(economiaReal)}</div>
           <div class="stat-lbl" style="color:rgba(255,255,255,.8);">Juros economizados</div>
         </div>
@@ -455,7 +455,7 @@ function render(){
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:6px;">
           <span style="font-size:10px;color:var(--gray);">Hoje · ${brl(res.ti)}</span>
-          <span style="font-size:10px;color:var(--red-bright);">Liberdade · ${dl}</span>
+          <span style="font-size:10px;color:var(--gold-bright);">Liberdade · ${dl}</span>
         </div>
       </div>
 
@@ -495,7 +495,7 @@ function render(){
       app.innerHTML=`
       <div class="success-box show">
         <div class="success-title">Recebido.</div>
-        <div class="success-sub">Ilana Horta entrará em contato em breve.<br><br><em style="color:var(--red-bright);">"O Senhor abençoe você e te guarde." — Números 6:24</em></div>
+        <div class="success-sub">Ilana Horta entrará em contato em breve.<br><br><em style="color:var(--gold-bright);">"O Senhor abençoe você e te guarde." — Números 6:24</em></div>
         <div style="margin-top:40px;">
           <button class="btn-secondary" onclick="setState({passo:1,enviado:false})">Nova simulação</button>
         </div>
@@ -510,7 +510,7 @@ function render(){
           <div class="preview-label">Você será livre em</div>
           <div class="preview-value">${dl}</div>
         </div>
-        ${res?`<div style="margin-top:8px;padding:16px;background:var(--red-bright);text-align:center;">
+        ${res?`<div style="margin-top:8px;padding:16px;background:var(--gold-bright);text-align:center;">
           <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.8);margin-bottom:4px;">JUROS ECONOMIZADOS</div>
           <div style="font-family:var(--serif);font-size:28px;color:var(--white);">${brl(economiaReal)}</div>
         </div>`:""}
