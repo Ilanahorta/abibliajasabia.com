@@ -1305,7 +1305,7 @@
       if (!email || !email.includes('@')) { alert('Por favor, informe um e-mail válido.'); return; }
       const total = scores.reduce(function(a, b) { return a + b; }, 0);
       const profile = profiles.find(function(p) { return total >= p.range[0] && total <= p.range[1]; }) || profiles[3];
-      fetch('https://formspree.io/f/SEU_FORM_ID', {
+      fetch('https://formspree.io/f/meewypjj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1328,7 +1328,7 @@
     function submitVip() {
       const email = document.getElementById('vip-email').value.trim();
       if (!email || !email.includes('@')) { alert('Por favor, informe um e-mail válido.'); return; }
-      fetch('https://formspree.io/f/SEU_FORM_ID', {
+      fetch('https://formspree.io/f/meewypjj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, origem: 'Quiz dos 13 Princípios — Lista VIP' })
