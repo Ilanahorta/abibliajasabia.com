@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz dos 13 Princípios Bíblicos — A Bíblia Já Sabia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --preto: #080808;
+      --creme: #F5F0E8;
+      --dourado: #C9A84C;
+      --dourado-vib: #F0C040;
+      --cinza: #9A9A9A;
+      --card-dark: #141414;
+      --card-mid: #1E1E1E;
+      --borda: #2A2A2A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--preto);
+      color: var(--creme);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--creme);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-logo span { color: var(--dourado); }
+
+    .nav-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cinza);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--dourado); }
+
+    .quiz-hero {
+      padding: 7rem 2rem 3rem;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--creme);
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--cinza);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .divider-gold {
+      width: 48px;
+      height: 1px;
+      background: var(--dourado);
+      margin: 1.5rem auto;
+    }
+
+    .progress-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cinza);
+    }
+
+    .progress-count {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--dourado);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 2px;
+      background: var(--borda);
+    }
+
+    .progress-fill {
+      height: 2px;
+      background: var(--dourado);
+      transition: width 0.5s ease;
+    }
+
+    .question-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .principle-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 1.25rem;
+    }
+
+    .principle-tag::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background: var(--dourado);
+    }
+
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--creme);
+      margin-bottom: 0.75rem;
+    }
+
+    .question-sub {
+      font-size: 0.88rem;
+      color: var(--cinza);
+      margin-bottom: 1.5rem;
+      line-height: 1.65;
+    }
+
+    .verse-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--dourado);
+      opacity: 0.85;
+      margin-bottom: 2rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--dourado);
+      line-height: 1.65;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+      text-align: left;
+      padding: 1.1rem 1.25rem;
+      background: var(--card-dark);
+      border: 1px solid var(--borda);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem;
+      color: var(--cinza);
+      line-height: 1.5;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--dourado);
+      color: var(--creme);
+      background: var(--card-mid);
+    }
+
+    .option-btn.selected {
+      border-color: var(--dourado);
+      color: var(--creme);
+      background: var(--card-mid);
+    }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--borda);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--cinza);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      margin-top: 1px;
+    }
+
+    .option-btn.selected .option-letter {
+      background: var(--dourado);
+      border-color: var(--dourado);
+      color: var(--preto);
+    }
+
+    .nav-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-back {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--cinza);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 0.5rem 0;
+    }
+    .btn-back:hover { color: var(--creme); }
+
+    .btn-next {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--preto);
+      background: var(--dourado);
+      border: none;
+      padding: 0.9rem 2rem;
+      cursor: pointer;
+      opacity: 0.35;
+      pointer-events: none;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .btn-next.active { opacity: 1; pointer-events: auto; }
+    .btn-next.active:hover { background: var(--dourado-vib); }
+
+    .result-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: none;
+    }
+
+    .result-profile {
+      text-align: center;
+      padding: 2rem 0 1.5rem;
+    }
+
+    .result-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .result-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 0.4rem;
+    }
+
+    .result-subtitle {
+      font-size: 0.95rem;
+      color: var(--dourado);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--borda);
+      margin: 2rem 0;
+    }
+
+    .score-cell {
+      background: var(--card-dark);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .score-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--dourado);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .score-desc {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cinza);
+    }
+
+    .diagnosis-block {
+      border-left: 1px solid var(--dourado);
+      padding: 1.5rem;
+      background: var(--card-dark);
+      margin-bottom: 1rem;
+    }
+
+    .diagnosis-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 0.75rem;
+    }
+
+    .diagnosis-text {
+      font-size: 0.95rem;
+      color: var(--cinza);
+      line-height: 1.75;
+    }
+
+    .weak-title {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cinza);
+      margin: 1.75rem 0 0.75rem;
+    }
+
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .ptag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--dourado);
+      color: var(--dourado);
+    }
+
+    .lead-section {
+      border-top: 1px solid var(--borda);
+      padding-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .lead-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 0.5rem;
+    }
+
+    .lead-sub {
+      font-size: 0.88rem;
+      color: var(--cinza);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    .what-youll-get {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .get-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--cinza);
+      line-height: 1.5;
+    }
+
+    .get-check {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--dourado);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--dourado);
+      font-size: 0.6rem;
+      margin-top: 2px;
+    }
+
+    .lead-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .lead-fields input {
+      width: 100%;
+      padding: 1rem 1.1rem;
+      background: var(--card-dark);
+      border: 1px solid var(--borda);
+      color: var(--creme);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .lead-fields input::placeholder { color: var(--cinza); opacity: 0.6; }
+    .lead-fields input:focus { border-color: var(--dourado); }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--dourado);
+      color: var(--preto);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.25rem;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--dourado-vib); }
+
+    .privacy-note {
+      font-size: 0.72rem;
+      color: var(--cinza);
+      opacity: 0.6;
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* BLOCO IGREJAS E EMPRESAS */
+    .institucional-block {
+      border: 2px solid var(--dourado);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      background: var(--card-dark);
+      position: relative;
+    }
+
+    .institucional-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--preto);
+      background: var(--dourado);
+      padding: 0.3rem 0.85rem;
+      display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+
+    .institucional-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .institucional-text {
+      font-size: 0.9rem;
+      color: var(--cinza);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-institucional {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      border: 1px solid var(--dourado);
+      padding: 0.8rem 1.75rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-institucional:hover {
+      background: var(--dourado);
+      color: var(--preto);
+    }
+
+    /* BLOCO INDICAÇÃO */
+    .indicacao-block {
+      border-top: 1px solid var(--borda);
+      padding-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .indicacao-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 1rem;
+    }
+
+    .indicacao-text {
+      font-size: 0.95rem;
+      color: var(--cinza);
+      line-height: 1.8;
+      max-width: 540px;
+      margin: 0 auto 1rem;
+    }
+
+    .indicacao-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--dourado);
+      opacity: 0.85;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.65;
+    }
+
+    .btn-share {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--preto);
+      background: var(--dourado);
+      border: none;
+      padding: 0.9rem 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-share:hover { background: var(--dourado-vib); }
+
+    /* LISTA VIP */
+    .vip-block {
+      border-top: 1px solid var(--borda);
+      padding-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .vip-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--preto);
+      background: var(--dourado);
+      padding: 0.3rem 0.85rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .vip-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 0.5rem;
+    }
+
+    .vip-text {
+      font-size: 0.88rem;
+      color: var(--cinza);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .vip-fields {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .vip-fields input {
+      flex: 1;
+      padding: 1rem 1.1rem;
+      background: var(--card-dark);
+      border: 1px solid var(--borda);
+      color: var(--creme);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .vip-fields input::placeholder { color: var(--cinza); opacity: 0.6; }
+    .vip-fields input:focus { border-color: var(--dourado); }
+
+    .btn-vip {
+      padding: 1rem 1.5rem;
+      background: var(--dourado);
+      color: var(--preto);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-vip:hover { background: var(--dourado-vib); }
+
+    .vip-vagas {
+      font-size: 0.75rem;
+      color: var(--dourado);
+      margin-top: 0.6rem;
+      opacity: 0.8;
+    }
+
+    /* OBRIGADO */
+    .thankyou-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      display: none;
+    }
+
+    .thankyou-emoji { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+
+    .thankyou-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: var(--creme);
+      margin-bottom: 1rem;
+    }
+
+    .thankyou-text {
+      font-size: 0.95rem;
+      color: var(--cinza);
+      line-height: 1.75;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .thankyou-verse {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--dourado);
+      opacity: 0.85;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      border-left: 1px solid var(--dourado);
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+
+    .btn-cta-secondary {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      border: 1px solid var(--dourado);
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-cta-secondary:hover {
+      background: var(--dourado);
+      color: var(--preto);
+    }
+
+    footer {
+      border-top: 1px solid var(--borda);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--cinza);
+      margin-bottom: 0.5rem;
+    }
+    .footer-logo span { color: var(--dourado); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--cinza);
+      opacity: 0.5;
+    }
+
+    .intro-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .intro-card {
+      background: var(--card-dark);
+      border: 1px solid var(--borda);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-card-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-card-text {
+      font-size: 0.9rem;
+      color: var(--cinza);
+      line-height: 1.7;
+    }
+
+    .intro-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .intro-list-item {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--cinza);
+      align-items: flex-start;
+    }
+
+    .intro-list-item::before {
+      content: '—';
+      color: var(--dourado);
+      flex-shrink: 0;
+    }
+
+    .btn-start {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--dourado);
+      color: var(--preto);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-start:hover { background: var(--dourado-vib); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .quiz-hero, .question-wrap, .result-wrap, .thankyou-wrap, .intro-wrap, .progress-wrap {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .score-grid { grid-template-columns: repeat(3, 1fr); }
+      .score-num { font-size: 2rem; }
+      .vip-fields { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">A Bíblia <span>Já Sabia</span></a>
+    <a href="index.html#contato" class="nav-link">Fale com Ilana Horta</a>
+  </nav>
+
+  <div class="quiz-hero" id="hero-section">
+    <p class="eyebrow">Diagnóstico gratuito</p>
+    <h1 class="hero-title">Quiz dos 13 Princípios<br />Bíblicos</h1>
+    <div class="divider-gold"></div>
+    <p class="hero-sub">Descubra qual é o elo mais fraco na sua vida financeira — e o próximo passo concreto para a liberdade que Deus preparou para você.</p>
+  </div>
+
+  <div class="intro-wrap" id="intro-screen">
+    <div class="intro-card">
+      <div class="intro-card-title">Como funciona</div>
+      <div class="intro-card-text">
+        São 13 perguntas — uma para cada princípio bíblico do livro <em>Abra a Bíblia. Feche as Dívidas.</em> Cada resposta é baseada na sua realidade atual, não onde você pode chegar.
+        <div class="intro-list">
+          <div class="intro-list-item">Cerca de 5 minutos para completar</div>
+          <div class="intro-list-item">Resultado personalizado com diagnóstico e próximos passos</div>
+          <div class="intro-list-item">Oração bíblica para começar sua jornada</div>
+        </div>
+      </div>
+    </div>
+    <div class="intro-card" style="margin-bottom:2rem">
+      <div class="intro-card-title">Versículo de abertura</div>
+      <div class="intro-card-text" style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:var(--dourado); opacity:0.9; line-height:1.7;">
+        "Pela sabedoria se edifica a casa, pelo entendimento ela se firma e pelo conhecimento os seus cômodos se enchem de todas as riquezas preciosas e agradáveis." — Pv 24:3-4
+      </div>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Iniciar o diagnóstico →</button>
+  </div>
+
+  <div id="quiz-section" style="display:none">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label" id="principle-name">Princípio 1 — Conhecimento</span>
+        <span class="progress-count" id="step-count">1 / 13</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:7.7%"></div>
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="principle-tag" id="principle-tag">Princípio 1</div>
+      <h2 class="question-text" id="q-text"></h2>
+      <p class="question-sub" id="q-sub"></p>
+      <p class="verse-line" id="q-verse"></p>
+      <div class="options-grid" id="options-grid"></div>
+      <div class="nav-btns">
+        <button class="btn-back" id="btn-back" onclick="goBack()">← Voltar</button>
+        <button class="btn-next" id="btn-next" onclick="goNext()">Próxima →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-wrap" id="result-section">
+    <div class="result-profile">
+      <span class="result-emoji" id="res-emoji"></span>
+      <h2 class="result-title" id="res-title"></h2>
+      <p class="result-subtitle" id="res-subtitle"></p>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-cell">
+        <span class="score-num" id="score-pts"></span>
+        <span class="score-desc">pontos de 39</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-num" id="score-pct"></span>
+        <span class="score-desc">praticados</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-num" id="score-weak"></span>
+        <span class="score-desc">para fortalecer</span>
+      </div>
+    </div>
+
+    <div class="diagnosis-block">
+      <div class="diagnosis-eyebrow">Seu diagnóstico</div>
+      <p class="diagnosis-text" id="res-diagnosis"></p>
+    </div>
+
+    <div class="diagnosis-block">
+      <div class="diagnosis-eyebrow">Próximo passo concreto</div>
+      <p class="diagnosis-text" id="res-action"></p>
+    </div>
+
+    <p class="weak-title">Princípios para fortalecer primeiro</p>
+    <div class="tags-wrap" id="res-tags"></div>
+
+    <div class="lead-section">
+      <h3 class="lead-title">Receba seu plano personalizado</h3>
+      <p class="lead-sub">Ilana Horta pode elaborar e enviar um plano baseado no seu diagnóstico, com orientações práticas para cada princípio que precisa de atenção — caso você tenha interesse. Preencha seus dados abaixo que entraremos em contato pessoalmente com você para apresentar as opções disponíveis para a sua jornada.</p>
+      <div class="what-youll-get">
+        <div class="get-item">
+          <div class="get-check">✓</div>
+          30 minutos de mentoria pessoal com Ilana Horta
+        </div>
+        <div class="get-item">
+          <div class="get-check">✓</div>
+          Plano personalizado dos seus princípios prioritários
+        </div>
+        <div class="get-item">
+          <div class="get-check">✓</div>
+          Oração bíblica personalizada para iniciar a jornada financeira
+        </div>
+      </div>
+      <div class="lead-fields">
+        <input type="text" id="lead-nome" placeholder="Seu nome completo" />
+        <input type="email" id="lead-email" placeholder="Seu melhor e-mail" />
+        <input type="tel" id="lead-wpp" placeholder="WhatsApp com DDD (opcional)" />
+        <input type="text" id="lead-ig" placeholder="Instagram — @seuuser (opcional)" />
+        <button class="btn-submit" onclick="submitLead()">Quero entrar em contato →</button>
+      </div>
+      <p class="privacy-note">Seus dados estão seguros. Sem spam — apenas conteúdo que transforma.</p>
+    </div>
+
+    <div class="vip-block">
+      <span class="vip-tag">Lista VIP</span>
+      <h3 class="vip-title">Garanta acesso antecipado ao curso online</h3>
+      <p class="vip-text">Inscreva-se na lista VIP e garanta condições exclusivas de lançamento. As primeiras 50 inscrições têm acesso prioritário e desconto especial — não disponível ao público geral.</p>
+      <div class="vip-fields">
+        <input type="email" id="vip-email" placeholder="Seu melhor e-mail" />
+        <button class="btn-vip" onclick="submitVip()">Quero garantir minha vaga →</button>
+      </div>
+      <p class="vip-vagas">Vagas limitadas. Sem compromisso de compra.</p>
+    </div>
+
+    <div class="institucional-block">
+      <span class="institucional-tag">Para igrejas, empresas e grupos</span>
+      <h3 class="institucional-title">Os 13 Princípios Bíblicos podem transformar não apenas uma vida — mas uma congregação inteira ou um time de colaboradores.</h3>
+      <p class="institucional-text">Temos condições exclusivas para grupos, com diagnóstico coletivo e acompanhamento estruturado. Este produto já está disponível. Entre em contato para receber uma proposta personalizada para a sua realidade.</p>
+      <a href="index.html#contato" class="btn-institucional">Solicitar proposta para grupo →</a>
+    </div>
+
+    <div class="indicacao-block">
+      <p class="indicacao-eyebrow">Compartilhe esta jornada</p>
+      <p class="indicacao-text">Se este diagnóstico tocou algo em você, compartilhe com quem você ama. Um amigo com dívidas. Um familiar que precisa recomeçar. Um pastor que cuida das finanças da congregação. Uma empresa que quer cuidar melhor dos seus colaboradores. A liberdade financeira começa com uma pergunta honesta — e você acabou de fazer a sua.</p>
+      <p class="indicacao-quote">"O homem bom deixa herança aos filhos dos seus filhos." — Pv 13:22</p>
+      <button class="btn-share" onclick="compartilhar()">Compartilhar o quiz →</button>
+    </div>
+  </div>
+
+  <div class="thankyou-wrap" id="thankyou-section">
+    <span class="thankyou-emoji">✉️</span>
+    <h2 class="thankyou-title" id="ty-title">Recebemos o seu contato!</h2>
+    <p class="thankyou-text" id="ty-text"></p>
+    <p class="thankyou-verse">
+      "Porque sou eu que conheço os planos que tenho para vós, diz o Senhor, planos de paz e não de mal, para vos dar um futuro e uma esperança." — Jr 29:11
+    </p>
+    <a href="calculadora.html" class="btn-cta-secondary">Calcular minha liberdade financeira →</a>
+  </div>
+
+  <footer>
+    <p class="footer-logo">A Bíblia <span>Já Sabia</span> · Ilana Horta</p>
+    <p class="footer-copy">© 2025 abibliajasabia.com · suporte@abibliajasabia.com</p>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        principle: 1, name: "Conhecimento",
+        verse: '"Pela sabedoria se edifica a casa e pelo entendimento ela se firma." — Pv 24:3-4',
+        text: "Como você descreveria seu conhecimento atual sobre juros e dívidas?",
+        sub: "Pense nos juros do cartão de crédito e dos empréstimos que você usa ou já usou.",
+        options: [
+          "Não sei exatamente quanto pago de juros em cada dívida",
+          "Sei que os juros são altos, mas nunca calculei o total",
+          "Sei as taxas e entendo como os juros compostos funcionam",
+          "Conheço bem, monitoro mensalmente e uso esse conhecimento para tomar decisões"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 2, name: "Primícias",
+        verse: '"Honra ao Senhor com os teus bens e com as primícias de toda a tua renda." — Pv 3:9-10',
+        text: "O que acontece com o dízimo ou oferta quando o mês está apertado?",
+        sub: "Considere sua prática real — não o ideal — dos últimos 3 meses.",
+        options: [
+          "Dízimo é a primeira coisa que corto quando falta dinheiro",
+          "Dou quando sobra, mas é difícil manter a consistência",
+          "Tento manter, mas às vezes atraso para o mês seguinte",
+          "Dízimo sai junto com o primeiro pagamento, independentemente do cenário"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 3, name: "Fuga do Jugo",
+        verse: '"O rico domina os pobres e o devedor é escravo do credor." — Pv 22:7',
+        text: "Qual das situações abaixo mais se aproxima da sua realidade hoje?",
+        sub: "Considere cartão de crédito, empréstimo pessoal, crediário e dívidas no seu nome.",
+        options: [
+          "Tenho dívidas com juros acima de 5% ao mês — cartão rotativo ou empréstimo pessoal",
+          "Tenho dívidas, mas estou pagando o mínimo e mal consigo quitar",
+          "Tenho dívidas planejadas e sob controle, com prazo definido para quitar",
+          "Estou livre de dívidas de consumo — no máximo, financiamento imobiliário"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 4, name: "Mordomia Fiel",
+        verse: '"Quem é fiel no pouco, também o é no muito." — Lc 16:10',
+        text: "Você tem um orçamento pessoal ou familiar que acompanha todo mês?",
+        sub: 'Um orçamento real: "onde você sabe exatamente quanto entra, quanto sai e para onde vai cada real da sua conta".',
+        options: [
+          "Não tenho orçamento — vivo até o dinheiro acabar",
+          "Faço mentalmente, mas nunca escrevi ou usei planilha",
+          "Tenho orçamento, mas não sigo fielmente — furos todo mês",
+          "Tenho orçamento detalhado e reviso mensalmente com disciplina"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 5, name: "Disciplina",
+        verse: '"Os planos do diligente certamente levam à abundância." — Pv 21:5',
+        text: "Quando você recebe uma renda extra — 13º, bônus, Pix inesperado — o que normalmente acontece?",
+        sub: "Seja honesto: o seu padrão dos últimos 2 anos conta mais do que a sua intenção.",
+        options: [
+          "Gasto em algo que queria comprar ou em lazer",
+          "Pago uma conta atrasada e gasto o resto",
+          "Divido entre consumo e alguma dívida ou poupança",
+          "Tenho um destino planejado antes mesmo de receber — dívida, reserva ou investimento"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 6, name: "Trabalho com Propósito",
+        verse: '"Tudo o que fizerem, façam de todo o coração, como se fosse para o Senhor." — Cl 3:23',
+        text: "Seu trabalho atual está conectado a um propósito maior do que apenas pagar as contas?",
+        sub: "Considere a sensação que você tem ao acordar para trabalhar na maioria dos dias.",
+        options: [
+          "Trabalho apenas pela necessidade — sem conexão com propósito",
+          "Vejo algum sentido, mas o estresse financeiro tira minha energia",
+          "Meu trabalho tem propósito, mas ainda não consigo expressá-lo plenamente",
+          "Trabalho com propósito claro e vejo meu esforço como ato de adoração"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 7, name: "Rejeição dos Juros",
+        verse: '"Não sejas dos que se comprometem em dívidas." — Pv 22:26',
+        text: "Com que frequência você parcelou compras sem saber exatamente o custo total dos juros?",
+        sub: "Inclua parcelamentos 'sem juros', que na verdade acabam embutindo esse custo no preço. Quer testar? Pergunte o valor para pagamento à vista.",
+        options: [
+          "Sempre parcelo sem calcular — olho só o valor da parcela",
+          "Na maioria das vezes parcelo sem pensar nos juros totais",
+          "Às vezes calculo, mas a facilidade do parcelamento ainda me influencia",
+          "Nunca parcelo sem conhecer o custo total — pago à vista sempre que possível"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 8, name: "Fidelidade",
+        verse: '"Muito bem, servo bom e fiel." — Mt 25:21',
+        text: "Como você avalia sua fidelidade com os compromissos financeiros que assumiu?",
+        sub: "Inclua boletos, faturas, acordos informais com familiares e promessas de pagamento.",
+        options: [
+          "Atraso com frequência — já negativei ou estou negativado no Serasa",
+          "Às vezes atraso e corro para pagar quando posso",
+          "Raramente atraso, mas o custo emocional de manter isso é alto",
+          "Cumpro todos os compromissos com antecedência e planejamento"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 9, name: "Poupança Sistemática",
+        verse: '"Não teme por seus familiares quando chega a neve." — Pv 31:21',
+        text: "Você tem uma reserva de emergência equivalente a pelo menos 3 meses de despesas?",
+        sub: "Reserva real: dinheiro líquido, disponível para emergências, aplicado somente em ativos financeiros de resgate imediato.",
+        options: [
+          "Não tenho nenhuma reserva — vivo do mês a mês",
+          "Tenho menos de 1 mês de reserva",
+          "Tenho entre 1 e 3 meses de reserva",
+          "Tenho reserva de emergência completa — entre 3 e 6 meses — e invisto além dela"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 10, name: "Previsão",
+        verse: '"Os planos bem elaborados levam à fartura, mas o apressado sempre acaba na miséria." — Pv 21:5',
+        text: "Você planeja suas finanças para gastos previsíveis do ano — Natal, IPVA, IPTU, férias, material escolar?",
+        sub: "Gastos sazonais que, mesmo assim, muitas vezes chegam como surpresa.",
+        options: [
+          "Essas despesas sempre me pegam de surpresa e precisam entrar no cartão",
+          "Sei que vêm, mas não me preparo — acabo parcelando ou pedindo emprestado",
+          "Me preparo para alguns, mas ainda tenho imprevistos que desequilibram o orçamento",
+          "Tenho fundo para gastos anuais — todo grande custo já está provisionado"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 11, name: "Investimento Sábio",
+        verse: '"Quem fica observando o vento não plantará, e quem fica olhando para as nuvens não colherá." — Ec 11:4',
+        text: "Como você descreveria sua vida de investimentos hoje?",
+        sub: "Considere Tesouro Direto, CDB, ações, fundos, previdência privada e qualquer aplicação. Sempre converse com seu gerente de banco ou consultor financeiro.",
+        options: [
+          "Não invisto nada — não sobra dinheiro e não sei por onde começar",
+          "Tenho dinheiro na poupança, mas sei que poderia render muito mais",
+          "Tenho alguns investimentos, mas sem estratégia definida",
+          "Tenho carteira diversificada, estratégia de longo prazo e reviso periodicamente"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 12, name: "Generosidade",
+        verse: '"Dai e dar-se-vos-á." — Lc 6:38',
+        text: "A generosidade faz parte do seu orçamento como uma linha planejada?",
+        sub: "Além do dízimo — ofertas, ajuda a familiares, causas sociais, contribuições espontâneas.",
+        options: [
+          "Não tenho como ser generoso agora — mal consigo pagar minhas contas",
+          "Ajudo quando posso, mas não é algo planejado ou consistente",
+          "Tenho generosidade no orçamento, mas o valor é menor do que gostaria",
+          "Generosidade é linha fixa no orçamento — e ela cresce à medida que prospero"
+        ],
+        weights: [0, 1, 2, 3]
+      },
+      {
+        principle: 13, name: "Legado",
+        verse: '"O homem bom deixa herança aos filhos dos seus filhos." — Pv 13:22',
+        text: "Você está construindo algo que ficará depois de você?",
+        sub: "Herança material, espiritual, educação financeira para os filhos, seguro de vida, testamento.",
+        options: [
+          "Não pensei nisso — estou sobrevivendo ao presente",
+          "Penso nisso, mas não tomei nenhuma ação concreta ainda",
+          "Já comecei algo — previdência, seguro de vida ou conversas com os filhos sobre dinheiro",
+          "Tenho um plano de legado estruturado — financeiro, espiritual e de valores"
+        ],
+        weights: [0, 1, 2, 3]
+      }
+    ];
+
+    const profiles = [
+      {
+        range: [0, 13],
+        emoji: "🌱",
+        title: "Semente ainda na terra",
+        subtitle: "O ponto de partida é onde Deus age com mais clareza",
+        diagnosis: "Você está no início da jornada — e isso não é derrota, é honestidade. A maioria das pessoas chega aqui sem nunca ter olhado para o próprio dinheiro com coragem. O simples fato de ter respondido este quiz já é o Princípio 1 em ação: conhecimento. Deus honra quem dá o primeiro passo.",
+        action: "Comece pelo Princípio 3: faça uma lista de todas as suas dívidas, com saldo e taxa de juros. Só isso. Esta semana. A clareza sobre o problema já é metade da solução.",
+        weak: [1, 3, 4, 5, 9]
+      },
+      {
+        range: [14, 22],
+        emoji: "🌿",
+        title: "Raízes em crescimento",
+        subtitle: "Você sabe mais do que pratica e esse é o elo que faz toda a diferença para mudar a sua vida",
+        diagnosis: "Você tem consciência financeira acima da média — mas há uma lacuna entre o que você sabe e o que faz. Esse padrão é clássico no Brasil: a informação existe, mas a disciplina de execução esbarra na cultura do parcelamento e do 'entra mês, sai mês'. A boa notícia: você já tem a raiz. O que falta é estrutura, não mais informação.",
+        action: "Seu elo mais fraco está entre conhecimento e ação. O Princípio 5 — Disciplina — é onde você precisa de estrutura concreta: orçamento escrito, débito automático de poupança e meta de quitação com prazo definido.",
+        weak: [4, 5, 7, 10]
+      },
+      {
+        range: [23, 30],
+        emoji: "🌳",
+        title: "Árvore com frutos visíveis",
+        subtitle: "Fundamentos sólidos — mas há pontas soltas custando caro",
+        diagnosis: "Você está bem à frente da maioria. Tem orçamento, tem alguma reserva e honra seus compromissos. O que ainda falta são os princípios de construção de riqueza: investimento sistemático, legado e a generosidade que escala com a prosperidade. Esses três princípios, negligenciados agora, determinam onde você estará daqui a 10 anos.",
+        action: "Foque nos Princípios 11 e 13. Revise sua carteira de investimentos — a poupança provavelmente está custando dinheiro — e agende uma conversa sobre previdência e seguro de vida ainda este mês.",
+        weak: [11, 12, 13]
+      },
+      {
+        range: [31, 39],
+        emoji: "✨",
+        title: "Mordomo fiel em marcha",
+        subtitle: "Seus fundamentos são sólidos — você está pronto para o próximo nível",
+        diagnosis: "Você pratica a maior parte dos 13 princípios com consistência. Seus fundamentos estão corretos: você planeja, poupa, investe e é generoso. Agora a questão não é sobrevivência — é impacto e multiplicação. Como você usa o que Deus colocou em suas mãos para deixar um legado que o ultrapasse?",
+        action: "O próximo passo é o Princípio 13 em profundidade: planejamento patrimonial, educação financeira para os filhos e um plano de legado escrito. Considere também a Certificação de Conselheiro Bíblico Financeiro.",
+        weak: [13, 6, 12]
+      }
+    ];
+
+    let current = 0;
+    let answers = new Array(13).fill(null);
+    let scores = new Array(13).fill(0);
+
+    function startQuiz() {
+      document.getElementById('intro-screen').style.display = 'none';
+      document.getElementById('quiz-section').style.display = 'block';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = questions[current];
+      const pct = ((current + 1) / 13) * 100;
+      document.getElementById('principle-name').textContent = 'Princípio ' + q.principle + ' — ' + q.name;
+      document.getElementById('step-count').textContent = (current + 1) + ' / 13';
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('principle-tag').textContent = 'Princípio ' + q.principle + ' · ' + q.name;
+      document.getElementById('q-text').textContent = q.text;
+      document.getElementById('q-sub').textContent = q.sub;
+      document.getElementById('q-verse').textContent = q.verse;
+      const letters = ['A', 'B', 'C', 'D'];
+      const grid = document.getElementById('options-grid');
+      grid.innerHTML = '';
+      q.options.forEach(function(opt, i) {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn' + (answers[current] === i ? ' selected' : '');
+        btn.innerHTML = '<span class="option-letter">' + letters[i] + '</span>' + opt;
+        btn.addEventListener('click', function() { selectOption(i); });
+        grid.appendChild(btn);
+      });
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.textContent = current === 12 ? 'Ver meu diagnóstico →' : 'Próxima →';
+      nextBtn.className = 'btn-next' + (answers[current] !== null ? ' active' : '');
+      document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectOption(i) {
+      answers[current] = i;
+      scores[current] = questions[current].weights[i];
+      document.querySelectorAll('.option-btn').forEach(function(b, idx) {
+        b.className = 'option-btn' + (idx === i ? ' selected' : '');
+      });
+      document.getElementById('btn-next').className = 'btn-next active';
+    }
+
+    function goNext() {
+      if (answers[current] === null) return;
+      if (current < 12) { current++; renderQuestion(); }
+      else { showResult(); }
+    }
+
+    function goBack() {
+      if (current > 0) { current--; renderQuestion(); }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-section').style.display = 'none';
+      document.getElementById('hero-section').style.display = 'none';
+      const total = scores.reduce(function(a, b) { return a + b; }, 0);
+      const profile = profiles.find(function(p) { return total >= p.range[0] && total <= p.range[1]; }) || profiles[3];
+      document.getElementById('res-emoji').textContent = profile.emoji;
+      document.getElementById('res-title').textContent = profile.title;
+      document.getElementById('res-subtitle').textContent = profile.subtitle;
+      document.getElementById('score-pts').textContent = total;
+      document.getElementById('score-pct').textContent = Math.round((total / 39) * 100) + '%';
+      document.getElementById('score-weak').textContent = profile.weak.length;
+      document.getElementById('res-diagnosis').textContent = profile.diagnosis;
+      document.getElementById('res-action').textContent = profile.action;
+      const tagsWrap = document.getElementById('res-tags');
+      tagsWrap.innerHTML = '';
+      profile.weak.forEach(function(n) {
+        const q = questions.find(function(q) { return q.principle === n; });
+        if (q) {
+          const tag = document.createElement('span');
+          tag.className = 'ptag';
+          tag.textContent = n + '. ' + q.name;
+          tagsWrap.appendChild(tag);
+        }
+      });
+      document.getElementById('result-section').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitLead() {
+      const nome = document.getElementById('lead-nome').value.trim();
+      const email = document.getElementById('lead-email').value.trim();
+      const wpp = document.getElementById('lead-wpp').value.trim();
+      const ig = document.getElementById('lead-ig').value.trim();
+      if (!nome) { alert('Por favor, informe seu nome.'); return; }
+      if (!email || !email.includes('@')) { alert('Por favor, informe um e-mail válido.'); return; }
+      const total = scores.reduce(function(a, b) { return a + b; }, 0);
+      const profile = profiles.find(function(p) { return total >= p.range[0] && total <= p.range[1]; }) || profiles[3];
+      fetch('https://formspree.io/f/SEU_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: nome, email: email, whatsapp: wpp, instagram: ig,
+          perfil: profile.title,
+          pontuacao: total,
+          percentual: Math.round((total / 39) * 100) + '%',
+          principios_fracos: profile.weak.join(', '),
+          origem: 'Quiz dos 13 Princípios — Formulário de Contato'
+        })
+      }).catch(function() {});
+      document.getElementById('result-section').style.display = 'none';
+      const firstName = nome.split(' ')[0];
+      document.getElementById('ty-title').textContent = 'Recebemos o seu contato, ' + firstName + '!';
+      document.getElementById('ty-text').textContent = 'Em breve entraremos em contato pessoalmente com você no e-mail ' + email + ' para apresentar as opções disponíveis para a sua jornada — com base no seu perfil "' + profile.title + '".';
+      document.getElementById('thankyou-section').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitVip() {
+      const email = document.getElementById('vip-email').value.trim();
+      if (!email || !email.includes('@')) { alert('Por favor, informe um e-mail válido.'); return; }
+      fetch('https://formspree.io/f/SEU_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, origem: 'Quiz dos 13 Princípios — Lista VIP' })
+      }).catch(function() {});
+      document.getElementById('vip-email').value = '';
+      alert('Inscrição confirmada! Você será um dos primeiros a saber quando o curso abrir.');
+    }
+
+    function compartilhar() {
+      const url = window.location.href.split('?')[0];
+      if (navigator.share) {
+        navigator.share({
+          title: 'Quiz dos 13 Princípios Bíblicos — A Bíblia Já Sabia',
+          text: 'Fiz este diagnóstico gratuito e descobri qual é o elo mais fraco na minha vida financeira. Vale muito a pena!',
+          url: url
+        }).catch(function() {});
+      } else {
+        navigator.clipboard.writeText(url).then(function() {
+          alert('Link copiado! Compartilhe com quem você ama.');
+        }).catch(function() {
+          alert('Copie o link da barra de endereços e compartilhe com quem você ama.');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
