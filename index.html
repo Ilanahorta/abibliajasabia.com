@@ -55,7 +55,7 @@
     object-fit: cover;
     object-position: center;
     z-index: 0;
-    filter: brightness(0.35);
+    filter: brightness(0.55) contrast(1.05);
   }
 
   .hero-topo-overlay {
@@ -135,11 +135,12 @@
   }
 
   .hero-tagline {
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
+    font-family: var(--serif);
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 400;
+    letter-spacing: 4px;
     color: var(--dourado);
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .hero-titulo {
