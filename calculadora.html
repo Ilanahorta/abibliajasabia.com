@@ -288,7 +288,7 @@ function addDiv(){
 
 async function enviar(){
   if(!state.lead.email.includes("@")){alert("Informe um e-mail válido.");return;}
-  try{await fetch("https://formspree.io/f/SEU_FORM_ID",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...state.lead,_subject:"Novo lead calculadora: "+state.lead.nome})});}catch(e){}
+  try{await fetch("https://formspree.io/f/meewypjj",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...state.lead,_subject:"Novo lead calculadora: "+state.lead.nome})});}catch(e){}
   setState({enviado:true});
 }
 
