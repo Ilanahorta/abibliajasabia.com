@@ -553,29 +553,37 @@
 
   .principio-item {
     background: var(--black);
-    padding: 28px 24px;
+    padding: 36px 28px;
     transition: background 0.3s;
     cursor: default;
   }
   .principio-item:hover { background: var(--card-mid); }
   .principio-num {
     font-family: var(--serif);
-    font-size: 11px;
+    font-size: 13px;
     color: var(--dourado);
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .principio-name {
     font-family: var(--serif);
-    font-size: 17px;
+    font-size: 22px;
     font-weight: 400;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     color: var(--white);
+    line-height: 1.2;
+  }
+  .principio-desc {
+    font-size: 12px;
+    color: var(--cinza);
+    line-height: 1.7;
+    margin-bottom: 10px;
   }
   .principio-verse {
     font-size: 11px;
-    color: var(--cinza);
+    color: var(--dourado);
     letter-spacing: 1px;
+    opacity: 0.7;
   }
 
   /* ── CONTATO ── */
@@ -878,19 +886,19 @@
     <p class="section-desc">Uma jornada de sabedoria financeira — do Gênesis às suas finanças. Cada princípio é uma chave. Juntos, abrem a porta da liberdade.</p>
   </div>
   <div class="principios-grid">
-    <div class="principio-item"><div class="principio-num">01</div><div class="principio-name">Conhecimento</div><div class="principio-verse">Pv 24:3-4</div></div>
-    <div class="principio-item"><div class="principio-num">02</div><div class="principio-name">Primícias</div><div class="principio-verse">Pv 3:9-10</div></div>
-    <div class="principio-item"><div class="principio-num">03</div><div class="principio-name">Fuga do Jugo</div><div class="principio-verse">Pv 22:7</div></div>
-    <div class="principio-item"><div class="principio-num">04</div><div class="principio-name">Mordomia Fiel</div><div class="principio-verse">Lc 16:10</div></div>
-    <div class="principio-item"><div class="principio-num">05</div><div class="principio-name">Disciplina</div><div class="principio-verse">Pv 21:5</div></div>
-    <div class="principio-item"><div class="principio-num">06</div><div class="principio-name">Trabalho com Propósito</div><div class="principio-verse">Cl 3:23</div></div>
-    <div class="principio-item"><div class="principio-num">07</div><div class="principio-name">Rejeição dos Juros</div><div class="principio-verse">Pv 22:26</div></div>
-    <div class="principio-item"><div class="principio-num">08</div><div class="principio-name">Fidelidade</div><div class="principio-verse">Mt 25:21</div></div>
-    <div class="principio-item"><div class="principio-num">09</div><div class="principio-name">Poupança Sistemática</div><div class="principio-verse">Pv 13:11</div></div>
-    <div class="principio-item"><div class="principio-num">10</div><div class="principio-name">Previsão</div><div class="principio-verse">Pv 31:25</div></div>
-    <div class="principio-item"><div class="principio-num">11</div><div class="principio-name">Investimento Sábio</div><div class="principio-verse">Ec 11:2</div></div>
-    <div class="principio-item"><div class="principio-num">12</div><div class="principio-name">Generosidade</div><div class="principio-verse">Lc 6:38</div></div>
-    <div class="principio-item" style="grid-column:span 2;"><div class="principio-num">13</div><div class="principio-name">Legado</div><div class="principio-verse">Pv 13:22</div></div>
+    <div class="principio-item"><div class="principio-num">01</div><div class="principio-name">Conhecimento</div><div class="principio-desc">Entender suas finanças é o primeiro ato de fé. Você não pode transformar o que não conhece.</div><div class="principio-verse">Pv 24:3-4</div></div>
+    <div class="principio-item"><div class="principio-num">02</div><div class="principio-name">Primícias</div><div class="principio-desc">Honrar a Deus com o primeiro fruto da sua renda abre espaço para a bênção que transforma.</div><div class="principio-verse">Pv 3:9-10</div></div>
+    <div class="principio-item"><div class="principio-num">03</div><div class="principio-name">Fuga do Jugo</div><div class="principio-desc">A dívida prende. A liberdade financeira começa com a decisão de não mais se submeter ao credor.</div><div class="principio-verse">Pv 22:7</div></div>
+    <div class="principio-item"><div class="principio-num">04</div><div class="principio-name">Mordomia Fiel</div><div class="principio-desc">Cuidar bem do pouco que você tem hoje é o treinamento para administrar muito amanhã.</div><div class="principio-verse">Lc 16:10</div></div>
+    <div class="principio-item"><div class="principio-num">05</div><div class="principio-name">Disciplina</div><div class="principio-desc">Planos concretos e executados com constância produzem resultados que a motivação sozinha nunca alcança.</div><div class="principio-verse">Pv 21:5</div></div>
+    <div class="principio-item"><div class="principio-num">06</div><div class="principio-name">Trabalho com Propósito</div><div class="principio-desc">Quando você trabalha como se fosse para o Senhor, seu esforço ganha dignidade e direção.</div><div class="principio-verse">Cl 3:23</div></div>
+    <div class="principio-item"><div class="principio-num">07</div><div class="principio-name">Rejeição dos Juros</div><div class="principio-desc">Parcelas sem cálculo são armadilhas silenciosas. Conhecer o custo real de cada compra é sabedoria.</div><div class="principio-verse">Pv 22:26</div></div>
+    <div class="principio-item"><div class="principio-num">08</div><div class="principio-name">Fidelidade</div><div class="principio-desc">Honrar cada compromisso assumido — grande ou pequeno — é o fundamento da confiança e da prosperidade.</div><div class="principio-verse">Mt 25:21</div></div>
+    <div class="principio-item"><div class="principio-num">09</div><div class="principio-name">Poupança Sistemática</div><div class="principio-desc">Guardar com regularidade, mesmo pouco, é o hábito que separa quem sobrevive de quem prospera.</div><div class="principio-verse">Pv 13:11</div></div>
+    <div class="principio-item"><div class="principio-num">10</div><div class="principio-name">Previsão</div><div class="principio-desc">Gastos previsíveis nunca deveriam ser surpresas. Planejar o futuro é um ato de fé e responsabilidade.</div><div class="principio-verse">Pv 21:5</div></div>
+    <div class="principio-item"><div class="principio-num">11</div><div class="principio-name">Investimento Sábio</div><div class="principio-desc">Quem espera o momento perfeito nunca planta. Diversificar com sabedoria é multiplicar o que Deus confiou.</div><div class="principio-verse">Ec 11:4</div></div>
+    <div class="principio-item"><div class="principio-num">12</div><div class="principio-name">Generosidade</div><div class="principio-desc">Dar com alegria e planejamento não empobrece — é o princípio que ativa a economia do Reino.</div><div class="principio-verse">Lc 6:38</div></div>
+    <div class="principio-item" style="grid-column:span 2;"><div class="principio-num">13</div><div class="principio-name">Legado</div><div class="principio-desc">Mais do que acumular, o objetivo final é deixar para os seus filhos e netos um futuro melhor do que o que você recebeu.</div><div class="principio-verse">Pv 13:22</div></div>
   </div>
 </section>
 
@@ -898,8 +906,8 @@
 <section class="contact-section" id="contato">
   <div class="contact-intro">
     <div class="ilana-eyebrow" style="margin-bottom:20px;">Fale com Ilana</div>
-    <h2 class="contact-title">Quer saber<br>mais?</h2>
-    <p class="contact-desc">Deixe seus dados e Ilana Horta entrará em contato com você pessoalmente. Cada conversa é tratada com cuidado e propósito.</p>
+    <h2 class="contact-title">Dê o primeiro<br>passo</h2>
+    <p class="contact-desc">Deixe seus dados e entraremos em contato com você pessoalmente. Cada conversa começa onde você está — sem julgamento, com propósito.</p>
     <div class="contact-verse">
       "O Senhor é meu pastor e nada me faltará."
       <cite>Salmos 23:1</cite>
@@ -943,7 +951,10 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">A Bíblia Já Sabia</div>
-  <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
+  <div style="display:flex;align-items:center;gap:24px;">
+    <a href="https://instagram.com/ilanahorta" target="_blank" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);transition:color 0.3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='#9A9A9A'">@ilanahorta</a>
+    <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
+  </div>
 </footer>
 
 <script>
