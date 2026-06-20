@@ -12,10 +12,12 @@
   :root {
     --black: #080808;
     --white: #F5F0E8;
-    --gold: #C9A84C;
-    --gold-light: #E8D5A3;
-    --gray: #9A9A9A;
-    --gray-dark: #1A1A1A;
+    --dourado: #C9A84C;
+    --dourado-vib: #F0C040;
+    --cinza: #9A9A9A;
+    --card-dark: #141414;
+    --card-mid: #1E1E1E;
+    --borda: #2A2A2A;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Inter', system-ui, sans-serif;
   }
@@ -33,151 +35,291 @@
 
   a { color: inherit; text-decoration: none; }
 
+  /* ── HERO COM IMAGEM ── */
+  .hero-topo {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-topo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    filter: brightness(0.35);
+  }
+
+  .hero-topo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,8,8,0.5) 0%,
+      rgba(8,8,8,0.2) 40%,
+      rgba(8,8,8,0.7) 80%,
+      rgba(8,8,8,1) 100%
+    );
+    z-index: 1;
+  }
+
+  /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 24px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: linear-gradient(to bottom, rgba(8,8,8,.95), transparent);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    padding: 32px 60px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
-  .nav-logo {
+
+  .nav-marca {
     font-family: var(--serif);
-    font-size: 18px;
-    letter-spacing: 2px;
-    color: var(--gold);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: var(--dourado);
+    text-align: center;
+    line-height: 1.1;
   }
+
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 40px;
   }
+
   .nav-link {
-    font-size: 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-link:hover { color: var(--dourado); }
+
+  .nav-cta {
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gray);
-    transition: color .3s;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
   }
-  .nav-link:hover { color: var(--gold); }
+  .nav-cta:hover {
+    color: var(--dourado);
+    border-color: var(--dourado);
+  }
 
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 120px 60px 80px;
-    gap: 80px;
+  /* ── CONTEÚDO HERO ── */
+  .hero-topo-content {
     position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 50%;
-    height: 100%;
-    background: radial-gradient(ellipse at 80% 50%, rgba(201,168,76,.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
+    z-index: 2;
+    text-align: center;
+    padding: 140px 60px 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
+    gap: 24px;
   }
 
-  .hero-title {
+  .hero-tagline {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--dourado);
+    opacity: 0.8;
+  }
+
+  .hero-titulo {
     font-family: var(--serif);
-    font-size: clamp(52px, 6vw, 88px);
+    font-size: clamp(48px, 8vw, 96px);
     font-weight: 300;
     line-height: 1.0;
+    color: var(--white);
     letter-spacing: -1px;
-    margin-bottom: 32px;
   }
-  .hero-title em {
+  .hero-titulo em {
     font-style: italic;
-    color: var(--gold);
+    color: var(--dourado);
   }
 
-  .hero-subtitle {
+  .hero-subtitulo {
     font-size: 15px;
-    color: var(--gray);
+    color: rgba(245,240,232,0.7);
+    max-width: 480px;
     line-height: 1.8;
-    max-width: 440px;
-    margin-bottom: 48px;
     font-weight: 300;
   }
 
-  .hero-cta {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 16px;
+  .hero-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--dourado);
+    opacity: 0.5;
   }
 
-  .btn-primary {
+  .hero-btns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .btn-hero-primary {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
-    background: var(--gold);
+    gap: 12px;
+    background: var(--dourado);
     color: var(--black);
-    padding: 18px 36px;
-    font-size: 12px;
+    padding: 16px 32px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 500;
     font-family: var(--sans);
-    border: none;
-    cursor: pointer;
-    transition: all .3s;
+    transition: background 0.3s;
   }
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-  }
-  .btn-primary .arrow { transition: transform .3s; }
-  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .btn-hero-primary:hover { background: var(--dourado-vib); }
 
-  .btn-caption {
-    font-size: 11px;
-    color: var(--gray);
-    letter-spacing: 1px;
-    padding-left: 4px;
-  }
-
-  .hero-image-wrap {
-    position: relative;
-    display: flex;
-    justify-content: center;
+  .btn-hero-secondary {
+    display: inline-flex;
     align-items: center;
+    gap: 12px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 16px 32px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: var(--sans);
+    transition: all 0.3s;
+  }
+  .btn-hero-secondary:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
   }
 
-  .hero-img-frame {
+  .hero-gratuito {
+    font-size: 11px;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    opacity: 0.7;
+  }
+
+  /* ── SEÇÃO ILANA ── */
+  .ilana-section {
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-top: 1px solid var(--borda);
+  }
+
+  .ilana-content {}
+
+  .ilana-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .ilana-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--dourado);
+  }
+
+  .ilana-texto {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .ilana-texto strong {
+    color: var(--dourado);
+    font-weight: 400;
+  }
+
+  .ilana-credenciais {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .credencial {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cinza);
+    border: 1px solid var(--borda);
+    padding: 6px 14px;
+  }
+
+  .btn-fale {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 14px 28px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    transition: all 0.3s;
+  }
+  .btn-fale:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
+  }
+
+  .ilana-foto-wrap {
+    position: relative;
+  }
+
+  .ilana-foto-frame {
     position: relative;
     width: 100%;
-    max-width: 440px;
+    max-width: 420px;
+    margin-left: auto;
   }
 
-  .hero-img-frame::before {
+  .ilana-foto-frame::before {
     content: '';
     position: absolute;
-    top: -20px; left: -20px;
-    right: 20px; bottom: 20px;
-    border: 1px solid rgba(201,168,76,.2);
+    top: -16px; left: -16px;
+    right: 16px; bottom: 16px;
+    border: 1px solid rgba(201,168,76,0.25);
     z-index: 0;
   }
 
-  .hero-img-frame img {
+  .ilana-foto-frame img {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -185,76 +327,58 @@
     object-fit: cover;
     object-position: top;
     display: block;
-    filter: grayscale(20%) contrast(1.05);
+    filter: grayscale(15%) contrast(1.05);
   }
 
-  .hero-img-label {
+  .ilana-foto-label {
     position: absolute;
-    bottom: -20px;
-    right: -20px;
+    bottom: -16px;
+    left: -16px;
     z-index: 2;
     background: var(--black);
-    border: 1px solid rgba(201,168,76,.3);
-    padding: 20px 24px;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 16px 20px;
   }
-  .hero-img-label p {
+  .ilana-foto-label p {
     font-family: var(--serif);
     font-size: 15px;
-    color: var(--gold);
+    color: var(--dourado);
     margin-bottom: 2px;
   }
-  .hero-img-label span {
-    font-size: 11px;
-    color: var(--gray);
+  .ilana-foto-label span {
+    font-size: 10px;
+    color: var(--cinza);
     letter-spacing: 1px;
   }
 
-  .section-divider {
-    width: calc(100% - 120px);
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,.3), transparent);
-    margin: 0 60px;
-  }
-
+  /* ── MANIFESTO ── */
   .manifesto {
-    padding: 120px 60px;
+    padding: 80px 60px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 80px;
     align-items: start;
+    border-top: 1px solid var(--borda);
   }
 
   .manifesto-label {
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--dourado);
     padding-top: 8px;
   }
 
-  .manifesto-text {
-    font-family: var(--serif);
-    font-size: clamp(22px, 2.5vw, 32px);
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--white);
-  }
-
-  .manifesto-text strong {
-    color: var(--gold);
-    font-weight: 400;
-  }
-
   .manifesto-quote {
-    margin-top: 48px;
+    margin-top: 32px;
     padding-left: 24px;
-    border-left: 1px solid var(--gold);
+    border-left: 1px solid var(--dourado);
   }
   .manifesto-quote p {
     font-family: var(--serif);
     font-size: 17px;
     font-style: italic;
-    color: var(--gray);
+    color: var(--cinza);
     line-height: 1.7;
   }
   .manifesto-quote cite {
@@ -263,136 +387,145 @@
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--dourado);
     font-style: normal;
   }
 
-  .calc-section {
-    margin: 0 60px 120px;
-    background: var(--gray-dark);
-    padding: 80px;
+  /* ── SEÇÃO FERRAMENTAS ── */
+  .ferramenta-section {
+    margin: 0 60px 2px;
+    background: var(--card-dark);
+    padding: 72px 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--borda);
   }
 
-  .calc-section::before {
+  .ferramenta-section::before {
     content: '';
     position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(201,168,76,.08), transparent 70%);
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);
     pointer-events: none;
   }
 
-  .calc-number {
+  .ferramenta-num {
     font-family: var(--serif);
-    font-size: 120px;
+    font-size: 100px;
     font-weight: 300;
-    color: rgba(201,168,76,.08);
+    color: rgba(201,168,76,0.06);
     line-height: 1;
     position: absolute;
-    top: 20px; right: 40px;
+    top: 16px; right: 32px;
   }
 
-  .calc-label {
+  .ferramenta-label {
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
+    color: var(--dourado);
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 16px;
   }
-  .calc-label::before {
+  .ferramenta-label::before {
     content: '';
     display: block;
     width: 30px;
     height: 1px;
-    background: var(--gold);
+    background: var(--dourado);
   }
 
-  .calc-title {
+  .ferramenta-titulo {
     font-family: var(--serif);
-    font-size: clamp(28px, 3vw, 42px);
+    font-size: clamp(26px, 3vw, 40px);
     font-weight: 300;
     line-height: 1.2;
-    margin-bottom: 24px;
-  }
-
-  .calc-desc {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.9;
-    margin-bottom: 24px;
-  }
-
-  .calc-btns {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
     margin-bottom: 16px;
   }
 
-  .btn-secondary {
+  .ferramenta-desc {
+    font-size: 14px;
+    color: var(--cinza);
+    line-height: 1.9;
+    margin-bottom: 12px;
+  }
+
+  .gratuito-badge {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--dourado-vib);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .gratuito-detalhe {
+    font-size: 11px;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    opacity: 0.8;
+  }
+
+  .btn-ferramenta {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
-    background: transparent;
-    color: var(--gold);
-    border: 1px solid var(--gold);
+    gap: 12px;
+    background: var(--dourado);
+    color: var(--black);
     padding: 16px 32px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 500;
     font-family: var(--sans);
-    cursor: pointer;
-    transition: all .3s;
-    text-decoration: none;
+    transition: background 0.3s;
   }
-  .btn-secondary:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
+  .btn-ferramenta:hover { background: var(--dourado-vib); }
 
-  .calc-stats {
+  .ferramenta-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   .stat-item {
-    border-top: 1px solid rgba(201,168,76,.2);
-    padding-top: 16px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding-top: 14px;
   }
   .stat-number {
     font-family: var(--serif);
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 300;
-    color: var(--gold);
+    color: var(--dourado);
     line-height: 1;
     margin-bottom: 6px;
   }
   .stat-label {
     font-size: 11px;
-    color: var(--gray);
+    color: var(--cinza);
     letter-spacing: 1px;
   }
 
+  /* ── PRINCÍPIOS ── */
   .principios-section {
-    padding: 120px 60px;
+    padding: 100px 60px;
+    border-top: 1px solid var(--borda);
   }
 
   .section-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     align-items: end;
   }
 
@@ -405,7 +538,7 @@
 
   .section-desc {
     font-size: 14px;
-    color: var(--gray);
+    color: var(--cinza);
     line-height: 1.9;
     max-width: 400px;
   }
@@ -414,103 +547,106 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
-    background: rgba(201,168,76,.1);
+    background: rgba(201,168,76,0.1);
   }
 
   .principio-item {
     background: var(--black);
-    padding: 32px 28px;
-    transition: background .3s;
+    padding: 28px 24px;
+    transition: background 0.3s;
     cursor: default;
   }
-  .principio-item:hover { background: var(--gray-dark); }
+  .principio-item:hover { background: var(--card-mid); }
   .principio-num {
     font-family: var(--serif);
     font-size: 11px;
-    color: var(--gold);
+    color: var(--dourado);
     letter-spacing: 2px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   .principio-name {
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: var(--white);
   }
   .principio-verse {
     font-size: 11px;
-    color: var(--gray);
+    color: var(--cinza);
     letter-spacing: 1px;
   }
 
+  /* ── CONTATO ── */
   .contact-section {
-    padding: 120px 60px;
+    padding: 100px 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 120px;
+    gap: 100px;
     align-items: start;
-    border-top: 1px solid rgba(201,168,76,.1);
+    border-top: 1px solid var(--borda);
   }
 
-  .contact-intro { position: sticky; top: 120px; }
+  .contact-intro { position: sticky; top: 100px; }
 
   .contact-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 4vw, 52px);
+    font-size: clamp(32px, 4vw, 48px);
     font-weight: 300;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .contact-desc {
     font-size: 14px;
-    color: var(--gray);
+    color: var(--cinza);
     line-height: 1.9;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   .contact-verse {
     font-family: var(--serif);
     font-size: 16px;
     font-style: italic;
-    color: var(--gold);
+    color: var(--dourado);
     line-height: 1.6;
+    border-left: 1px solid var(--dourado);
+    padding-left: 20px;
   }
   .contact-verse cite {
     display: block;
     font-size: 11px;
     font-style: normal;
-    color: var(--gray);
+    color: var(--cinza);
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-top: 10px;
   }
 
-  .form-field { margin-bottom: 28px; }
+  .form-field { margin-bottom: 24px; }
   .form-label {
     display: block;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--cinza);
     margin-bottom: 10px;
   }
   .form-input {
     width: 100%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(255,255,255,.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
     padding: 12px 0;
     color: var(--white);
     font-family: var(--sans);
     font-size: 15px;
     font-weight: 300;
     outline: none;
-    transition: border-color .3s;
+    transition: border-color 0.3s;
   }
-  .form-input:focus { border-color: var(--gold); }
-  .form-input::placeholder { color: rgba(255,255,255,.2); }
+  .form-input:focus { border-color: var(--dourado); }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
   textarea.form-input { resize: none; height: 80px; }
 
   .btn-submit {
@@ -518,24 +654,25 @@
     align-items: center;
     gap: 16px;
     background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 16px 32px;
-    font-size: 12px;
+    border: 1px solid var(--dourado);
+    color: var(--dourado);
+    padding: 14px 28px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
     font-family: var(--sans);
-    transition: all .3s;
+    transition: all 0.3s;
     margin-top: 16px;
   }
-  .btn-submit:hover { background: var(--gold); color: var(--black); }
+  .btn-submit:hover { background: var(--dourado); color: var(--black); }
 
   .form-privacy {
     font-size: 11px;
-    color: var(--gray);
-    margin-top: 20px;
-    letter-spacing: .5px;
+    color: var(--cinza);
+    margin-top: 16px;
+    letter-spacing: 0.5px;
+    opacity: 0.6;
   }
 
   .success-msg { display: none; padding: 40px 0; }
@@ -544,82 +681,119 @@
     font-family: var(--serif);
     font-size: 28px;
     font-weight: 300;
-    color: var(--gold);
+    color: var(--dourado);
     margin-bottom: 12px;
   }
-  .success-msg p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+  .success-msg p { font-size: 14px; color: var(--cinza); line-height: 1.8; }
 
+  /* ── FOOTER ── */
   footer {
     padding: 40px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,.06);
+    border-top: 1px solid var(--borda);
   }
   .footer-logo {
     font-family: var(--serif);
-    font-size: 16px;
-    color: var(--gold);
-    letter-spacing: 1px;
+    font-size: 18px;
+    color: var(--dourado);
+    letter-spacing: 2px;
+    font-weight: 500;
   }
-  .footer-copy { font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+  .footer-copy { font-size: 11px; color: var(--cinza); letter-spacing: 1px; }
 
+  /* ── DIVISOR ── */
+  .section-divider {
+    width: calc(100% - 120px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+    margin: 0 60px;
+  }
+
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 20px 24px; }
-    .nav-links { gap: 16px; }
-    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
-    .hero-image-wrap { order: -1; }
-    .hero-img-frame { max-width: 300px; margin: 0 auto; }
-    .manifesto { grid-template-columns: 1fr; padding: 80px 24px; gap: 24px; }
-    .calc-section { grid-template-columns: 1fr; padding: 48px 24px; margin: 0 24px 80px; }
-    .principios-section { padding: 80px 24px; }
-    .section-header { grid-template-columns: 1fr; gap: 24px; }
+    nav { padding: 24px 24px 12px; }
+    .nav-marca { font-size: clamp(22px, 6vw, 32px); }
+    .nav-links { gap: 20px; }
+    .hero-topo-content { padding: 120px 24px 80px; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .ilana-section { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
+    .ilana-foto-wrap { order: -1; }
+    .ilana-foto-frame { max-width: 320px; margin: 0 auto; }
+    .manifesto { grid-template-columns: 1fr; padding: 60px 24px; gap: 24px; }
+    .ferramenta-section { grid-template-columns: 1fr; padding: 48px 24px; margin: 0 24px 2px; }
+    .principios-section { padding: 60px 24px; }
+    .section-header { grid-template-columns: 1fr; gap: 20px; }
     .principios-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 60px; }
+    .contact-section { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
     .contact-intro { position: static; }
+    .section-divider { width: calc(100% - 48px); margin: 0 24px; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">A Bíblia Já Sabia</div>
-  <div class="nav-links">
-    <a href="quiz.html" class="nav-link">Quiz dos 13 Princípios</a>
-    <a href="#contato" class="nav-link">Fale com Ilana</a>
-  </div>
-</nav>
+<!-- HERO COM IMAGEM -->
+<section class="hero-topo">
+  <img class="hero-topo-img" src="biblia-chave.jpeg" alt="Bíblia aberta com chave dourada" />
+  <div class="hero-topo-overlay"></div>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Ilana Horta</div>
-    <h1 class="hero-title">
-      A Bíblia<br>
-      <em>Já Sabia.</em>
+  <nav>
+    <div class="nav-marca">A Bíblia Já Sabia</div>
+    <div class="nav-links">
+      <a href="calculadora.html" class="nav-link">Calculadora</a>
+      <a href="quiz.html" class="nav-link">Quiz</a>
+      <a href="#contato" class="nav-cta">Comece agora — é gratuito</a>
+    </div>
+  </nav>
+
+  <div class="hero-topo-content">
+    <p class="hero-tagline">Ilana Horta · Especialista Financeira Cristã</p>
+    <h1 class="hero-titulo">
+      A Bíblia<br><em>Já Sabia.</em>
     </h1>
-    <p class="hero-subtitle">
+    <div class="hero-divider"></div>
+    <p class="hero-subtitulo">
       Princípios bíblicos que transformam a sua relação com o dinheiro e te conduzem para a liberdade financeira que Deus preparou para você.
     </p>
+    <div class="hero-btns">
+      <a href="quiz.html" class="btn-hero-primary">Fazer o diagnóstico gratuito →</a>
+      <a href="calculadora.html" class="btn-hero-secondary">Acessar a calculadora →</a>
+    </div>
+    <p class="hero-gratuito">Sem cadastro · Sem cartão · Resultado imediato</p>
   </div>
-  <div class="hero-image-wrap">
-    <div class="hero-img-frame">
-      <img src="ilanahorta.jpeg" alt="Ilana Horta"/>
-      <div class="hero-img-label">
+</section>
+
+<!-- ILANA -->
+<section class="ilana-section">
+  <div class="ilana-foto-wrap">
+    <div class="ilana-foto-frame">
+      <img src="ilanahorta.jpeg" alt="Ilana Horta" />
+      <div class="ilana-foto-label">
         <p>Ilana Horta</p>
         <span>Especialista Financeira Cristã</span>
       </div>
     </div>
   </div>
+  <div class="ilana-content">
+    <div class="ilana-eyebrow">Ilana Horta</div>
+    <p class="ilana-texto">
+      Ilana Horta reúne profundo conhecimento e longos anos de experiência em empreendedorismo, desenvolvimento de negócios, avaliação de empresas e finanças em grandes empresas como <strong>Deloitte, GE, Uber e Google.</strong> Estudou na <strong>UFMG, IBMEC e MIT.</strong> Hoje alia esse conhecimento a princípios bíblicos práticos, testados e transformadores que te levam do endividamento à tão desejada liberdade financeira com sabedoria, disciplina e fé.
+    </p>
+    <a href="#contato" class="btn-fale">Fale com Ilana Horta →</a>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
+<!-- MANIFESTO -->
 <section class="manifesto">
   <div class="manifesto-label">O Projeto</div>
   <div>
-    <p class="manifesto-text">
-      Ilana Horta reúne profundo conhecimento e longa experiência financeira aliada a princípios bíblicos práticos, testados e transformadores, que te levam do endividamento à liberdade com sabedoria, disciplina e fé.<br><br>Você pode estar poupando e investindo enquanto uma dívida <strong>destrói tudo isso em silêncio.</strong> Por isso é urgente: primeiro, reconheça suas dívidas. Segundo, haja para quitá-las.
+    <p style="font-family:var(--serif);font-size:clamp(20px,2.2vw,28px);font-weight:300;line-height:1.65;color:var(--white);">
+      Você pode estar poupando e investindo enquanto uma dívida <strong style="color:var(--dourado);font-weight:400;">destrói tudo isso em silêncio.</strong> Por isso é urgente: primeiro, reconheça suas dívidas. Segundo, haja para quitá-las.
     </p>
     <div class="manifesto-quote">
       <p>"Não devas nada a ninguém, a não ser o amor mútuo."</p>
@@ -630,19 +804,20 @@
 
 <div class="section-divider"></div>
 
-<section class="calc-section" style="margin-bottom:2px;">
-  <div class="calc-number">01</div>
+<!-- QUIZ -->
+<section class="ferramenta-section">
+  <div class="ferramenta-num">01</div>
   <div>
-    <div class="calc-label">Diagnóstico gratuito</div>
-    <h2 class="calc-title">Quiz dos 13<br>Princípios Bíblicos</h2>
-    <p class="calc-desc">
-      Descubra qual é o elo mais fraco na sua vida financeira — e o próximo passo concreto para a liberdade que Deus preparou para você. São 13 perguntas, 5 minutos, resultado imediato.
+    <div class="ferramenta-label">Diagnóstico</div>
+    <h2 class="ferramenta-titulo">Quiz dos 13<br>Princípios Bíblicos</h2>
+    <p class="ferramenta-desc">
+      Descubra qual é o elo mais fraco na sua vida financeira — e o próximo passo concreto para a liberdade que Deus preparou para você.
     </p>
-    <a href="quiz.html" class="btn-primary" style="display:inline-flex;">
-      Fazer o diagnóstico gratuito <span class="arrow">→</span>
-    </a>
+    <div class="gratuito-badge">Gratuito</div><br>
+    <p class="gratuito-detalhe">Sem cadastro · Sem cartão · Resultado imediato</p>
+    <a href="quiz.html" class="btn-ferramenta">Fazer o diagnóstico →</a>
   </div>
-  <div class="calc-stats">
+  <div class="ferramenta-stats">
     <div class="stat-item">
       <div class="stat-number">13</div>
       <div class="stat-label">Princípios avaliados</div>
@@ -662,21 +837,20 @@
   </div>
 </section>
 
-<section class="calc-section">
-  <div class="calc-number">02</div>
+<!-- CALCULADORA -->
+<section class="ferramenta-section" style="margin-bottom:60px;">
+  <div class="ferramenta-num">02</div>
   <div>
-    <div class="calc-label">Ferramentas gratuitas</div>
-    <h2 class="calc-title">Calculadora da<br>Liberdade Financeira</h2>
-    <p class="calc-desc">
-      Insira suas dívidas e descubra exatamente quando você será livre — com base nos 13 princípios bíblicos de Ilana Horta. Gratuita, imediata e transformadora.
+    <div class="ferramenta-label">Calculadora</div>
+    <h2 class="ferramenta-titulo">Calculadora da<br>Liberdade Financeira</h2>
+    <p class="ferramenta-desc">
+      Insira suas dívidas e descubra exatamente quando você será livre — com base nos 13 princípios bíblicos de Ilana Horta. Imediata e transformadora.
     </p>
-    <div class="calc-btns">
-      <a href="calculadora.html" class="btn-primary" style="display:inline-flex;">
-        Acessar a calculadora <span class="arrow">→</span>
-      </a>
-    </div>
+    <div class="gratuito-badge">Gratuita</div><br>
+    <p class="gratuito-detalhe">Sem cadastro · Sem cartão · Resultado imediato</p>
+    <a href="calculadora.html" class="btn-ferramenta">Acessar a calculadora →</a>
   </div>
-  <div class="calc-stats">
+  <div class="ferramenta-stats">
     <div class="stat-item">
       <div class="stat-number">13</div>
       <div class="stat-label">Princípios bíblicos</div>
@@ -696,9 +870,10 @@
   </div>
 </section>
 
+<!-- PRINCÍPIOS -->
 <section class="principios-section">
   <div class="section-header">
-    <h2 class="section-title">13 Princípios<br><em style="font-style:italic;color:var(--gold);">Bíblicos</em></h2>
+    <h2 class="section-title">13 Princípios<br><em style="font-style:italic;color:var(--dourado);">Bíblicos</em></h2>
     <p class="section-desc">Uma jornada de sabedoria financeira — do Gênesis às suas finanças. Cada princípio é uma chave. Juntos, abrem a porta da liberdade.</p>
   </div>
   <div class="principios-grid">
@@ -714,13 +889,14 @@
     <div class="principio-item"><div class="principio-num">10</div><div class="principio-name">Previsão</div><div class="principio-verse">Pv 31:25</div></div>
     <div class="principio-item"><div class="principio-num">11</div><div class="principio-name">Investimento Sábio</div><div class="principio-verse">Ec 11:2</div></div>
     <div class="principio-item"><div class="principio-num">12</div><div class="principio-name">Generosidade</div><div class="principio-verse">Lc 6:38</div></div>
-    <div class="principio-item" style="grid-column: span 2;"><div class="principio-num">13</div><div class="principio-name">Legado</div><div class="principio-verse">Pv 13:22</div></div>
+    <div class="principio-item" style="grid-column:span 2;"><div class="principio-num">13</div><div class="principio-name">Legado</div><div class="principio-verse">Pv 13:22</div></div>
   </div>
 </section>
 
+<!-- CONTATO -->
 <section class="contact-section" id="contato">
   <div class="contact-intro">
-    <div class="calc-label">Fale com Ilana</div>
+    <div class="ilana-eyebrow" style="margin-bottom:20px;">Fale com Ilana</div>
     <h2 class="contact-title">Quer saber<br>mais?</h2>
     <p class="contact-desc">Deixe seus dados e Ilana Horta entrará em contato com você pessoalmente. Cada conversa é tratada com cuidado e propósito.</p>
     <div class="contact-verse">
@@ -757,13 +933,15 @@
     </div>
     <div class="success-msg" id="success">
       <h3>Recebido.</h3>
-      <p>Ilana Horta entrará em contato em breve.<br><br><em style="color:var(--gold);font-style:italic;">"O Senhor abençoe você e te guarde."<br>— Números 6:24</em></p>
+      <p>Ilana Horta entrará em contato em breve.<br><br>
+      <em style="color:var(--dourado);font-style:italic;">"O Senhor abençoe você e te guarde."<br>— Números 6:24</em></p>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">A Bíblia Já Sabia.</div>
+  <div class="footer-logo">A Bíblia Já Sabia</div>
   <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
 </footer>
 
@@ -780,7 +958,7 @@ async function enviar(){
     await fetch("https://formspree.io/f/meewypjj", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, email, telefone, instagram, mensagem, _subject: "Novo contato: " + nome })
+      body: JSON.stringify({ nome, email, telefone, instagram, mensagem, _subject: "Novo contato — " + nome })
     });
   } catch(e) {}
   document.getElementById("form").style.display = "none";
