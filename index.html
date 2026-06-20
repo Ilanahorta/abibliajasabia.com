@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">Quiz dos 13 Princípios</a> &nbsp;&nbsp; <a href="quiz.html" class="nav-link">Quiz dos 13 Princípios</a> &nbsp;&nbsp; <a href="#contato" class="nav-link">Fale com Ilana Horta
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -33,7 +33,6 @@
 
   a { color: inherit; text-decoration: none; }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 24px 60px;
@@ -46,6 +45,11 @@
     letter-spacing: 2px;
     color: var(--gold);
   }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
   .nav-link {
     font-size: 12px;
     letter-spacing: 2px;
@@ -55,7 +59,6 @@
   }
   .nav-link:hover { color: var(--gold); }
 
-  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
@@ -142,12 +145,8 @@
     background: var(--gold-light);
     transform: translateY(-2px);
   }
-  .btn-primary .arrow {
-    transition: transform .3s;
-  }
-  .btn-primary:hover .arrow {
-    transform: translateX(4px);
-  }
+  .btn-primary .arrow { transition: transform .3s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
 
   .btn-caption {
     font-size: 11px;
@@ -156,7 +155,6 @@
     padding-left: 4px;
   }
 
-  /* HERO IMAGE */
   .hero-image-wrap {
     position: relative;
     display: flex;
@@ -211,16 +209,13 @@
     letter-spacing: 1px;
   }
 
-  /* ── DIVIDER ── */
   .section-divider {
-    width: 100%;
+    width: calc(100% - 120px);
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(201,168,76,.3), transparent);
     margin: 0 60px;
-    width: calc(100% - 120px);
   }
 
-  /* ── MANIFESTO ── */
   .manifesto {
     padding: 120px 60px;
     display: grid;
@@ -272,7 +267,6 @@
     font-style: normal;
   }
 
-  /* ── CALCULADORA DESTAQUE ── */
   .calc-section {
     margin: 0 60px 120px;
     background: var(--gray-dark);
@@ -334,7 +328,36 @@
     font-size: 14px;
     color: var(--gray);
     line-height: 1.9;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+  }
+
+  .calc-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 16px 32px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: all .3s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--black);
   }
 
   .calc-stats {
@@ -361,7 +384,6 @@
     letter-spacing: 1px;
   }
 
-  /* ── PRINCÍPIOS ── */
   .principios-section {
     padding: 120px 60px;
   }
@@ -401,9 +423,7 @@
     transition: background .3s;
     cursor: default;
   }
-  .principio-item:hover {
-    background: var(--gray-dark);
-  }
+  .principio-item:hover { background: var(--gray-dark); }
   .principio-num {
     font-family: var(--serif);
     font-size: 11px;
@@ -424,7 +444,6 @@
     letter-spacing: 1px;
   }
 
-  /* ── CONTATO ── */
   .contact-section {
     padding: 120px 60px;
     display: grid;
@@ -434,10 +453,7 @@
     border-top: 1px solid rgba(201,168,76,.1);
   }
 
-  .contact-intro {
-    position: sticky;
-    top: 120px;
-  }
+  .contact-intro { position: sticky; top: 120px; }
 
   .contact-title {
     font-family: var(--serif);
@@ -471,10 +487,7 @@
     margin-top: 10px;
   }
 
-  /* FORM */
-  .form-field {
-    margin-bottom: 28px;
-  }
+  .form-field { margin-bottom: 28px; }
   .form-label {
     display: block;
     font-size: 11px;
@@ -496,16 +509,9 @@
     outline: none;
     transition: border-color .3s;
   }
-  .form-input:focus {
-    border-color: var(--gold);
-  }
-  .form-input::placeholder {
-    color: rgba(255,255,255,.2);
-  }
-  textarea.form-input {
-    resize: none;
-    height: 80px;
-  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: rgba(255,255,255,.2); }
+  textarea.form-input { resize: none; height: 80px; }
 
   .btn-submit {
     display: flex;
@@ -523,10 +529,7 @@
     transition: all .3s;
     margin-top: 16px;
   }
-  .btn-submit:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
+  .btn-submit:hover { background: var(--gold); color: var(--black); }
 
   .form-privacy {
     font-size: 11px;
@@ -535,10 +538,7 @@
     letter-spacing: .5px;
   }
 
-  .success-msg {
-    display: none;
-    padding: 40px 0;
-  }
+  .success-msg { display: none; padding: 40px 0; }
   .success-msg.show { display: block; }
   .success-msg h3 {
     font-family: var(--serif);
@@ -547,13 +547,8 @@
     color: var(--gold);
     margin-bottom: 12px;
   }
-  .success-msg p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.8;
-  }
+  .success-msg p { font-size: 14px; color: var(--gray); line-height: 1.8; }
 
-  /* ── FOOTER ── */
   footer {
     padding: 40px 60px;
     display: flex;
@@ -567,15 +562,11 @@
     color: var(--gold);
     letter-spacing: 1px;
   }
-  .footer-copy {
-    font-size: 11px;
-    color: var(--gray);
-    letter-spacing: 1px;
-  }
+  .footer-copy { font-size: 11px; color: var(--gray); letter-spacing: 1px; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
+    .nav-links { gap: 16px; }
     .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
     .hero-image-wrap { order: -1; }
     .hero-img-frame { max-width: 300px; margin: 0 auto; }
@@ -592,13 +583,14 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">A Bíblia Já Sabia</div>
-  <a href="#contato" class="nav-link">Fale com Ilana</a>
+  <div class="nav-links">
+    <a href="quiz.html" class="nav-link">Quiz dos 13 Princípios</a>
+    <a href="#contato" class="nav-link">Fale com Ilana</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Ilana Horta</div>
@@ -609,7 +601,6 @@
     <p class="hero-subtitle">
       Princípios bíblicos que transformam a sua relação com o dinheiro e te conduzem para a liberdade financeira que Deus preparou para você.
     </p>
-
   </div>
   <div class="hero-image-wrap">
     <div class="hero-img-frame">
@@ -624,7 +615,6 @@
 
 <div class="section-divider"></div>
 
-<!-- MANIFESTO -->
 <section class="manifesto">
   <div class="manifesto-label">O Projeto</div>
   <div>
@@ -640,18 +630,22 @@
 
 <div class="section-divider"></div>
 
-<!-- CALCULADORA DESTAQUE -->
 <section class="calc-section">
   <div class="calc-number">01</div>
   <div>
-    <div class="calc-label">Ferramenta gratuita</div>
+    <div class="calc-label">Ferramentas gratuitas</div>
     <h2 class="calc-title">Calculadora da<br>Liberdade Financeira</h2>
     <p class="calc-desc">
       Insira suas dívidas e descubra exatamente quando você será livre — com base nos 13 princípios bíblicos de Ilana Horta. Gratuita, imediata e transformadora.
     </p>
-    <a href="calculadora.html" class="btn-primary" style="display:inline-flex;">
-      Acessar a calculadora <span class="arrow">→</span>
-    </a>
+    <div class="calc-btns">
+      <a href="calculadora.html" class="btn-primary" style="display:inline-flex;">
+        Acessar a calculadora <span class="arrow">→</span>
+      </a>
+      <a href="quiz.html" class="btn-secondary">
+        Fazer o diagnóstico gratuito <span>→</span>
+      </a>
+    </div>
   </div>
   <div class="calc-stats">
     <div class="stat-item">
@@ -673,7 +667,6 @@
   </div>
 </section>
 
-<!-- PRINCÍPIOS -->
 <section class="principios-section">
   <div class="section-header">
     <h2 class="section-title">13 Princípios<br><em style="font-style:italic;color:var(--gold);">Bíblicos</em></h2>
@@ -696,7 +689,6 @@
   </div>
 </section>
 
-<!-- CONTATO -->
 <section class="contact-section" id="contato">
   <div class="contact-intro">
     <div class="calc-label">Fale com Ilana</div>
@@ -741,7 +733,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">A Bíblia Já Sabia.</div>
   <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
