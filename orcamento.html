@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orçamento Familiar | A Bíblia Já Sabia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:#15140F;color:#EEE7D6;font-family:'Manrope',sans-serif;min-height:100vh;}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 56px;border-bottom:1px solid rgba(201,162,75,.18);background:rgba(21,20,15,.96);backdrop-filter:blur(14px);}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#fff;text-decoration:none;}
+    .nav-logo span{font-style:italic;color:#C9A24B;}
+    .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;}
+    .nav-links a{color:#b8b09c;text-decoration:none;}
+    .nav-links a.cta{background:#C9A24B;color:#15140F;padding:10px 20px;border-radius:2px;font-weight:700;}
+    .container{max-width:1100px;margin:0 auto;padding:64px 56px;}
+    h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:#fff;line-height:1.05;margin-bottom:16px;}
+    h1 span{font-style:italic;color:#C9A24B;}
+    .subtitle{font-size:17px;color:#b8b09c;line-height:1.7;margin-bottom:48px;max-width:640px;}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A24B;margin-bottom:16px;}
+    /* RENDA */
+    .renda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;}
+    .renda-card{background:#1d1b14;border:1px solid rgba(201,162,75,.18);border-radius:4px;padding:20px;}
+    .renda-card label{font-size:12px;font-weight:600;color:#8a8270;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:8px;}
+    .renda-card input{background:#0f0e09;border:1px solid rgba(201,162,75,.15);border-radius:2px;padding:12px 14px;color:#EEE7D6;font-size:16px;font-family:'Manrope',sans-serif;width:100%;}
+    .renda-card input:focus{outline:none;border-color:#C9A24B;}
+    /* TABELA */
+    .orcamento-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;}
+    .categoria-card{background:#1d1b14;border:1px solid rgba(201,162,75,.18);border-radius:4px;overflow:hidden;}
+    .cat-header{padding:16px 20px;border-bottom:1px solid rgba(201,162,75,.12);display:flex;justify-content:space-between;align-items:center;}
+    .cat-title{font-weight:700;font-size:14px;color:#EEE7D6;}
+    .cat-icon{font-size:18px;}
+    .cat-total{font-family:'Cormorant Garamond',serif;font-size:18px;color:#C9A24B;font-weight:600;}
+    .cat-verse{font-size:11px;color:#5a5245;font-style:italic;padding:8px 20px;border-bottom:1px solid rgba(201,162,75,.08);}
+    .item-row{display:flex;align-items:center;gap:12px;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .item-name{flex:1;}
+    .item-name input{background:transparent;border:none;border-bottom:1px solid rgba(201,162,75,.1);padding:4px 0;color:#EEE7D6;font-size:13px;font-family:'Manrope',sans-serif;width:100%;}
+    .item-name input:focus{outline:none;border-bottom-color:#C9A24B;}
+    .item-val{width:120px;}
+    .item-val input{background:#0f0e09;border:1px solid rgba(201,162,75,.1);border-radius:2px;padding:6px 10px;color:#EEE7D6;font-size:13px;font-family:'Manrope',sans-serif;width:100%;text-align:right;}
+    .item-val input:focus{outline:none;border-color:#C9A24B;}
+    .btn-rm{background:none;border:none;color:#5a5245;cursor:pointer;font-size:16px;padding:4px;}
+    .btn-rm:hover{color:#ff6b6b;}
+    .btn-add-item{background:none;border:none;color:#C9A24B;cursor:pointer;font-size:13px;padding:10px 20px;text-align:left;width:100%;font-family:'Manrope',sans-serif;}
+    .btn-add-item:hover{background:rgba(201,162,75,.05);}
+    /* RESUMO */
+    .resumo-section{background:#1d1b14;border:1px solid rgba(201,162,75,.25);border-radius:4px;padding:32px;margin-bottom:40px;}
+    .resumo-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;margin-bottom:24px;}
+    .resumo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+    .resumo-item{text-align:center;}
+    .resumo-val{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1;margin-bottom:6px;}
+    .resumo-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#8a8270;}
+    .resumo-val.positivo{color:#4CAF50;}
+    .resumo-val.negativo{color:#ff6b6b;}
+    .resumo-val.neutro{color:#C9A24B;}
+    .resumo-val.total{color:#fff;}
+    /* BARRAS */
+    .barras{margin-bottom:8px;}
+    .barra-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+    .barra-label{font-size:12px;color:#8a8270;width:160px;flex-shrink:0;}
+    .barra-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
+    .barra-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+    .barra-pct{font-size:12px;color:#EEE7D6;width:40px;text-align:right;flex-shrink:0;}
+    .barra-ideal{font-size:11px;color:#5a5245;width:60px;text-align:right;flex-shrink:0;}
+    /* PILARES */
+    .pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;}
+    .pilar{border-radius:4px;padding:20px;text-align:center;border:1px solid;}
+    .pilar-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;margin-bottom:6px;}
+    .pilar-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+    .pilar-ideal{font-size:11px;opacity:.6;}
+    .pilar-status{font-size:11px;margin-top:8px;font-weight:700;}
+    /* DOWNLOAD */
+    .download-section{background:linear-gradient(135deg,rgba(201,162,75,.12),rgba(201,162,75,.04));border:1px solid rgba(201,162,75,.3);border-radius:4px;padding:32px;margin-bottom:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;}
+    .download-text h3{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;margin-bottom:8px;}
+    .download-text p{font-size:14px;color:#8a8270;line-height:1.6;}
+    .btn-download{background:#C9A24B;color:#15140F;padding:14px 28px;border-radius:2px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:'Manrope',sans-serif;white-space:nowrap;flex-shrink:0;}
+    .btn-download:hover{background:#f0c040;}
+    .verse-footer{border-top:1px solid rgba(201,162,75,.14);padding-top:32px;margin-bottom:48px;}
+    .verse-footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#EEE7D6;line-height:1.6;margin-bottom:8px;}
+    .verse-footer span{font-size:13px;color:#8a8270;}
+    footer{border-top:1px solid rgba(201,162,75,.14);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;}
+    .footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:600;}
+    .footer-logo span{font-style:italic;color:#C9A24B;}
+    @media(max-width:900px){
+      nav{padding:16px 24px;}
+      .container{padding:40px 20px;}
+      h1{font-size:38px;}
+      .orcamento-grid{grid-template-columns:1fr;}
+      .renda-grid{grid-template-columns:1fr 1fr;}
+      .resumo-grid{grid-template-columns:1fr 1fr;}
+      .pilares{grid-template-columns:1fr;}
+      .download-section{flex-direction:column;align-items:flex-start;}
+      footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">A&nbsp;Bíblia&nbsp;<span>Já&nbsp;Sabia</span><span style="color:#C9A24B;">.</span></a>
+  <div class="nav-links">
+    <a href="index.html">Início</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="calculadora.html">Calculadora</a>
+    <a href="index.html#contato" class="cta">Falar com Ilana</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A24B;margin-bottom:16px;">Orçamento familiar gratuito</div>
+  <h1>Monte seu <span>orçamento</span> com sabedoria</h1>
+  <p class="subtitle">Baseado nos 13 princípios bíblicos. Preencha sua renda e seus gastos — o orçamento calcula tudo automaticamente e mostra se você está no caminho certo.</p>
+
+  <!-- MÊS -->
+  <div class="section-label">Mês de referência</div>
+  <div style="margin-bottom:40px;">
+    <select id="mes-ref" style="background:#1d1b14;border:1px solid rgba(201,162,75,.2);border-radius:2px;padding:12px 20px;color:#EEE7D6;font-size:14px;font-family:'Manrope',sans-serif;">
+      <option>Janeiro 2026</option><option>Fevereiro 2026</option><option>Março 2026</option>
+      <option>Abril 2026</option><option>Maio 2026</option><option selected>Junho 2026</option>
+      <option>Julho 2026</option><option>Agosto 2026</option><option>Setembro 2026</option>
+      <option>Outubro 2026</option><option>Novembro 2026</option><option>Dezembro 2026</option>
+    </select>
+  </div>
+
+  <!-- RENDA -->
+  <div class="section-label">Renda do mês</div>
+  <div class="renda-grid">
+    <div class="renda-card">
+      <label>Salário / Renda Principal (R$)</label>
+      <input type="number" id="renda-principal" min="0" placeholder="5000" oninput="atualizar()">
+    </div>
+    <div class="renda-card">
+      <label>Renda Extra (freela, bônus, etc.) (R$)</label>
+      <input type="number" id="renda-extra" min="0" placeholder="0" oninput="atualizar()">
+    </div>
+    <div class="renda-card">
+      <label>Outras rendas (aluguel, pensão, etc.) (R$)</label>
+      <input type="number" id="renda-outros" min="0" placeholder="0" oninput="atualizar()">
+    </div>
+  </div>
+
+  <!-- CATEGORIAS -->
+  <div class="section-label">Gastos por categoria</div>
+  <div class="orcamento-grid" id="orcamento-grid"></div>
+
+  <!-- PILARES -->
+  <div class="section-label">Os 3 pilares bíblicos</div>
+  <div class="pilares" id="pilares-grid"></div>
+
+  <!-- RESUMO -->
+  <div class="resumo-section">
+    <div class="resumo-title">Resumo do mês</div>
+    <div class="resumo-grid">
+      <div class="resumo-item">
+        <div class="resumo-val total" id="res-renda">R$ 0</div>
+        <div class="resumo-label">Renda total</div>
+      </div>
+      <div class="resumo-item">
+        <div class="resumo-val negativo" id="res-gastos">R$ 0</div>
+        <div class="resumo-label">Total de gastos</div>
+      </div>
+      <div class="resumo-item">
+        <div class="resumo-val neutro" id="res-saldo">R$ 0</div>
+        <div class="resumo-label">Saldo disponível</div>
+      </div>
+      <div class="resumo-item">
+        <div class="resumo-val neutro" id="res-pct">0%</div>
+        <div class="resumo-label">Comprometimento</div>
+      </div>
+    </div>
+    <div class="barras" id="barras-section"></div>
+  </div>
+
+  <!-- DOWNLOAD -->
+  <div class="download-section">
+    <div class="download-text">
+      <h3>Baixe seu orçamento</h3>
+      <p>Salve uma cópia em CSV para guardar, imprimir ou abrir no Excel e Google Sheets.</p>
+    </div>
+    <button class="btn-download" onclick="downloadCSV()">⬇ Baixar orçamento (CSV)</button>
+  </div>
+
+  <div class="verse-footer">
+    <p>"Conhece bem o estado do teu rebanho, dá atenção ao teu gado."</p>
+    <span>Provérbios 27:23</span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">A Bíblia <span>Já Sabia</span>.</div>
+  <a href="https://instagram.com/ilanahorta" target="_blank" style="font-size:12px;color:#8a8270;text-decoration:none;">@ilanahorta</a>
+  <div class="footer-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
+</footer>
+
+<script>
+const categorias = [
+  {
+    id: 'dizimo', icon: '🙏', titulo: 'Dízimo e Generosidade',
+    pilar: 'futuro', cor: '#C9A24B',
+    verso: '"Honra ao Senhor com os teus bens e com as primícias." — Pv 3:9',
+    itens: ['Dízimo / Oferta', 'Doações', 'Ajuda a familiares']
+  },
+  {
+    id: 'poupanca', icon: '🌱', titulo: 'Poupança e Investimentos',
+    pilar: 'futuro', cor: '#4CAF50',
+    verso: '"A formiga, sem ter chefe, guarda seu alimento no verão." — Pv 6:8',
+    itens: ['Reserva de emergência', 'Investimentos', 'Previdência']
+  },
+  {
+    id: 'moradia', icon: '🏠', titulo: 'Moradia',
+    pilar: 'necessidade', cor: '#64B5F6',
+    verso: '"Com sabedoria se edifica a casa." — Pv 24:3',
+    itens: ['Aluguel / Financiamento', 'Condomínio', 'IPTU / Seguros', 'Manutenção']
+  },
+  {
+    id: 'alimentacao', icon: '🍽️', titulo: 'Alimentação',
+    pilar: 'necessidade', cor: '#81C784',
+    verso: '"Melhor é a refeição de legumes onde há amor." — Pv 15:17',
+    itens: ['Supermercado', 'Feira / Hortifrúti', 'Restaurantes / Delivery']
+  },
+  {
+    id: 'transporte', icon: '🚗', titulo: 'Transporte',
+    pilar: 'necessidade', cor: '#FFD54F',
+    verso: '"O prudente vê o perigo e se esconde." — Pv 22:3',
+    itens: ['Combustível', 'Transporte público / App', 'Seguro / IPVA / Manutenção']
+  },
+  {
+    id: 'saude', icon: '💊', titulo: 'Saúde',
+    pilar: 'necessidade', cor: '#EF9A9A',
+    verso: '"Filho, às minhas palavras presta atenção... pois são vida e saúde." — Pv 4:20-22',
+    itens: ['Plano de saúde', 'Medicamentos', 'Consultas / Exames']
+  },
+  {
+    id: 'dividas', icon: '📉', titulo: 'Dívidas',
+    pilar: 'necessidade', cor: '#FF7043',
+    verso: '"O que toma emprestado é servo do que empresta." — Pv 22:7',
+    itens: ['Cartão de crédito', 'Empréstimo pessoal', 'Financiamento', 'Outros parcelamentos']
+  },
+  {
+    id: 'educacao', icon: '📚', titulo: 'Educação e Crescimento',
+    pilar: 'desejo', cor: '#BA68C8',
+    verso: '"Adquire sabedoria, adquire entendimento." — Pv 4:5',
+    itens: ['Escola / Faculdade', 'Cursos e livros', 'Filhos (escola/material)']
+  },
+  {
+    id: 'lazer', icon: '✨', titulo: 'Lazer e Bem-estar',
+    pilar: 'desejo', cor: '#F06292',
+    verso: '"Há tempo para cada propósito debaixo do céu." — Ec 3:1',
+    itens: ['Streaming / Assinaturas', 'Lazer e passeios', 'Academia / Esportes', 'Roupas e beleza']
+  },
+  {
+    id: 'outros', icon: '📋', titulo: 'Outros Gastos',
+    pilar: 'desejo', cor: '#90A4AE',
+    verso: '"Examine tudo. Retenha o que é bom." — 1Ts 5:21',
+    itens: ['Pets', 'Presentes', 'Outros']
+  }
+];
+
+// inicializar itens por categoria
+const itemCounts = {};
+categorias.forEach(c => { itemCounts[c.id] = c.itens.length; });
+
+function getRenda() {
+  return (parseFloat(document.getElementById('renda-principal').value)||0)
+       + (parseFloat(document.getElementById('renda-extra').value)||0)
+       + (parseFloat(document.getElementById('renda-outros').value)||0);
+}
+
+function getCatTotal(catId) {
+  let total = 0;
+  const n = itemCounts[catId];
+  for (let i = 0; i < n; i++) {
+    total += parseFloat(document.getElementById(`val-${catId}-${i}`)?.value||0);
+  }
+  return total;
+}
+
+function buildGrid() {
+  const grid = document.getElementById('orcamento-grid');
+  grid.innerHTML = '';
+  categorias.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'categoria-card';
+    div.id = 'card-' + cat.id;
+    let itensHTML = '';
+    cat.itens.forEach((nome, i) => {
+      itensHTML += `
+        <div class="item-row" id="item-row-${cat.id}-${i}">
+          <div class="item-name"><input type="text" value="${nome}" placeholder="Item" id="nome-${cat.id}-${i}"></div>
+          <div class="item-val"><input type="number" min="0" placeholder="0" id="val-${cat.id}-${i}" oninput="atualizar()"></div>
+          <button class="btn-rm" onclick="removeItem('${cat.id}',${i})" title="Remover">✕</button>
+        </div>`;
+    });
+    div.innerHTML = `
+      <div class="cat-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="cat-icon">${cat.icon}</span>
+          <span class="cat-title">${cat.titulo}</span>
+        </div>
+        <span class="cat-total" id="total-${cat.id}">R$ 0</span>
+      </div>
+      <div class="cat-verse">${cat.verso}</div>
+      <div id="items-${cat.id}">${itensHTML}</div>
+      <button class="btn-add-item" onclick="addItem('${cat.id}')">+ Adicionar item</button>`;
+    grid.appendChild(div);
+  });
+}
+
+function addItem(catId) {
+  const n = itemCounts[catId];
+  itemCounts[catId]++;
+  const container = document.getElementById('items-' + catId);
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.id = `item-row-${catId}-${n}`;
+  div.innerHTML = `
+    <div class="item-name"><input type="text" placeholder="Novo item" id="nome-${catId}-${n}"></div>
+    <div class="item-val"><input type="number" min="0" placeholder="0" id="val-${catId}-${n}" oninput="atualizar()"></div>
+    <button class="btn-rm" onclick="removeItem('${catId}',${n})" title="Remover">✕</button>`;
+  container.appendChild(div);
+}
+
+function removeItem(catId, i) {
+  const row = document.getElementById(`item-row-${catId}-${i}`);
+  if (row) { row.remove(); atualizar(); }
+}
+
+function atualizar() {
+  const renda = getRenda();
+  let totalGastos = 0;
+
+  // totais por categoria
+  categorias.forEach(cat => {
+    const t = getCatTotal(cat.id);
+    totalGastos += t;
+    const el = document.getElementById('total-' + cat.id);
+    if (el) el.textContent = 'R$ ' + t.toLocaleString('pt-BR', {minimumFractionDigits:2});
+  });
+
+  // pilares
+  const pilarTotals = { necessidade: 0, desejo: 0, futuro: 0 };
+  categorias.forEach(cat => { pilarTotals[cat.pilar] += getCatTotal(cat.id); });
+
+  const pilaresEl = document.getElementById('pilares-grid');
+  const pilarConfig = [
+    { id:'necessidade', label:'Necessidades', ideal:50, cor:'#64B5F6', desc:'Moradia, alimentação, transporte, saúde, dívidas' },
+    { id:'desejo', label:'Desejos', ideal:30, cor:'#F06292', desc:'Lazer, educação, estilo de vida' },
+    { id:'futuro', label:'Dízimo + Futuro', ideal:20, cor:'#C9A24B', desc:'Generosidade, poupança e investimentos' }
+  ];
+  pilaresEl.innerHTML = '';
+  pilarConfig.forEach(p => {
+    const val = pilarTotals[p.id];
+    const pct = renda > 0 ? Math.round((val / renda) * 100) : 0;
+    const ok = pct <= p.ideal;
+    const status = renda === 0 ? '' : ok ? '✅ Dentro do ideal' : '⚠️ Acima do recomendado';
+    pilaresEl.innerHTML += `
+      <div class="pilar" style="border-color:${p.cor}22;background:${p.cor}0a;">
+        <div class="pilar-num" style="color:${p.cor};">${pct}%</div>
+        <div class="pilar-label" style="color:${p.cor};">${p.label}</div>
+        <div class="pilar-ideal" style="color:#8a8270;">Ideal: até ${p.ideal}%</div>
+        <div style="font-size:11px;color:#5a5245;margin-top:4px;">${p.desc}</div>
+        <div class="pilar-status" style="color:${ok?'#4CAF50':'#FF7043'};">${status}</div>
+      </div>`;
+  });
+
+  // resumo
+  const saldo = renda - totalGastos;
+  document.getElementById('res-renda').textContent = 'R$ ' + renda.toLocaleString('pt-BR', {minimumFractionDigits:2});
+  document.getElementById('res-gastos').textContent = 'R$ ' + totalGastos.toLocaleString('pt-BR', {minimumFractionDigits:2});
+  const saldoEl = document.getElementById('res-saldo');
+  saldoEl.textContent = 'R$ ' + saldo.toLocaleString('pt-BR', {minimumFractionDigits:2});
+  saldoEl.className = 'resumo-val ' + (saldo >= 0 ? 'positivo' : 'negativo');
+  const pct = renda > 0 ? Math.round((totalGastos / renda) * 100) : 0;
+  const pctEl = document.getElementById('res-pct');
+  pctEl.textContent = pct + '%';
+  pctEl.className = 'resumo-val ' + (pct <= 100 ? 'positivo' : 'negativo');
+
+  // barras
+  const barrasEl = document.getElementById('barras-section');
+  barrasEl.innerHTML = '';
+  categorias.forEach(cat => {
+    const val = getCatTotal(cat.id);
+    const p = renda > 0 ? Math.min(Math.round((val/renda)*100), 100) : 0;
+    const c = categorias.find(x => x.id === cat.id);
+    barrasEl.innerHTML += `
+      <div class="barra-row">
+        <div class="barra-label">${c.icon} ${c.titulo}</div>
+        <div class="barra-track"><div class="barra-fill" style="width:${p}%;background:${c.cor};"></div></div>
+        <div class="barra-pct">${p}%</div>
+        <div class="barra-ideal">R$ ${val.toLocaleString('pt-BR',{maximumFractionDigits:0})}</div>
+      </div>`;
+  });
+}
+
+function downloadCSV() {
+  const mes = document.getElementById('mes-ref').value;
+  const renda = getRenda();
+  let csv = '\uFEFF'; // BOM para Excel reconhecer UTF-8
+  csv += `ORÇAMENTO FAMILIAR - A BÍBLIA JÁ SABIA\n`;
+  csv += `Mês: ${mes}\n\n`;
+  csv += `RENDA\n`;
+  csv += `Renda Principal,${parseFloat(document.getElementById('renda-principal').value)||0}\n`;
+  csv += `Renda Extra,${parseFloat(document.getElementById('renda-extra').value)||0}\n`;
+  csv += `Outras Rendas,${parseFloat(document.getElementById('renda-outros').value)||0}\n`;
+  csv += `TOTAL DE RENDA,${renda}\n\n`;
+  csv += `GASTOS\n`;
+  csv += `Categoria,Item,Valor (R$)\n`;
+  let totalGastos = 0;
+  categorias.forEach(cat => {
+    const n = itemCounts[cat.id];
+    for (let i = 0; i < n; i++) {
+      const row = document.getElementById(`item-row-${cat.id}-${i}`);
+      if (!row) continue;
+      const nome = document.getElementById(`nome-${cat.id}-${i}`)?.value || '';
+      const val = parseFloat(document.getElementById(`val-${cat.id}-${i}`)?.value||0);
+      if (val > 0 || nome) {
+        csv += `"${cat.titulo}","${nome}",${val}\n`;
+        totalGastos += val;
+      }
+    }
+  });
+  csv += `\nTOTAL DE GASTOS,${totalGastos}\n`;
+  csv += `SALDO,${renda - totalGastos}\n\n`;
+  csv += `PILARES BÍBLICOS\n`;
+  csv += `Pilar,Valor,% da Renda,Ideal\n`;
+  const pilarTotals = { necessidade: 0, desejo: 0, futuro: 0 };
+  categorias.forEach(cat => { pilarTotals[cat.pilar] += getCatTotal(cat.id); });
+  csv += `Necessidades,${pilarTotals.necessidade},${renda>0?Math.round(pilarTotals.necessidade/renda*100):0}%,50%\n`;
+  csv += `Desejos,${pilarTotals.desejo},${renda>0?Math.round(pilarTotals.desejo/renda*100):0}%,30%\n`;
+  csv += `Dízimo + Futuro,${pilarTotals.futuro},${renda>0?Math.round(pilarTotals.futuro/renda*100):0}%,20%\n\n`;
+  csv += `Gerado por A Bíblia Já Sabia | abibliajasabia.com\n`;
+
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `orcamento-${mes.replace(' ','-').toLowerCase()}.csv`;
+  link.click();
+}
+
+buildGrid();
+atualizar();
+</script>
+</body>
+</html>
