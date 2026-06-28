@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora da Liberdade Financeira | A Bíblia Já Sabia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(19,18,14,.97);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:22px;color:#F0EBE1;}
+.nav-logo em{color:#C9A227;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font:400 14px/1 'Inter',sans-serif;color:rgba(240,235,225,.6);}
+.nav-links a:hover{color:#F0EBE1;}
+.nav-btn{background:#C9A227;color:#13120E!important;font:600 14px/1 'Inter',sans-serif!important;padding:10px 22px;border-radius:4px;}
+
+.hero{padding:64px 48px 40px;text-align:center;background:#0D0C09;}
+.hero-label{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:12px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,5vw,56px);line-height:1.08;color:#F0EBE1;margin-bottom:10px;}
+.hero p{font:300 17px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);max-width:540px;margin:0 auto;}
+
+.tabs{display:flex;max-width:680px;margin:32px auto 0;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,.08);}
+.tab-btn{flex:1;padding:15px 20px;font:500 13px/1 'Inter',sans-serif;letter-spacing:.08em;background:#0D0C09;color:rgba(240,235,225,.4);cursor:pointer;border:none;text-align:center;transition:all .2s;}
+.tab-btn.active{background:#C9A227;color:#13120E;}
+
+.shell{max-width:960px;margin:0 auto;padding:48px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+
+.field{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:18px 20px;margin-bottom:14px;}
+.field label{display:block;font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:10px;}
+.field-row{display:flex;align-items:center;gap:8px;}
+.field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.4);}
+.field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 28px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
+.field input[type=range]{width:100%;accent-color:#C9A227;margin-top:8px;height:2px;cursor:pointer;}
+.field-hint{font:300 11px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.2);margin-top:7px;}
+
+.strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.strat-card{padding:16px;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:#0D0C09;cursor:pointer;text-align:left;transition:all .18s;width:100%;}
+.strat-card.active{border-color:#C9A227;background:rgba(201,162,39,.07);}
+.strat-card-title{font:600 13px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
+.strat-card-desc{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+
+.debt-head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;padding:0 14px 7px;font:500 9px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,235,225,.2);}
+.debt-item{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:12px 14px;margin-bottom:8px;align-items:center;}
+.dinput{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.1);outline:none;font:300 13px/1 'Inter',sans-serif;color:#F0EBE1;padding:4px 0;width:100%;}
+.dinput::placeholder{color:rgba(240,235,225,.2);}
+.drm{background:none;border:none;color:rgba(240,235,225,.2);cursor:pointer;font-size:16px;padding:0;transition:color .15s;}
+.drm:hover{color:#C96A5A;}
+.add-btn{display:flex;align-items:center;gap:8px;background:none;border:1px dashed rgba(255,255,255,.1);border-radius:4px;padding:12px 16px;color:rgba(240,235,225,.3);font:300 13px/1 'Inter',sans-serif;cursor:pointer;width:100%;transition:all .18s;margin-bottom:14px;}
+.add-btn:hover{border-color:rgba(201,162,39,.3);color:#C9A227;}
+
+.bible-box{border-left:2px solid #C9A227;padding:14px 16px;background:#0A0908;border-radius:0 4px 4px 0;margin-bottom:14px;}
+.bible-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:7px;}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.5;color:rgba(240,235,225,.65);}
+
+.calc-btn{width:100%;background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;transition:background .18s;}
+.calc-btn:hover{background:#DDB52E;}
+
+.results{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;}
+.r-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
+.r-label{font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:7px;}
+.r-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;line-height:1;color:#C9A227;margin-bottom:4px;}
+.r-sub{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.3);}
+.r-green{color:#6DA87A!important;}
+.r-white{color:#F0EBE1!important;}
+
+.order-list{display:flex;flex-direction:column;gap:6px;}
+.order-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#13120E;border-radius:3px;border:1px solid rgba(255,255,255,.05);}
+.order-n{font:700 12px/1 'Cormorant Garamond',serif;color:#C9A227;width:20px;flex:none;}
+.order-name{font:300 13px/1 'Inter',sans-serif;color:#F0EBE1;flex:1;}
+.order-free{font:300 11px/1 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+
+.tbl{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
+.tbl-head{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;background:#0A0908;}
+.tbl-head span{font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.22);}
+.tbl-row{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;border-top:1px solid rgba(255,255,255,.04);}
+.tbl-row span{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.5);}
+.tbl-row span.hi{color:#C9A227;font-weight:500;}
+
+.disc{font:300 10px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.18);text-align:center;}
+.cta-row{display:flex;gap:10px;}
+.cbtn-g{flex:1;background:#C9A227;color:#13120E;font:600 12px/1 'Inter',sans-serif;padding:13px;border-radius:4px;text-align:center;display:block;}
+.cbtn-o{flex:1;border:1px solid rgba(201,162,39,.3);color:#C9A227;font:500 12px/1 'Inter',sans-serif;padding:12px;border-radius:4px;text-align:center;display:block;}
+
+.contact{padding:80px 48px;background:#0D0C09;}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:900px;margin:0 auto;align-items:start;}
+.c-eye{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:16px;}
+.c-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:42px;line-height:1.1;color:#F0EBE1;margin-bottom:16px;}
+.c-title em{color:#C9A227;font-style:italic;}
+.c-body{font:300 16px/1.7 'Inter',sans-serif;color:rgba(240,235,225,.5);margin-bottom:24px;}
+.c-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(240,235,225,.55);margin-bottom:6px;}
+.c-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;opacity:.6;}
+.cf{background:#13120E;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:30px;}
+.cf input,.cf textarea{width:100%;background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:12px 16px;font:300 15px/1 'Inter',sans-serif;color:#F0EBE1;outline:none;margin-bottom:10px;transition:border-color .18s;}
+.cf input:focus,.cf textarea:focus{border-color:rgba(201,162,39,.4);}
+.cf input::placeholder,.cf textarea::placeholder{color:rgba(240,235,225,.22);}
+.cf textarea{height:100px;resize:vertical;line-height:1.5;}
+.cf-btn{width:100%;background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:14px;border:none;border-radius:4px;cursor:pointer;}
+.cf-note{font:300 10px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.18);text-align:center;margin-top:8px;}
+
+footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.04);}
+.f-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#C9A227;}
+.f-copy{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.2);}
+.f-ig{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.3);}
+
+.hidden{display:none!important;}
+@media(max-width:800px){nav{padding:0 24px;}.shell{grid-template-columns:1fr;padding:36px 24px 80px;}.results{position:static;}.contact-inner{grid-template-columns:1fr;gap:40px;}.contact,.hero{padding:56px 24px 36px;}footer{flex-direction:column;gap:12px;text-align:center;padding:28px;}.strat-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">A Bíblia <em>Já Sabia.</em></a>
+  <div class="nav-links">
+    <a href="index.html#sobre">Sobre</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="#contato" class="nav-btn">Falar com Ilana</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Calculadora gratuita</div>
+  <h1>Quando você será livre?</h1>
+  <p>Duas calculadoras em uma — quite suas dívidas e faça seu dinheiro crescer. A Bíblia tinha as duas estratégias há 3.000 anos.</p>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-dividas" onclick="switchTab('dividas')">💳 Quitar Minhas Dívidas</button>
+    <button class="tab-btn" id="tab-investir" onclick="switchTab('investir')">📈 Fazer Meu Dinheiro Crescer</button>
+  </div>
+</div>
+
+<!-- ===================== ABA DÍVIDAS ===================== -->
+<div id="panel-dividas" class="shell">
+  <div>
+    <div style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:12px;">Estratégia de quitação</div>
+    <div class="strat-grid">
+      <button class="strat-card active" id="btn-snowball" onclick="setStrategy('snowball')">
+        <div class="strat-card-title">❄️ Bola de Neve</div>
+        <div class="strat-card-desc">Pague primeiro a menor dívida. Ganha momentum psicológico rápido.</div>
+      </button>
+      <button class="strat-card" id="btn-avalanche" onclick="setStrategy('avalanche')">
+        <div class="strat-card-title">🏔️ Avalanche</div>
+        <div class="strat-card-desc">Pague primeiro a maior taxa de juros. Economiza mais dinheiro.</div>
+      </button>
+    </div>
+
+    <div class="field">
+      <label>Pagamento extra mensal (opcional)</label>
+      <div class="field-row">
+        <span class="field-prefix">R$</span>
+        <input type="number" id="extra" value="0" min="0" max="10000" step="50" oninput="calcular()">
+      </div>
+      <input type="range" min="0" max="3000" step="50" value="0" oninput="document.getElementById('extra').value=this.value;calcular()">
+      <div class="field-hint">💡 Qualquer renda extra aplicada aqui pode reduzir anos da sua jornada.</div>
+    </div>
+
+    <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:10px;">Suas dívidas</div>
+    <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Juros (%/ano)</span><span>Mín. (R$)</span><span></span></div>
+    <div id="debt-list"></div>
+    <button class="add-btn" onclick="addDebt()">+ Adicionar dívida</button>
+
+    <div class="bible-box">
+      <div class="bible-ref">📖 Provérbios 22:7</div>
+      <div class="bible-q">"O rico governa o pobre, e o que toma emprestado é servo do que empresta."</div>
+    </div>
+
+    <button class="calc-btn" onclick="calcular()">Calcular minha liberdade →</button>
+  </div>
+
+  <div class="results">
+    <div class="r-card">
+      <div class="r-label">Data da liberdade</div>
+      <div class="r-num" id="res-date" style="font-size:28px;">—</div>
+      <div class="r-sub" id="res-months">Preencha suas dívidas</div>
+    </div>
+    <div class="r-card">
+      <div class="r-label">Total em juros</div>
+      <div class="r-num r-white" id="res-interest" style="font-size:30px;">—</div>
+      <div class="r-sub" id="res-saved"></div>
+    </div>
+    <div class="r-card">
+      <div class="r-label">Ordem de quitação</div>
+      <div class="order-list" id="res-order"><div style="font:300 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.3);">Aguardando cálculo...</div></div>
+    </div>
+    <div class="cta-row">
+      <a href="quiz.html" class="cbtn-g">Fazer diagnóstico →</a>
+      <a href="orcamento.html" class="cbtn-o">Montar orçamento</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABA INVESTIMENTOS ===================== -->
+<div id="panel-investir" class="shell hidden">
+  <div>
+    <div class="field">
+      <label>Aporte mensal</label>
+      <div class="field-row">
+        <span class="field-prefix">R$</span>
+        <input type="number" id="inv-monthly" value="300" min="10" max="50000" step="50" oninput="calcularInv()">
+      </div>
+      <input type="range" min="50" max="5000" step="50" value="300" oninput="document.getElementById('inv-monthly').value=this.value;calcularInv()">
+      <div class="field-hint">Quanto você investe todo mês — automaticamente, antes de gastar.</div>
+    </div>
+
+    <div class="field">
+      <label>Taxa de retorno anual (%)</label>
+      <div class="field-row">
+        <input type="number" id="inv-rate" value="12" min="1" max="25" step="0.5" oninput="calcularInv()" style="font-size:28px;">
+        <span class="field-prefix">%</span>
+      </div>
+      <input type="range" min="1" max="20" step="0.5" value="12" oninput="document.getElementById('inv-rate').value=this.value;calcularInv()">
+      <div class="field-hint">CDI histórico: ~12% a.a. | S&P 500 histórico: ~10% a.a. Fonte: bcb.gov.br/calculadoradocidadao</div>
+    </div>
+
+    <div class="field">
+      <label>Horizonte de investimento (anos)</label>
+      <div class="field-row">
+        <input type="number" id="inv-years" value="20" min="1" max="50" step="1" oninput="calcularInv()" style="font-size:28px;">
+      </div>
+      <input type="range" min="5" max="40" step="1" value="20" oninput="document.getElementById('inv-years').value=this.value;calcularInv()">
+      <div class="field-hint">O plano de José durou 14 anos. O seu pode começar hoje.</div>
+    </div>
+
+    <div class="bible-box">
+      <div class="bible-ref">📖 Mateus 25:27</div>
+      <div class="bible-q">"Devias ter depositado o meu dinheiro nos banqueiros, e quando eu voltasse receberia o que é meu com juros."</div>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="r-card">
+      <div class="r-label">Total acumulado</div>
+      <div class="r-num" id="inv-total">—</div>
+      <div class="r-sub" id="inv-total-sub">Preencha os campos</div>
+    </div>
+    <div class="r-card">
+      <div class="r-label">Total depositado</div>
+      <div class="r-num r-white" id="inv-deposited" style="font-size:30px;">—</div>
+      <div class="r-sub">Os juros compostos geram o restante</div>
+    </div>
+    <div class="r-card">
+      <div class="r-label">Gerado por juros compostos</div>
+      <div class="r-num r-green" id="inv-earnings" style="font-size:28px;">—</div>
+      <div class="r-sub" id="inv-pct"></div>
+    </div>
+    <div class="tbl">
+      <div class="tbl-head"><span>Ano</span><span>Depositado</span><span>Total</span></div>
+      <div id="inv-table"></div>
+    </div>
+    <div class="disc">Projeção ilustrativa. Rentabilidade passada não garante resultados futuros. Consulte um assessor de investimentos.</div>
+    <div class="cta-row">
+      <a href="quiz.html" class="cbtn-g">Fazer diagnóstico →</a>
+      <a href="orcamento.html" class="cbtn-o">Montar orçamento</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contato">
+  <div class="contact-inner">
+    <div>
+      <div class="c-eye">Fale com Ilana</div>
+      <h2 class="c-title">Dê o primeiro <em>passo</em></h2>
+      <p class="c-body">Deixe seus dados e entraremos em contato com você pessoalmente. Cada conversa começa onde você está — sem julgamento, com propósito.</p>
+      <p class="c-quote">"O Senhor é o meu pastor; nada me faltará."</p>
+      <div class="c-ref">Salmos 23:1</div>
+    </div>
+    <div class="cf">
+      <input type="text" placeholder="Nome completo">
+      <input type="email" placeholder="E-mail">
+      <input type="tel" placeholder="WhatsApp">
+      <textarea placeholder="Mensagem (opcional)"></textarea>
+      <button class="cf-btn">Enviar mensagem →</button>
+      <p class="cf-note">Seus dados são tratados com respeito e privacidade.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">A Bíblia Já Sabia.</div>
+  <div class="f-copy">© 2026 Ilana Horta · Todos os direitos reservados</div>
+  <div class="f-ig"><a href="https://instagram.com/ilanahorta" style="color:inherit;">@ilanahorta ↗</a></div>
+</footer>
+
+<script>
+// ── STATE ──
+var debts = [
+  {id:1, name:'Cartão de crédito', balance:5000, rate:180, min:150},
+  {id:2, name:'Financiamento', balance:20000, rate:24, min:450}
+];
+var strategy = 'snowball';
+var nextId = 3;
+
+// ── TABS ──
+function switchTab(tab) {
+  document.getElementById('panel-dividas').classList.toggle('hidden', tab !== 'dividas');
+  document.getElementById('panel-investir').classList.toggle('hidden', tab !== 'investir');
+  document.getElementById('tab-dividas').classList.toggle('active', tab === 'dividas');
+  document.getElementById('tab-investir').classList.toggle('active', tab === 'investir');
+  if (tab === 'investir') calcularInv();
+}
+
+function setStrategy(s) {
+  strategy = s;
+  document.getElementById('btn-snowball').classList.toggle('active', s === 'snowball');
+  document.getElementById('btn-avalanche').classList.toggle('active', s === 'avalanche');
+  calcular();
+}
+
+// ── DEBT RENDERING ──
+function renderDebts() {
+  var list = document.getElementById('debt-list');
+  list.innerHTML = debts.map(function(d,i) {
+    return '<div class="debt-item">' +
+      '<input class="dinput" placeholder="Ex: Nubank" value="'+d.name+'" oninput="debts['+i+'].name=this.value;calcular()">' +
+      '<input class="dinput" type="number" placeholder="5000" value="'+d.balance+'" oninput="debts['+i+'].balance=+this.value;calcular()">' +
+      '<input class="dinput" type="number" placeholder="180" value="'+d.rate+'" oninput="debts['+i+'].rate=+this.value;calcular()">' +
+      '<input class="dinput" type="number" placeholder="150" value="'+d.min+'" oninput="debts['+i+'].min=+this.value;calcular()">' +
+      '<button class="drm" onclick="removeDebt('+i+')">×</button>' +
+    '</div>';
+  }).join('');
+}
+
+function addDebt() {
+  debts.push({id:nextId++, name:'', balance:0, rate:0, min:0});
+  renderDebts();
+}
+
+function removeDebt(i) {
+  debts.splice(i,1);
+  renderDebts();
+  calcular();
+}
+
+// ── DEBT CALCULATION ──
+function fmt(n) { return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); }
+function fmtM(n) { var y=Math.floor(n/12),m=n%12; return (y>0?y+' ano'+(y>1?'s':'')+(m>0?' e '+m+' m':''):(m+' meses')); }
+
+function calcDebtSim(ds, extra, strat) {
+  var items = ds.filter(function(d){return d.balance>0 && d.min>0;})
+    .map(function(d){return {name:d.name, balance:d.balance, rate:d.rate/100/12, min:d.min};});
+  if (!items.length) return null;
+  var months=0, totalInt=0;
+  var freed=[]; var extraPool=+extra||0;
+  for (var m=0; m<600 && items.some(function(d){return d.balance>0;}); m++) {
+    // Apply interest + min payment
+    items.forEach(function(d){ if(d.balance<=0)return; var int=d.balance*d.rate; totalInt+=int; d.balance+=int; var pay=Math.min(d.balance,d.min); d.balance=Math.max(0,d.balance-pay); });
+    // Sort for extra payment
+    var active=items.filter(function(d){return d.balance>0;});
+    if(strat==='snowball') active.sort(function(a,b){return a.balance-b.balance;});
+    else active.sort(function(a,b){return b.rate-a.rate;});
+    var rem=extraPool;
+    active.forEach(function(d){ if(rem<=0)return; var pay=Math.min(d.balance,rem); d.balance=Math.max(0,d.balance-pay); rem-=pay; });
+    // Check freed
+    items.forEach(function(d,i){ if(d.balance<=0 && !freed.find(function(f){return f.name===d.name;})) freed.push({name:d.name, month:m+1}); });
+    months++;
+  }
+  // Min-only for savings calc
+  var items2=ds.filter(function(d){return d.balance>0&&d.min>0;}).map(function(d){return{balance:d.balance,rate:d.rate/100/12,min:d.min};});
+  var minInt=0;
+  for(var m2=0;m2<600&&items2.some(function(d){return d.balance>0;});m2++){
+    items2.forEach(function(d){if(d.balance<=0)return;var int=d.balance*d.rate;minInt+=int;d.balance+=int;var pay=Math.min(d.balance,d.min);d.balance=Math.max(0,d.balance-pay);});
+  }
+  return {months:months, totalInt:totalInt, saved:Math.max(0,minInt-totalInt), order:freed};
+}
+
+function calcular() {
+  var extra = +document.getElementById('extra').value||0;
+  var res = calcDebtSim(debts, extra, strategy);
+  if (!res) { document.getElementById('res-date').textContent='—'; return; }
+  var dt=new Date(); dt.setMonth(dt.getMonth()+res.months);
+  document.getElementById('res-date').textContent=dt.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  document.getElementById('res-months').textContent=fmtM(res.months)+' a partir de hoje';
+  document.getElementById('res-interest').textContent=fmt(res.totalInt);
+  document.getElementById('res-saved').textContent=extra>0?'Economia vs. mínimos: '+fmt(res.saved):'Adicione pagamento extra para economizar mais';
+  var orderHtml=res.order.map(function(o,i){return '<div class="order-item"><span class="order-n">'+(i+1)+'</span><span class="order-name">'+o.name+'</span><span class="order-free">'+fmtM(o.month)+'</span></div>';}).join('');
+  document.getElementById('res-order').innerHTML=orderHtml||'<div style="font:300 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.3);">Aguardando cálculo...</div>';
+}
+
+// ── INVESTMENT CALCULATION ──
+function fmtBR(n) { if(n>=1000000)return'R$ '+(n/1000000).toFixed(2)+'M'; if(n>=1000)return'R$ '+Math.round(n/1000)+'K'; return'R$ '+Math.round(n); }
+
+function calcularInv() {
+  var monthly=+document.getElementById('inv-monthly').value||0;
+  var rate=+document.getElementById('inv-rate').value||0;
+  var years=+document.getElementById('inv-years').value||0;
+  var r=rate/100/12, n=years*12;
+  var total=r>0?monthly*((Math.pow(1+r,n)-1)/r):monthly*n;
+  var deposited=monthly*n;
+  var earnings=total-deposited;
+  var pct=total>0?Math.round((earnings/total)*100):0;
+  document.getElementById('inv-total').textContent=fmtBR(total);
+  document.getElementById('inv-total-sub').textContent='após '+years+' anos com R$'+monthly+'/mês';
+  document.getElementById('inv-deposited').textContent=fmtBR(deposited);
+  document.getElementById('inv-earnings').textContent=fmtBR(earnings);
+  document.getElementById('inv-pct').textContent=pct+'% do total gerado pelos juros compostos';
+  // Table
+  var cps=[1,5,10,15,20,25,30].filter(function(y){return y<=years;});
+  if(!cps.includes(years)) cps.push(years);
+  var rows=cps.slice(0,6).map(function(yr){
+    var n2=yr*12, t=r>0?monthly*((Math.pow(1+r,n2)-1)/r):monthly*n2;
+    var d=monthly*n2;
+    function s(v){if(v>=1000000)return(v/1000000).toFixed(1)+'M';if(v>=1000)return Math.round(v/1000)+'K';return Math.round(v);}
+    return '<div class="tbl-row"><span>Ano '+yr+'</span><span>R$'+s(d)+'</span><span class="hi">R$'+s(t)+'</span></div>';
+  }).join('');
+  document.getElementById('inv-table').innerHTML=rows;
+}
+
+// ── INIT ──
+renderDebts();
+calcular();
+calcularInv();
+</script>
+</body>
+</html>
