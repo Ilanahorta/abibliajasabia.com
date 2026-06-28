@@ -46,9 +46,9 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .strat-card-title{font:600 14px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
 .strat-card-desc{font:300 13px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.75);}
 
-.debt-head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;padding:0 14px 7px;font:500 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#F0EBE1;}
+.debt-head{display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1fr 28px;gap:8px;padding:0 14px 10px;font:600 13px/1.4 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#F0EBE1;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:10px;}
 .debt-item{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:12px 14px 8px;margin-bottom:8px;}
-.debt-inputs{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;align-items:center;margin-bottom:6px;}
+.debt-inputs{display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1fr 28px;gap:8px;align-items:center;margin-bottom:6px;}
 .debt-info{font:300 11px/1.5 'Inter',sans-serif;padding:6px 0 2px;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;}
 .debt-info-ok{color:rgba(100,200,120,.85);}
 .debt-info-warn{color:#E8A55A;}
@@ -167,7 +167,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
     <div style="font:300 11px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.6);margin-bottom:8px;padding:0 2px;">💡 Informe a <strong>taxa anual</strong> de juros de cada dívida (consulte seu extrato ou ligue para o banco). Calculamos os juros mensais automaticamente.</div>
 
     <div style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;">Suas dívidas <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;font-size:12px;">(editável)</span></div>
-    <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Taxa anual (%)</span><span>Mín. (R$)</span><span></span></div>
+    <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Taxa anual (%) <em style="font:300 italic 11px/1.3 'Cormorant Garamond',serif;color:#C9A227;text-transform:none;letter-spacing:0;">— se não souber, pergunte ao seu gerente</em></span><span>Mín. (R$)</span><span></span></div>
     <div id="debt-list"></div>
     <button class="add-btn" onclick="addDebt()">+ Adicionar dívida</button>
 
