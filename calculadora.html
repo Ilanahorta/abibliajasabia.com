@@ -66,7 +66,8 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .calc-btn{width:100%;background:#C9A227;color:#13120E;font:600 16px/1 'Inter',sans-serif;padding:18px;border:none;border-radius:4px;cursor:pointer;transition:background .18s;position:relative;z-index:10;}
 .calc-btn:hover{background:#DDB52E;}
 
-.results{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;}
+.results{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .6s ease;}
+.results.revealed{opacity:1;pointer-events:auto;}
 .r-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
 .r-label{font:500 12px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
 .r-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;line-height:1;color:#C9A227;margin-bottom:4px;}
@@ -167,7 +168,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
     <div style="font:300 14px/1.5 'Inter',sans-serif;color:#F0EBE1;margin-bottom:8px;padding:0 2px;">💡 Informe a <strong>taxa anual</strong> de juros de cada dívida (consulte seu extrato ou ligue para o banco). Calculamos os juros mensais automaticamente.</div>
 
     <div style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;">Suas dívidas <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;font-size:12px;">(editável)</span></div>
-    <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Taxa anual (%) <em style="font:300 italic 14px/1.4 'Cormorant Garamond',serif;color:#C9A227;text-transform:none;letter-spacing:0;">— se não souber, pergunte ao seu gerente</em></span><span>Mín. (R$)</span><span></span></div>
+    <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Taxa anual (%) <em style="font:300 italic 18px/1.4 'Cormorant Garamond',serif;color:#C9A227;text-transform:none;letter-spacing:0;display:block;margin-top:3px;">— se não souber, pergunte ao seu gerente</em></span><span>Mín. (R$)</span><span></span></div>
     <div id="debt-list"></div>
     <button class="add-btn" onclick="addDebt()">+ Adicionar dívida</button>
 
@@ -176,7 +177,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
       <div class="bible-q">"O rico governa o pobre, e o que toma emprestado é servo do que empresta."</div>
     </div>
 
-    <button class="calc-btn" onclick="calcular()">Calcular minha liberdade →</button>
+    <button class="calc-btn" onclick="calcular();document.querySelector('.results').classList.add('revealed');">Calcular minha liberdade →</button>
   </div>
 
   <div class="results">
