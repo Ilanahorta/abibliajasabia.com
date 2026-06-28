@@ -33,20 +33,20 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .shell{max-width:960px;margin:0 auto;padding:48px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
 
 .field{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:18px 20px;margin-bottom:14px;}
-.field label{display:block;font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;}
+.field label{display:block;font:500 12px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;}
 .field-row{display:flex;align-items:center;gap:8px;}
 .field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.8);}
 .field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 31px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
 .field input[type=range]{width:100%;accent-color:#C9A227;margin-top:8px;height:2px;cursor:pointer;}
-.field-hint{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.55);margin-top:7px;}
+.field-hint{font:300 14px/1.4 'Inter',sans-serif;color:#F0EBE1;margin-top:7px;}
 
 .strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .strat-card{padding:16px;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:#0D0C09;cursor:pointer;text-align:left;transition:all .18s;width:100%;}
 .strat-card.active{border-color:#C9A227;background:#0D0C09;}
-.strat-card-title{font:600 14px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
-.strat-card-desc{font:300 13px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.75);}
+.strat-card-title{font:600 16px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
+.strat-card-desc{font:300 15px/1.4 'Inter',sans-serif;color:#F0EBE1;}
 
-.debt-head{display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1fr 28px;gap:8px;padding:0 14px 10px;font:600 13px/1.4 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#F0EBE1;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:10px;}
+.debt-head{display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1fr 28px;gap:8px;padding:0 14px 10px;font:600 13px/1.4 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#F0EBE1;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:10px;text-align:center;}
 .debt-item{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:12px 14px 8px;margin-bottom:8px;}
 .debt-inputs{display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1fr 28px;gap:8px;align-items:center;margin-bottom:6px;}
 .debt-info{font:300 11px/1.5 'Inter',sans-serif;padding:6px 0 2px;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;}
@@ -61,16 +61,16 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 
 .bible-box{border-left:2px solid #C9A227;padding:14px 16px;background:#0A0908;border-radius:0 4px 4px 0;margin-bottom:14px;}
 .bible-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:7px;}
-.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.5;color:#F0EBE1;}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.5;color:#F0EBE1;}
 
-.calc-btn{width:100%;background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;transition:background .18s;}
+.calc-btn{width:100%;background:#C9A227;color:#13120E;font:600 16px/1 'Inter',sans-serif;padding:18px;border:none;border-radius:4px;cursor:pointer;transition:background .18s;position:relative;z-index:10;}
 .calc-btn:hover{background:#DDB52E;}
 
 .results{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;}
 .r-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
-.r-label{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
+.r-label{font:500 12px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
 .r-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;line-height:1;color:#C9A227;margin-bottom:4px;}
-.r-sub{font:300 13px/1.4 'Inter',sans-serif;color:#F0EBE1;}
+.r-sub{font:300 15px/1.4 'Inter',sans-serif;color:#F0EBE1;}
 .r-green{color:#6DA87A!important;}
 .r-white{color:#F0EBE1!important;}
 
@@ -221,7 +221,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
         <span class="field-prefix">%</span>
       </div>
       <input type="range" min="1" max="20" step="0.5" value="12" oninput="document.getElementById('inv-rate').value=this.value;calcularInv()">
-      <div class="field-hint">CDI histórico: ~12% a.a. | S&P 500 histórico: ~10% a.a. Fonte: bcb.gov.br/calculadoradocidadao</div>
+      <div class="field-hint cdi-hint">CDI histórico: ~12% a.a. | S&P 500 histórico: ~10% a.a. Fonte: bcb.gov.br/calculadoradocidadao</div>
     </div>
 
     <div class="field">
@@ -384,8 +384,8 @@ function calcDebtSim(ds, extra, strat) {
     items.forEach(function(d,i){ if(d.balance<=0 && !freed.find(function(f){return f.name===d.name;})) freed.push({name:d.name, month:m+1}); });
     months++;
   }
-  // Min-only for savings calc
-  var items2=ds.filter(function(d){return d.balance>0&&d.min>0;}).map(function(d){return{balance:d.balance,rate:d.rate/100/12,min:d.min};});
+  // Min-only for savings calc — only valid debts
+  var items2=ds.filter(function(d){return d.balance>0&&d.min>0&&d.min>d.balance*(d.rate/100/12);}).map(function(d){return{balance:d.balance,rate:d.rate/100/12,min:d.min};});
   var minInt=0;
   for(var m2=0;m2<600&&items2.some(function(d){return d.balance>0;});m2++){
     items2.forEach(function(d){if(d.balance<=0)return;var int=d.balance*d.rate;minInt+=int;d.balance+=int;var pay=Math.min(d.balance,d.min);d.balance=Math.max(0,d.balance-pay);});
@@ -440,6 +440,20 @@ function calcularInv() {
   }).join('');
   document.getElementById('inv-table').innerHTML=rows;
 }
+
+// ── CDI AUTO-UPDATE from Banco Central ──
+(function fetchCDI() {
+  fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/1?formato=json')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data && data[0] && data[0].valor) {
+        var selic = parseFloat(data[0].valor).toFixed(2);
+        document.querySelectorAll('.cdi-hint').forEach(function(el){
+          el.textContent = 'Taxa Selic atual: '+selic+'% a.a. (Banco Central, atualizado automaticamente) | S\u0026P 500 hist\u00f3rico: ~10% a.a.';
+        });
+      }
+    }).catch(function(){});
+})();
 
 // ── INIT ──
 renderDebts();
