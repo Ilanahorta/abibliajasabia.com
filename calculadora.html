@@ -33,18 +33,18 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .shell{max-width:960px;margin:0 auto;padding:48px 48px 100px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
 
 .field{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:18px 20px;margin-bottom:14px;}
-.field label{display:block;font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:10px;}
+.field label{display:block;font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;}
 .field-row{display:flex;align-items:center;gap:8px;}
-.field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.4);}
-.field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 28px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
+.field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.8);}
+.field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 31px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
 .field input[type=range]{width:100%;accent-color:#C9A227;margin-top:8px;height:2px;cursor:pointer;}
-.field-hint{font:300 11px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.2);margin-top:7px;}
+.field-hint{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.55);margin-top:7px;}
 
 .strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .strat-card{padding:16px;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:#0D0C09;cursor:pointer;text-align:left;transition:all .18s;width:100%;}
-.strat-card.active{border-color:#C9A227;background:rgba(201,162,39,.07);}
-.strat-card-title{font:600 13px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
-.strat-card-desc{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+.strat-card.active{border-color:#C9A227;background:#0D0C09;}
+.strat-card-title{font:600 14px/1.3 'Inter',sans-serif;color:#F0EBE1;margin-bottom:4px;}
+.strat-card-desc{font:300 13px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.75);}
 
 .debt-head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;padding:0 14px 7px;font:500 9px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,235,225,.2);}
 .debt-item{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 28px;gap:8px;background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:12px 14px;margin-bottom:8px;align-items:center;}
@@ -57,16 +57,16 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 
 .bible-box{border-left:2px solid #C9A227;padding:14px 16px;background:#0A0908;border-radius:0 4px 4px 0;margin-bottom:14px;}
 .bible-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:7px;}
-.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.5;color:rgba(240,235,225,.65);}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.5;color:#F0EBE1;}
 
 .calc-btn{width:100%;background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;transition:background .18s;}
 .calc-btn:hover{background:#DDB52E;}
 
 .results{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;}
 .r-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
-.r-label{font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:7px;}
+.r-label{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
 .r-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;line-height:1;color:#C9A227;margin-bottom:4px;}
-.r-sub{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.3);}
+.r-sub{font:300 13px/1.4 'Inter',sans-serif;color:#F0EBE1;}
 .r-green{color:#6DA87A!important;}
 .r-white{color:#F0EBE1!important;}
 
@@ -74,16 +74,16 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .order-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#13120E;border-radius:3px;border:1px solid rgba(255,255,255,.05);}
 .order-n{font:700 12px/1 'Cormorant Garamond',serif;color:#C9A227;width:20px;flex:none;}
 .order-name{font:300 13px/1 'Inter',sans-serif;color:#F0EBE1;flex:1;}
-.order-free{font:300 11px/1 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+.order-free{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.8);}
 
 .tbl{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
 .tbl-head{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;background:#0A0908;}
-.tbl-head span{font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.22);}
+.tbl-head span{font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.65);}
 .tbl-row{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;border-top:1px solid rgba(255,255,255,.04);}
-.tbl-row span{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.5);}
+.tbl-row span{font:300 13px/1 'Inter',sans-serif;color:#F0EBE1;}
 .tbl-row span.hi{color:#C9A227;font-weight:500;}
 
-.disc{font:300 10px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.18);text-align:center;}
+.disc{font:300 11px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.5);text-align:center;}
 .cta-row{display:flex;gap:10px;}
 .cbtn-g{flex:1;background:#C9A227;color:#13120E;font:600 12px/1 'Inter',sans-serif;padding:13px;border-radius:4px;text-align:center;display:block;}
 .cbtn-o{flex:1;border:1px solid rgba(201,162,39,.3);color:#C9A227;font:500 12px/1 'Inter',sans-serif;padding:12px;border-radius:4px;text-align:center;display:block;}
@@ -160,7 +160,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
       <div class="field-hint">💡 Qualquer renda extra aplicada aqui pode reduzir anos da sua jornada.</div>
     </div>
 
-    <div style="font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.28);margin-bottom:10px;">Suas dívidas</div>
+    <div style="font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.75);margin-bottom:10px;">Suas dívidas <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;">(editável)</span></div>
     <div class="debt-head"><span>Nome</span><span>Saldo (R$)</span><span>Juros (%/ano)</span><span>Mín. (R$)</span><span></span></div>
     <div id="debt-list"></div>
     <button class="add-btn" onclick="addDebt()">+ Adicionar dívida</button>
@@ -199,7 +199,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
 <div id="panel-investir" class="shell hidden">
   <div>
     <div class="field">
-      <label>Aporte mensal</label>
+      <label>Aporte mensal <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;">(editável)</span></label>
       <div class="field-row">
         <span class="field-prefix">R$</span>
         <input type="number" id="inv-monthly" value="300" min="10" max="50000" step="50" oninput="calcularInv()">
@@ -209,7 +209,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
     </div>
 
     <div class="field">
-      <label>Taxa de retorno anual (%)</label>
+      <label>Taxa de retorno anual (%) <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;">(editável)</span></label>
       <div class="field-row">
         <input type="number" id="inv-rate" value="12" min="1" max="25" step="0.5" oninput="calcularInv()" style="font-size:28px;">
         <span class="field-prefix">%</span>
@@ -219,7 +219,7 @@ footer{background:#0A0908;padding:28px 48px;display:flex;justify-content:space-b
     </div>
 
     <div class="field">
-      <label>Horizonte de investimento (anos)</label>
+      <label>Horizonte de investimento (anos) <span style="font-weight:300;color:#C9A227;letter-spacing:.05em;text-transform:none;">(editável)</span></label>
       <div class="field-row">
         <input type="number" id="inv-years" value="20" min="1" max="50" step="1" oninput="calcularInv()" style="font-size:28px;">
       </div>
@@ -346,6 +346,9 @@ function calcDebtSim(ds, extra, strat) {
   var items = ds.filter(function(d){return d.balance>0 && d.min>0;})
     .map(function(d){return {name:d.name, balance:d.balance, rate:d.rate/100/12, min:d.min};});
   if (!items.length) return null;
+  // Check if any debt can never be paid (min payment < monthly interest)
+  var impossible = items.filter(function(d){ return d.min <= d.balance * d.rate; });
+  if (impossible.length) return {error: 'Pagamento mínimo de "'+impossible[0].name+'" é menor que os juros mensais (R$ '+Math.ceil(impossible[0].balance*impossible[0].rate)+'). Aumente o valor pago para quitar essa dívida.'};
   var months=0, totalInt=0;
   var freed=[]; var extraPool=+extra||0;
   for (var m=0; m<600 && items.some(function(d){return d.balance>0;}); m++) {
@@ -373,7 +376,8 @@ function calcDebtSim(ds, extra, strat) {
 function calcular() {
   var extra = +document.getElementById('extra').value||0;
   var res = calcDebtSim(debts, extra, strategy);
-  if (!res) { document.getElementById('res-date').textContent='—'; return; }
+  if (!res) { document.getElementById('res-date').textContent='—'; document.getElementById('res-months').textContent='Preencha suas dívidas'; document.getElementById('res-interest').textContent='—'; return; }
+  if (res.error) { document.getElementById('res-date').textContent='⚠️ Atenção'; document.getElementById('res-months').textContent=res.error; document.getElementById('res-interest').textContent='—'; return; }
   var dt=new Date(); dt.setMonth(dt.getMonth()+res.months);
   document.getElementById('res-date').textContent=dt.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
   document.getElementById('res-months').textContent=fmtM(res.months)+' a partir de hoje';
